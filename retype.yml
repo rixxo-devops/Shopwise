@@ -1,0 +1,25 @@
+input: .
+output: .retype
+
+url: shopwise-docs.example.com # Use your website address here
+
+start:
+  # Uncomment the next line to try Retype Pro features
+  # pro: true
+
+branding:
+  title: Shopwise App
+  label: Documentation
+
+links:
+- text: Getting Started
+  link: getting-started.md
+- text: Session Setup
+  link: session-setup.md
+- text: Orderwise Integration
+  link: orderwise-integration.md
+- text: Troubleshooting
+  link: troubleshooting.md
+
+footer:
+  copyright: "&copy; Copyright {{ year }} Shopwise App. All rights reserved."

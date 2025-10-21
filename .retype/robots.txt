@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shopwise-docs.example.com/sitemap.xml.gz
