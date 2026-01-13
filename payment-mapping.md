@@ -10,6 +10,7 @@ Payment mapping allows you to map Shopify payment methods to corresponding Order
 - **Automatic Mapping**: Orders use the mapped payment method when sent to OrderWise
 - **Flexible Configuration**: Add new payment methods as needed
 - **Gateway Matching**: Uses Shopify's gateway ID for accurate identification
+- **Payment Exclusion**: Option to exclude payment information from OrderWise order payload for specific payment methods
 
 ## Finding OrderWise Payment IDs
 
@@ -50,7 +51,11 @@ You'll be asked to provide:
 ### Step 3: Map to OrderWise
 
 1. Enter the **OrderWise Payment Method ID** from the previous step
-2. Click **Save** to apply the mapping
+2. **Exclude from OrderWise Order Payload** (Optional): 
+   - Tick this box if you want to exclude payment information from the OrderWise order payload for this specific payment method
+   - This is useful for payment methods that don't need to be sent to OrderWise (e.g., external payment processors that handle payment separately)
+   - When ticked, the payment details will not be included when the order is sent to OrderWise
+3. Click **Save** to apply the mapping
 
 ## Common Payment Methods
 
@@ -79,20 +84,39 @@ To find the exact Gateway ID that Shopify uses:
 3. Look at order details in Shopify to see the gateway used
 4. Use Shopify's API or admin interface to get exact gateway names
 
+## Excluding Payments from OrderWise Order Payload
+
+For certain payment methods, you may want to exclude payment information from being sent to OrderWise in the order payload. This is useful for:
+
+- **External payment processors** that handle payment separately
+- **Payment methods** that don't require payment tracking in OrderWise
+- **Third-party integrations** where payment is managed outside OrderWise
+
+### How to Exclude a Payment Method
+
+1. When configuring a payment method mapping, locate the **Exclude from OrderWise Order Payload** checkbox
+2. Tick the box to exclude payment information for this payment method
+3. Save the configuration
+
+**Note**: When excluded, the payment details will not be included in the order payload sent to OrderWise, but the order itself will still be created.
+
 ## Example Configuration
 
 ```
 Payment Gateway: Credit Card
 Gateway ID: credit_card
 OrderWise Payment ID: 1
+Exclude from Payload: No
 
 Payment Gateway: PayPal Express
 Gateway ID: paypal_express
 OrderWise Payment ID: 2
+Exclude from Payload: Yes (payment handled externally)
 
 Payment Gateway: Bank Transfer
 Gateway ID: bank_transfer
 OrderWise Payment ID: 3
+Exclude from Payload: No
 ```
 
 ## Testing Payment Mapping
