@@ -1,0 +1,74 @@
+<h3 data-bind="i18n: 'Shipping Method'"></h3>
+<div data-bind="attr: {id: 'order-shipping_method'}, event: {updateShippingMethods: updateShipping}">
+    <div ifnot="shippingRateGroupCount() < 1" class="control" data-bind="attr: {id: 'order-shipping-method-choose'}">
+        <dl class="admin__order-shipment-methods">
+            <!-- ko foreach: shippingRateGroups -->
+            <dt class="admin__order-shipment-methods-title" data-bind="text: carrierName"></dt>
+            <dd class="admin__order-shipment-methods-options">
+                <ul class="admin__order-shipment-methods-options-list">
+                    <!-- ko foreach: rates -->
+                    <li class="admin__field-option">
+                        <!-- ko if: errorMessage -->
+                        <div class="messages">
+                            <div class="message message-error error">
+                                <div data-bind="text: errorMessage"></div>
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko ifnot: errorMessage -->
+                        <input class="admin__control-radio required-entry"
+                               type="radio"
+                               tabindex="60"
+                               name="order[shipping_method]"
+                               data-bind="attr: {id: 's_method_' + rateCode, value: rateCode}, checked: $parents[1].selectedShippingMethod, click: $parents[1].setShippingMethod" />
+                        <label class="admin__field-label" data-bind="attr: {for: 's_method_' + rateCode}">
+                            <span if="title" data-bind="text: title + ' - '"></span>
+                            <span ifnot="title" data-bind="text: description + ' - '"></span>
+                            <strong data-bind="html: priceHtml"></strong>
+                        </label>
+                        <!-- /ko -->
+                    </li>
+                    <!-- /ko -->
+                </ul>
+            </dd>
+            <!-- /ko -->
+            <!-- ko if: specialShippingAvailable() == 1 -->
+            <dt class="admin__order-shipment-methods-title" data-bind="i18n: 'Special Arrangement'"></dt>
+            <dd class="admin__order-shipment-methods-options">
+                <ul class="admin__order-shipment-methods-options-list">
+                    <li class="admin__field-option">
+                        <input class="admin__control-radio required-entry"
+                               type="radio"
+                               tabindex="60"
+                               name="order[shipping_method]"
+                               data-bind="attr: {id: 's_method_special_arrangement', value: 'odb_specialarrangement'}, checked: selectedShippingMethod, click: showSpecialShippingMethod" />
+                        <label class="admin__field-label" data-bind="attr: {for: 's_method_special_arrangement'}">
+                            <span data-bind="i18n: 'Special Arrangement'"></span><span data-bind="text: ' - '"></span>
+                            <strong data-bind="text: specialShippingPriceLabel"></strong>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="additional-fields">
+                            <input class="input-text admin__control-text"
+                                   type="text"
+                                   tabindex="60"
+                                   data-bind="value: specialShippingName, attr: {id: 'arrange_shipping-special', placeholder: 'Arrangement Name'}, event: {change: setSpecialShippingMethod}">
+
+                            <input class="input-text admin__control-text"
+                                   type="number"
+                                   tabindex="60"
+                                   data-bind="value: specialShippingPriceAmount, attr: {id: 'price_shipping-special', placeholder: 'Price', min: '0'}, event: {keyup: updateSpecialShipping, change: setSpecialShippingMethod}">
+                        </div>
+                    </li>
+                </ul>
+            </dd>
+            <!-- /ko -->
+        </dl>
+    </div>
+
+    <div if="shippingRateGroupCount() < 1" class="order-shipping-method-summary">
+        <strong class="order-shipping-method-not-available" data-bind="i18n: 'Sorry, no quotes are available for this order.'"></strong>
+    </div>
+
+    <label class="error selectedShippingMethod" data-bind="i18n: 'This is a required field'"></label>
+</div>

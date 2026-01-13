@@ -1,0 +1,20 @@
+{
+    "name": "rixxo/module-order-dashboard",
+    "description": "ODB - Order DashBoard By Rixxo",
+    "require": {
+        "php": "~7.0|~8.0"
+    },
+    "type": "magento2-module",
+    "version": "2.2.0-dev",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Rixxo\\Odb\\": ""
+        }
+    }
+}

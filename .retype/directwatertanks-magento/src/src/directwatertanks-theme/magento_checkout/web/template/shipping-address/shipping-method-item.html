@@ -1,0 +1,35 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<li class="list-element"
+    click="element.selectShippingMethod">
+  <label class="list-element-label">
+    <input type="radio"
+         class="radio"
+         ifnot="method.error_message"
+         ko-checked="element.isSelected"
+         ko-value="method.carrier_code + '_' + method.method_code"
+         attr="'aria-labelledby': 'label_method_' + method.method_code + '_' + method.carrier_code + ' ' + 'label_carrier_' + method.method_code + '_' + method.carrier_code,
+              'checked': element.rates().length == 1 || element.isSelected" />
+    <span class="title">
+      <span attr="'id': 'label_carrier_' + method.method_code + '_' + method.carrier_code"
+            text="method.carrier_title"></span>
+      -
+      <span attr="'id': 'label_method_' + method.method_code + '_' + method.carrier_code"
+            text="method.method_title"></span>
+    </span>
+    <each args="element.getRegion('price')" render=""></each>
+  </label>
+  <div if="method.error_message">
+    <div role="alert" class="message error">
+        <div text="method.error_message"></div>
+    </div>
+    <span class="no-display">
+        <input type="radio"
+               attr="'value' : method.method_code, 'id': 's_method_' + method.method_code">
+    </span>
+  </div>
+</li>

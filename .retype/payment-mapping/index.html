@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.814373604149">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.821637298173">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -30,11 +30,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=3.11.0.814373604149" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.11.0.821637298173" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.814373604149" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.821637298173" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.814373604149" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.821637298173" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -204,6 +204,7 @@
 <li><strong>Automatic Mapping</strong>: Orders use the mapped payment method when sent to OrderWise</li>
 <li><strong>Flexible Configuration</strong>: Add new payment methods as needed</li>
 <li><strong>Gateway Matching</strong>: Uses Shopify&#x27;s gateway ID for accurate identification</li>
+<li><strong>Payment Exclusion</strong>: Option to exclude payment information from OrderWise order payload for specific payment methods</li>
 </ul>
 <doc-anchor-target id="finding-orderwise-payment-ids">
     <h2>
@@ -273,6 +274,13 @@
 </doc-anchor-target>
 <ol>
 <li>Enter the <strong>OrderWise Payment Method ID</strong> from the previous step</li>
+<li><strong>Exclude from OrderWise Order Payload</strong> (Optional):
+<ul>
+<li>Tick this box if you want to exclude payment information from the OrderWise order payload for this specific payment method</li>
+<li>This is useful for payment methods that don&#x27;t need to be sent to OrderWise (e.g., external payment processors that handle payment separately)</li>
+<li>When ticked, the payment details will not be included when the order is sent to OrderWise</li>
+</ul>
+</li>
 <li>Click <strong>Save</strong> to apply the mapping</li>
 </ol>
 <doc-anchor-target id="common-payment-methods">
@@ -334,6 +342,30 @@
 <li>Look at order details in Shopify to see the gateway used</li>
 <li>Use Shopify&#x27;s API or admin interface to get exact gateway names</li>
 </ol>
+<doc-anchor-target id="excluding-payments-from-orderwise-order-payload">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#excluding-payments-from-orderwise-order-payload">#</doc-anchor-trigger>
+        <span>Excluding Payments from OrderWise Order Payload</span>
+    </h2>
+</doc-anchor-target>
+<p>For certain payment methods, you may want to exclude payment information from being sent to OrderWise in the order payload. This is useful for:</p>
+<ul>
+<li><strong>External payment processors</strong> that handle payment separately</li>
+<li><strong>Payment methods</strong> that don&#x27;t require payment tracking in OrderWise</li>
+<li><strong>Third-party integrations</strong> where payment is managed outside OrderWise</li>
+</ul>
+<doc-anchor-target id="how-to-exclude-a-payment-method">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-exclude-a-payment-method">#</doc-anchor-trigger>
+        <span>How to Exclude a Payment Method</span>
+    </h3>
+</doc-anchor-target>
+<ol>
+<li>When configuring a payment method mapping, locate the <strong>Exclude from OrderWise Order Payload</strong> checkbox</li>
+<li>Tick the box to exclude payment information for this payment method</li>
+<li>Save the configuration</li>
+</ol>
+<p><strong>Note</strong>: When excluded, the payment details will not be included in the order payload sent to OrderWise, but the order itself will still be created.</p>
 <doc-anchor-target id="example-configuration">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#example-configuration">#</doc-anchor-trigger>
@@ -344,14 +376,17 @@
 <pre translate="no" class="language-none"><code v-pre class="language-none">Payment Gateway: Credit Card
 Gateway ID: credit_card
 OrderWise Payment ID: 1
+Exclude from Payload: No
 
 Payment Gateway: PayPal Express
 Gateway ID: paypal_express
 OrderWise Payment ID: 2
+Exclude from Payload: Yes (payment handled externally)
 
 Payment Gateway: Bank Transfer
 Gateway ID: bank_transfer
-OrderWise Payment ID: 3</code></pre>
+OrderWise Payment ID: 3
+Exclude from Payload: No</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="testing-payment-mapping">
     <h2>
@@ -479,7 +514,7 @@ OrderWise Payment ID: 3</code></pre>
                                     <ul class="flex flex-wrap items-center text-sm">
                                     </ul>
                                 </div>
-                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2025 Shopwise App. All rights reserved.</p></div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2026 Shopwise App. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>

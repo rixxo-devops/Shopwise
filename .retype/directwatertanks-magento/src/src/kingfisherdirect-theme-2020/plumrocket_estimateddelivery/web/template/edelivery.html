@@ -1,0 +1,29 @@
+<!--Plumrocket_Estimateddelivery-->
+<div class="estimated-hld">
+    <div data-bind="if: estimatedShipping" class="estimated-box  estimated-shipping">
+        <p class="price-margin">
+            <strong class="estimated-title" data-bind="text: estimatedShippingLabel"></strong> <br>
+            <span class="estimated-price" data-bind="html: estimatedShipping"></span>
+        </p>
+    </div>
+    <div class="delivery-img"></div>
+    <div data-bind="if: estimatedDelivery"  class="estimated-box estimated-delivery">
+        <strong class="estimated-title" data-bind="text: estimatedDeliveryLabel"></strong>
+        <span>Order this product</span>
+        <!-- ko if: timeLeft().hours < 12 -->
+        <div>
+            in
+            <span class="estimated-time" data-bind="text: timeLeft().hours"></span><span class="estimated-time"> hrs and</span>
+            <span class="estimated-time" data-bind="text: timeLeft().minutes"></span><span class="estimated-time"> min</span>
+            <span>to get it</span>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: timeLeft().hours >= 12 -->
+        <span>
+            <b>now</b>, to get it
+        </span>
+        <!-- /ko -->
+        <span>between <span class="estimated-price estimated-date" data-bind="html: estimatedDelivery"></span></span>
+    </div>
+</div>
+<!--End-->

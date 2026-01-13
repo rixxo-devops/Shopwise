@@ -1,0 +1,72 @@
+<div class="actions-toolbar top" data-bind="afterRender: bindQuote">
+    <!-- ko if: getQuoteStatus() != 'order' && getQuoteStatus() != 'expired'  -->
+    <button class="button primary edit" if="hasPermission('odb_quotes_edit')" data-bind="{event: {click: editQuote}}">
+        <span data-bind="{text: 'Edit Quote'}"></span>
+    </button>
+    <!-- /ko -->
+    <button class="button primary duplicate" if="hasPermission('odb_quotes_new')" data-bind="{event: {click: duplicateQuote}}">
+        <span data-bind="{text: 'Duplicate Quote'}"></span>
+    </button>
+    <button class="button secondary delete" if="hasPermission('odb_quotes_delete')" data-bind="{event: {click: deleteQuote}}">
+        <span data-bind="{text: 'Delete Quote'}"></span>
+    </button>
+</div>
+
+
+<div class="actions-toolbar bottom">
+    <ul class="customer-details" data-bind="afterRender: bindCustomerDetails">
+        <li class="customerName">
+            <span class="label" data-bind="text: 'Customer Name: '"></span>
+            <span class="value"  data-bind="text: customerName"></span>
+        </li>
+        <li class="customerEmail">
+            <span class="label" data-bind="text: 'Customer Email: '"></span>
+            <span class="value"  data-bind="text: customerEmail"></span>
+        </li>
+        <li class="customerTelephone">
+            <span class="label" data-bind="text: 'Customer Telephone: '"></span>
+            <span class="value"  data-bind="text: customerTelephone"></span>
+        </li>
+    </ul>
+    <ul class="buttons">
+        <li>
+            <button class="button secondary delete" if="hasPermission('odb_quotes_delete')" data-bind="{event: {click: deleteQuote}}">
+                <span data-bind="{text: 'Delete Quote'}"></span>
+            </button>
+        </li>
+        <!-- ko if: getQuoteStatus() != 'order' && getQuoteStatus() != 'expired'  -->
+        <li>
+            <button class="button primary send" if="hasPermission('odb_quotes_send')" data-bind="{event: {click: sendQuote}}">
+                <span data-bind="{text: 'Send Quote'}"></span>
+            </button>
+        </li>
+        <!-- /ko -->
+        <li>
+            <button class="button primary duplicate" if="hasPermission('odb_quotes_new')" data-bind="{event: {click: duplicateQuote}}">
+                <span data-bind="{text: 'Duplicate Quote'}"></span>
+            </button>
+        </li>
+    </ul>
+    <ul class="totals" data-bind="afterRender: bindTotals">
+        <li class="total subtotal">
+            <span class="label" data-bind="i18n: 'Subtotal: '"></span>
+            <span class="value" data-bind="text: currencyFormat(window.quote().totals.subtotal())"></span>
+        </li>
+        <li class="total shipping">
+            <span class="label" data-bind="i18n: 'Shipping: '"></span>
+            <span class="value" data-bind="text: currencyFormat(window.quote().totals.shipping())"></span>
+        </li>
+        <li class="total grand-total-ex-vat">
+            <span class="label" data-bind="i18n: 'Grand Total Ex Vat: '"></span>
+            <span class="value" data-bind="text: currencyFormat(window.quote().totals.grand_total_ex_vat())"></span>
+        </li>
+        <li class="total vat">
+            <span class="label" data-bind="i18n: 'VAT: '"></span>
+            <span class="value" data-bind="text: currencyFormat(window.quote().totals.tax())"></span>
+        </li>
+        <li class="total grand-total-inc-vat">
+            <span class="label" data-bind="i18n: 'Grand Total Inc Vat: '"></span>
+            <span class="value" data-bind="text: currencyFormat(window.quote().totals.grand_total())"></span>
+        </li>
+    </ul>
+</div>

@@ -24,3 +24,12 @@ links:
 
 footer:
   copyright: "&copy; Copyright {{ year }} Shopwise App. All rights reserved."
+
+# Rixxo Brand Colors
+theme:
+  primary: "#33CC99"  # Rixxo Green
+  accent: "#3399CC"   # Rixxo Blue
+
+# Custom CSS for Rixxo Brand Guidelines
+# CSS file located at resources/css/rixxo-brand.css
+# JavaScript injection file at resources/js/rixxo-brand.js

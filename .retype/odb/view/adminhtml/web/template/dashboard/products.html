@@ -1,0 +1,410 @@
+<h2>
+    <span class="step-count" data-bind="text: 2"></span>
+    <span class="title" data-bind="text: 'Products'"></span>
+</h2>
+<div class="items">
+    <table if="quoteItems().length">
+        <thead>
+            <tr>
+                <th class="product" data-bind="i18n: 'Product'"></th>
+                <th class="qty" data-bind="i18n: 'Qty'"></th>
+                <th class="price" data-bind="i18n: 'Price'"></th>
+                <th class="discount" data-bind="i18n: 'Discount'"></th>
+                <th class="discount_percent" data-bind="i18n: 'Discount Percent'"></th>
+                <th class="costPrice" data-bind="i18n: 'Cost Price'"></th>
+                <th class="subtotal" data-bind="i18n: 'Subtotal'"></th>
+                <th class="margin" data-bind="i18n: 'Margin'"></th>
+                <th class="actions" data-bind="i18n: 'Actions'"></th>
+            </tr>
+        </thead>
+        <tbody class="quoteItems" data-bind="foreach: quoteItems, afterRender: bindQuoteItems">
+            <tr class="item" data-bind="attr: {'data-item-id': item_id, 'data-product-id': product_id}">
+                <td class="product">
+                    <ul>
+                        <li class="column product-image" data-bind="attr: {title: name}">
+                            <img width="50"  data-bind="attr: {title: name, src: image_url}" />
+                        </li>
+                        <li class="column product-details">
+                            <ul>
+                                <li class="name" data-bind="text: name"></li>
+                                <li class="sku" data-bind="text: sku"></li>
+                            </ul>
+                            <ul class="custom-options" data-bind="foreach: custom_options_array">
+                                <li>
+                                    <span class="option-title" data-bind="text: option"></span><span class="separator">:</span> <span class="option-value" data-bind="text: value"></span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td class="qty">
+                    <div class="admin__field-control editable">
+                        <input class="admin__control-text" type="number" tabindex="25" min="1" step="any" data-type="integer"  name="qty" data-bind="value: qty(), event: {change: $parent.updateQuoteItem, blur: $parent.saveQuoteOnBlur}" />
+                        <ul class="inputControls">
+                            <li><a href class="incrementInput" tabindex="-1" data-bind="event: {click: $parent.updateItemValue}, text: '&#8593;'"></a></li>
+                            <li><a href class="decrementInput" tabindex="-1" data-bind="event: {click: $parent.updateItemValue}, text: '&#8595;'"></a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="price">
+                    <div class="admin__field-control editable">
+                        <span class="currency-symbol" data-bind="text: $parent.currencySymbol"></span>
+                        <input class="admin__control-text" tabindex="25" type="number" min="0" data-type="float" name="custom_price" data-bind="attr:{'data-price': $parent.currencyFormat(custom_price(), false), disabled: !$parent.hasPermission('odb_quotes_custom_price_edit')}, value: $parent.currencyFormat(custom_price(), false), event: {change: $parent.updateQuoteItem, blur: $parent.saveQuoteOnBlur}" />
+                        <ul class="inputControls" if="$parent.hasPermission('odb_quotes_custom_price_edit')">
+                            <li><a href class="incrementInput" tabindex="-1" data-bind="event: {click: $parent.updateItemValue}, text: '&#8593;'"></a></li>
+                            <li><a href class="decrementInput" tabindex="-1" data-bind="event: {click: $parent.updateItemValue}, text: '&#8595;'"></a></li>
+                        </ul>
+                        <span class="original-price" data-bind="attr: {'data-price': $parent.currencyFormat(price(), false)}, text: 'Original: ' + $parent.currencyFormat(price())"></span>
+                    </div>
+                </td>
+                <td class="discount">
+                    <div class="admin__field-control editable">
+                        <span class="currency-symbol"  if="$parent.hasPermission('odb_quotes_specified_discount_view')" data-bind="text: $parent.currencySymbol"></span>
+                        <input class="admin__control-text" if="$parent.hasPermission('odb_quotes_specified_discount_view')" tabindex="25" type="number" min="0" step="any" data-type="float"  name="discount" data-bind="value: $parent.currencyFormat(discount(), false), event: {change: $parent.updateQuoteItem, blur: $parent.saveQuoteOnBlur}, attr: {disabled: !$parent.hasPermission('odb_quotes_specified_discount_edit')}" />
+                        <ul class="inputControls" if="$parent.hasPermission('odb_quotes_specified_discount_edit')">
+                            <li><a href class="incrementInput" tabindex="-1" data-bind="event: {click: $parent.updateItemValue}, text: '&#8593;'"></a></li>
+                            <li><a href class="decrementInput" tabindex="-1" data-bind="event: {click: $parent.updateItemValue}, text: '&#8595;'"></a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="discount_percent">
+                    <div class="admin__field-control editable">
+                        <span class="currency-symbol" if="$parent.hasPermission('odb_quotes_percent_discount_view')" data-bind="text: '%'"></span>
+                        <input class="admin__control-text" type="number" tabindex="25" min="0" step="any" data-type="float"  name="discount_percent" if="$parent.hasPermission('odb_quotes_percent_discount_view')" data-bind="value: $parent.currencyFormat(discount_percent(), false), event: {change: $parent.updateQuoteItem, blur: $parent.saveQuoteOnBlur}, attr: {disabled: !$parent.hasPermission('odb_quotes_percent_discount_edit')}" />
+                        <ul class="inputControls" if="$parent.hasPermission('odb_quotes_percent_discount_edit')">
+                            <li><a href class="incrementInput" tabindex="-1" data-bind="event: {click: $parent.updateItemValue}, text: '&#8593;'"></a></li>
+                            <li><a href class="decrementInput" tabindex="-1" data-bind="event: {click: $parent.updateItemValue}, text: '&#8595;'"></a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="costPrice">
+                    <div class="admin__field-control editable">
+                        <span class="currency-symbol" if="$parent.hasPermission('odb_quotes_cost_price_view')" data-bind="text: $parent.currencySymbol"></span>
+                        <input class="admin__control-text" tabindex="25" type="number" min="0" data-type="float" name="cost_price" if="$parent.hasPermission('odb_quotes_cost_price_view')" data-bind="value: $parent.currencyFormat(cost_price(), false), event: {change: $parent.updateQuoteItem},attr: {disabled: !$parent.hasPermission('odb_quotes_cost_price_edit')}" />
+                    </div>
+                </td>
+                <td class="subtotal">
+                    <span class="excl-tax" data-bind="text: $parent.currencyFormat(row_total())"></span>
+                    <span class="tax" style="display: block; font-size: 10px;" data-bind="text: 'tax (+' + $parent.currencyFormat(tax()) + ')'"></span>
+                </td>
+                <td class="margin">
+                    <span if="$parent.hasPermission('odb_quotes_margin_view')" data-bind="text: $parent.calculateMargin(custom_price(), cost_price())"></span>
+                </td>
+                <td class="actions">
+                    <ul>
+                        <li class="action comments" if="$parent.hasPermission('odb_quotes_item_comment_view')">
+                            <a href="javascript: void(0)" class="showItemComments" tabindex="25" data-bind="text: 'Item Comments ', event: {click: $parent.showItemComments}"></a>
+                            <span class="comment-count">(<span class="value" data-bind="text: comment_count"></span>)</span>
+                        </li>
+                        <li class="action remove">
+                            <a href="javascript: void(0)" class="removeItem" tabindex="25" data-bind="text: 'Remove Item', event: {click: $parent.removeItemConfirmShow}"></a>
+                            <ul class="remove-confirm">
+                                <li class="confirm">
+                                    <a href="javascript: void(0)" id="confirm-yes" tabindex="25" data-bind="event: {click: $parent.removeQuoteItem}">
+                                        <span data-bind="i18n: 'Yes'"></span>
+                                    </a>
+                                </li>
+                                <li class="deny">
+                                    <a href="javascript: void(0)" id="confirm-no" tabindex="25" data-bind="event: {click: $parent.removeItemConfirmClose}">
+                                        <span data-bind="i18n: 'No'"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr class="totals" if="quoteItems().length">
+                <td class="product-count" colspan="5">
+                    <span class="label" data-bind="i18n: 'Total Products: '"></span>
+                    <span class="value" data-bind="text: quoteTotalItemCount">0</span>
+                </td>
+                <td class="subtotal-label" data-bind="i18n: 'Subtotals:'"></td>
+                <td class="subtotal" data-bind="text: quoteTotalsSubtotal"></td>
+                <td class="margin" if="hasPermission('odb_quotes_margin_view')" data-bind="text: quoteTotalsMargin">100%</td>
+                <td/>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="item-comments" data-bind="afterRender: bindItemComments">
+        <div class="item-comments-modal-contents">
+            <ul data-bind="attr: {class: allowCustomerItemComments ? 'comments' : 'comments no-comment'}, foreach: currentItemComments">
+                <li class="comment" data-bind="attr:{'data-type': author_type}">
+                    <div class="header">
+                        <span class="date" data-bind="text: created_at"></span>
+                        <span class="author-type" data-bind="text: author_type"></span>
+                    </div>
+                    <div class="contents" data-bind="text: contents"></div>
+                    <div class="footer">
+                        <span class="delete">
+                            <a href="javascript: void(0)" data-bind="text: 'Delete', event: {click: $parent.deleteItemComment}"></a>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+            <div class="new-comment" if="hasPermission('odb_quotes_item_comment_edit')">
+                <div class="admin__field-control">
+                    <textarea class="admin__control-textarea" name="contents" placeholder="Enter your comment here"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="find-product">
+    <div class="admin__field-control search">
+        <input class="admin__control-text" type="text" tabindex="30" id="findProduct" name="findProduct" title="Find Product", autocomplete="off"
+               placeholder="Find product by name or SKU"
+               data-bind="{value: findProductQuery, event: {keyup: findProduct, focus: toggleShowResultsFocus, blur: toggleShowResultsFocus }}" />
+
+        <div class="findProductResults" data-bind="event: {click: preventFindProductClose}">
+            <ul class="header">
+                <li class="result-count">
+                    <span class="label" data-bind="i18n: 'Showing results: '"></span>
+                    <span class="value" data-bind="text: findProductResultCount"></span>
+                </li>
+            </ul>
+
+            <ul data-bind="foreach: findProductQueryPageMatches" class="results">
+                <li class="result" data-bind="attr: {'data-product-id': product_id, 'data-type-id': type_id}">
+                    <ul>
+                        <li class="column product-image" data-bind="attr: {title: name}">
+                            <img width="50"  data-bind="attr: {title: name, src: image_url}" />
+                        </li>
+                        <li class="column product-details">
+                            <ul>
+                                <li class="name"><strong data-bind="text: name"></strong></li>
+                                <li class="sku" data-bind="text: sku"></li>
+                                <li class="price" data-bind="text: $parent.currencyFormat(price)"></li>
+                            </ul>
+                        </li>
+                        <li class="column view">
+                            <a target="_blank" tabindex="31" data-bind="attr: {href: url, title: 'View'}, i18n: 'View', event: {click: $parent.openViewProductUrl, blur: $parent.toggleShowResultsFocus, keyup: $parent.closeFindProductResults}"></a>
+                        </li>
+                        <li class="column actions">
+                            <!-- ko if: is_salable == true -->
+                            <button class="primary addToQuote" tabindex="31" data-bind="event: {click: $parent.addProductToQuote, blur: $parent.toggleShowResultsFocus, keyup: $parent.closeFindProductResults}">
+                                <span data-bind="i18n: has_options == 0 ? 'Add' : ' Configure'"></span>
+                            </button>
+                            <!-- /ko -->
+                            <!-- ko if: is_salable == false -->
+                            <p class="product-unavailable" data-bind="i18n: 'Unavailable'"></p>
+                            <!-- /ko -->
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <p if="findProductResultCount() < 1" class="no-results" data-bind="i18n: 'No Products Found'"></p>
+            <ul class="pagination">
+                <li class="first" if="hasPreviousProductPage">
+                    <a href="javascript: void(0)" tabindex="31" data-bind="text: '&#60;&#60;', event: {blur: toggleShowResultsFocus, focus: preventFindProductClose,  click: firstProductPage}"></a>
+                </li>
+                <li class="previous" if="hasPreviousProductPage">
+                    <a href="javascript: void(0)" tabindex="31" data-bind="text: '&#60;', event: {blur: toggleShowResultsFocus, focus: preventFindProductClose, click: previousProductPage}"></a>
+                </li>
+                <li class="pages" data-bind="attr: {'data-current-page': currentPage}">
+                    <ul data-bind="foreach: findProductPages">
+                        <li class="page">
+                            <a href="javascript: void(0)" tabindex="31" data-bind="attr: {'data-page': page, class: selected}, event: {blur: $parent.toggleShowResultsFocus, focus: $parent.preventFindProductClose, click: $parent.changeProductResultPage}, text: page"></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="next" if="hasNextProductPage">
+                    <a href="javascript: void(0)" tabindex="31" data-bind="text: '&#62;', event: {blur: toggleShowResultsFocus, focus: preventFindProductClose, click: nextProductPage}"></a>
+                </li>
+                <li class="last" if="hasNextProductPage">
+                    <a href="javascript: void(0)" tabindex="31" data-bind="text: '&#62;&#62;', event: {blur: toggleShowResultsFocus, focus: preventFindProductClose, click: lastProductPage}"></a>
+                </li>
+            </ul>
+        </div>
+
+        <p class="or" data-bind="text: '- Or -'"></p>
+
+        <button class="create-custom-product button secondary" tabindex="32" id="createCustomProduct" data-bind="title: 'Create Custom Product', event: {click: showCustomProductModal}">
+            <span data-bind="text: 'Create Custom Product'"></span>
+        </button>
+
+        <div class="custom-product-modal-wrapper">
+            <div class="custom-product-modal-content">
+                <form name="customProductForm" id="customProductForm">
+                    <div class="admin__field-control input-name">
+                        <div class="admin__field-label">
+                            <label for="product_name" data-bind="i18n: 'Name'"></label>
+                        </div>
+                        <input class="admin__control-text" type="text" data-bind="value: customProductName,attr: {'placeholder': 'Product Name', title: 'Product Name', name: 'product_name', 'data-rule-required': '1' }, event: {keyup: setCustomProductSku}" />
+                    </div>
+                    <div class="admin__field-control input-sku">
+                        <div class="admin__field-label">
+                            <label for="sku" data-bind="i18n: 'SKU'"></label>
+                        </div>
+                        <input class="admin__control-text" type="text" data-bind="value: customProductSku, attr: {'placeholder': 'SKU',title: 'SKU', name: 'sku', 'data-rule-required': '1' }" />
+                    </div>
+                    <div class="admin__field-control input-price">
+                        <div class="admin__field-label">
+                            <label for="price" data-bind="i18n: 'Price'"></label>
+                        </div>
+                        <input class="admin__control-text" type="number" data-bind="value: customProductPrice, attr: {'placeholder': 'Price', title: 'Price', name: 'price', 'data-rule-required': '1' }" />
+                    </div>
+                    <div class="admin__field-control input-qty">
+                        <div class="admin__field-label">
+                            <label for="price" data-bind="i18n: 'Quantity'"></label>
+                        </div>
+                        <input class="admin__control-text" min="1" type="number" data-bind="value: customProductQty, attr: {'placeholder': 'Quantity', title: 'Quantity', name: 'qty', 'data-rule-required': '1' }" />
+                    </div>
+                    <div class="admin__field-control input-attribute-set">
+                        <div class="admin__field-label">
+                            <label for="attribute_set" data-bind="i18n: 'Attribute Set'"></label>
+                        </div>
+                        <select class="admin__control-select" data-bind="foreach: customProductAttributeSets, value: customProductAttributeSet, attr: {name: 'attribute_set'}">
+                            <option data-bind="value: attribute_set_id, text: attribute_set_name"></option>
+                        </select>
+                    </div>
+                    <div class="admin__field-control input-visibility">
+                        <div class="admin__field-label">
+                            <label for="visibility" data-bind="i18n: 'Visibility'"></label>
+                        </div>
+                        <select class="admin__control-select" data-bind="foreach: customProductVisibilities, value: customProductVisibility, attr: {name: 'visibility'}">
+                            <option data-bind="value: value, text: label"></option>
+                        </select>
+                    </div>
+                    <div class="admin__field-control input-tax-class">
+                        <div class="admin__field-label">
+                            <label for="tax_class" data-bind="i18n: 'Tax Class'"></label>
+                        </div>
+                        <select class="admin__control-select" data-bind="foreach: customProductTaxClasses, value: customProductTaxClass, attr: {name: 'tax_class'}">
+                            <option data-bind="value: value, text: label"></option>
+                        </select>
+                    </div>
+                    <div class="admin__field-control input-categories">
+                        <div class="admin__field-label">
+                            <label for="category_filter" data-bind="i18n: 'Categories'"></label>
+                        </div>
+                        <ul class="selected-categories" data-bind="foreach: customProductSelectedCategories">
+                            <li>
+                                <a href="javascript: void(0)" class="remove-category tooltip" data-bind="text: name, event:{click: $parent.removeCustomProductCategory}"></a>
+                            </li>
+                        </ul>
+                        <a href="javascript: void(0)" if="canClearCustomProductFilter() == true" class="clear-category-filter" data-bind="text: 'Clear Filter',event: {click: clearCustomProductFilter}"></a>
+                        <input class="admin__control-text category-filter" type="text" data-bind="value: customProductCategoryFilter, attr: {'placeholder': 'Filter Categories...', title: 'Price', name: 'category_filter'}, event: {keyup: filterCustomProductCategories}" />
+                        <ul class="categories" data-level="2" data-bind="foreach: customProductCategories">
+                            <li data-bind="attr:{'data-level': 2, 'data-has-children': has_children, 'data-id': category_id}, afterRender: $parent.bindCustomProductCategories">
+                                <span class="name" data-bind="text: name"></span>
+                                <input type="checkbox" class="select-category" data-bind="value: category_id" />
+                                <a if="has_children == 1" class="next-level show" title="Show Categories" href="javascript: void(0)" data-bind="attr: {'data-got-categories': 0}"><img class="show" src="/media/odb/arrow.png" width="20" height="20" /></a>
+                                <ul if="has_children == 1" class="children closed" data-level="3"></ul>
+                            </li>
+                        </ul>
+                        <ul class="filtered-categories" data-bind="foreach: customProductFilteredCategories">
+                            <li data-bind="attr:{'data-id': category_id}, afterRender: $parent.bindCustomProductCategories">
+                                <span class="name" data-bind="text: name"></span>
+                                <input type="checkbox" class="select-category" data-bind="value: category_id" />
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="admin__field-control input-permanent">
+                        <input class="admin__control" type="checkbox" value="1" data-bind="value: customProductMakePermanent, attr: {title: 'Make Product Permanent?', name: 'make_permanent', id: 'make_permanent'}" />
+                        <div class="admin__field-label">
+                            <label for="make_permanent" data-bind="i18n: 'Make Product Permanent?'"></label>
+                            <a href="javascript: void(0)" class="tooltip">
+                                <span href="javascript: void(0)" class="trigger">?</span>
+                                <span class="contents" data-bind="i18n: 'Temporary products will be deleted after they have been purchased or periodically, depending on your configuration settings.'"></span>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="configure-item-modal-wrapper">
+            <div class="configure-item-modal-content" data-bind="attr:{'data-view-type': configureItemDisplayType}">
+                <div class="custom-options configurable-panel">
+                    <form name="customOptionsForm" id="customOptionsForm" data-bind="afterRender: addCustomOptionValidation">
+                        <ul class="attributes" data-bind="foreach: productCustomOptions">
+                            <li class="attribute" data-bind="attr: {'data-option-id': option_id, 'data-is-required': is_require == '1'? 'required' : '', 'data-is-select': options ? 1 : '', 'data-option-type': type}">
+                                <h2 data-bind="text: title, attr: {'class': is_require == '1'? 'required' : ''}"></h2>
+                                <p class="selection-note" if="options" data-bind="text: select_multiple ? 'Select Multiple' : 'Select One'"></p>
+                                <p ifnot="options" class="selection-note price-label" data-bind="text: price_label"></p>
+
+                                <div class="type-select" if="type == 'drop_down' || type == 'radio' || type == 'checkbox' || type == 'multiselect'">
+                                    <ul class="options" data-bind="foreach: options, attr: {'data-select-type': select_multiple ? 'multiple' : 'single' }">
+                                        <li class="option" data-bind="attr: {'data-option-type-id': option_type_id}">
+                                            <a href="javascript: void(0)" data-bind="event: {click: $parent.selectCustomOptionValue}, attr: {'data-option-title': title,'data-option-type-id': option_type_id, 'data-price-difference': price_difference}, text: title + price_label"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <input if="options" type="hidden" value="" data-bind="attr: {name: title, 'data-rule-required': is_require == '1' ? 'true' : '', 'data-price-difference': '0'}" />
+
+                                <div class="type-input" if="type == 'field'">
+                                    <div class="admin__field-control">
+                                        <input class="admin__control-text" type="text" data-bind="attr: {'placeholder': title,name: title, 'data-rule-required': is_require == '1' ? 'true' : '',  'data-price-difference': price_difference}, event: {change: $parent.setCustomOptions}" />
+                                    </div>
+                                </div>
+                                <div class="type-input" if="type == 'area'">
+                                    <div class="admin__field-control">
+                                        <textarea class="admin__control-textarea"  data-bind="attr: {'placeholder': title, name: title, 'data-rule-required': is_require == '1' ? 'true' : '',  'data-price-difference': price_difference}, event: {keyup: $parent.setCustomOptions}"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="type-input" if="type == 'date'">
+                                    <div class="admin__field-control">
+                                        <input class="admin__control-text" type="text" value="" data-bind="attr: {name: title, 'data-rule-required': is_require == '1' ? 'true' : '',  'data-price-difference': price_difference}, value: $parent.customOptionsDates()[option_id], event: {change: $parent.setCustomOptions}, datepicker: $parent.customOptionsDates()[$index()],datePickeroptions: {
+                                        dateFormat: 'dd/M/yy',
+                                        changeMonth: true,
+                                        changeYear: true,
+                                        maxDate: new Date(),
+                                        datePickerPlaceholder: 'dd/M/yy'
+                                        }"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="configurable-product configurable-panel">
+                    <ul class="attributes" data-bind="foreach: configurableProductSuperAttributes">
+                        <!-- ko ifnot: $parent.isLastConfigurableAttribute($index) -->
+                        <li class="attribute" data-bind="attr: {'data-index': $index()}">
+                            <h2 data-bind="text: label"></h2>
+                            <ul class="options" data-bind="foreach: options">
+                                <li class="option">
+                                    <a href="javascript: void(0)" data-bind="attr: {'data-option-id': value_index}, text: label"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- /ko -->
+                        <!-- ko if: $parent.isLastConfigurableAttribute($index) -->
+                        <li class="selection-attribute attribute" data-bind="attr: {'data-index': $index()}">
+                            <h2 data-bind="text: label"></h2>
+                            <table>
+                                <thead>
+                                <tr class="head">
+                                    <th class="label">Label</th>
+                                    <th class="price">Price</th>
+                                    <th class="available">Available</th>
+                                    <th class="quantity">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody class="options" data-bind="foreach: options, afterRender: $parent.bindConfigurableQuantities">
+                                <tr class="option" data-bind="attr: {'data-option-id': value_index}">
+                                    <td class="label" data-bind="text: label"></td>
+                                    <td class="price"></td>
+                                    <td class="available"></td>
+                                    <td class="quantity">
+                                        <input name="qty" min="0" type="number" value="0" />
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                        <!-- /ko -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<h3 data-bind="i18n: 'Shipping Method'"></h3>
+<div data-bind="attr: {id: 'order-shipping_method'}">
+    <p if="hasShippingMethod() == true"  data-bind="text: getShippingMethod()"></p>
+    <p if="hasShippingMethod() == false"  data-bind="text: 'No Shipping Method Selected'"></p>
+</div>

@@ -1,0 +1,9 @@
+<div class="product-item-lead-time">
+    <span class="label"><!-- ko i18n: 'Delivery Lead Time' --><!-- /ko --></span>
+    <span class="value">
+        <span data-bind="text: getLeadTime($parents[1].item_id)"></span><br/>
+        <span class="next-day" data-bind="if: getNextDayDelivery($parents[1].item_id) != 0">
+            <!-- ko i18n: 'Next Day Delivery Available' --><!-- /ko -->
+        </span>
+    </span>
+</div>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.821637298173">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Testing Your WordPress Cron Job</title>
+    <meta name="title" content="Testing Your WordPress Cron Job">
+    <meta name="description" content="Quick guide to verify your cron job is working properly.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://shopwise-docs.example.com/test-wordpress-cron/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shopwise-docs.example.com/test-wordpress-cron/">
+    <meta property="og:title" content="Testing Your WordPress Cron Job">
+    <meta property="og:description" content="Quick guide to verify your cron job is working properly.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shopwise-docs.example.com/test-wordpress-cron/">
+    <meta property="twitter:title" content="Testing Your WordPress Cron Job">
+    <meta property="twitter:description" content="Quick guide to verify your cron job is working properly.">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../resources/css/retype.css?v=3.11.0.821637298173" rel="stylesheet">
+
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.821637298173" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.821637298173" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.11.0.821637298173" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../" class="flex items-center leading-snug text-2xl">
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Shopwise App</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">Documentation</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../getting-started/">Getting Started</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../session-setup/">Session Setup</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../orderwise-integration/">Orderwise Integration</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../troubleshooting/">Troubleshooting</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-base-border">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../getting-started/">Getting Started</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../session-setup/">Session Setup</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../orderwise-integration/">Orderwise Integration</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../troubleshooting/">Troubleshooting</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="testing-your-wordpress-cron-job" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#testing-your-wordpress-cron-job">#</doc-anchor-trigger>
+        <span>Testing Your WordPress Cron Job</span>
+    </h1>
+</doc-anchor-target>
+<p>Quick guide to verify your cron job is working properly.</p>
+<doc-anchor-target id="method-1-verify-cron-job-is-listed-quick-check">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#method-1-verify-cron-job-is-listed-quick-check">#</doc-anchor-trigger>
+        <span>Method 1: Verify Cron Job is Listed (Quick Check)</span>
+    </h2>
+</doc-anchor-target>
+<ol>
+<li><p><strong>Access SSH Terminal in RunCloud</strong>:</p>
+<ul>
+<li>Use RunCloud&#x27;s built-in terminal</li>
+<li>Or connect via SSH</li>
+</ul>
+</li>
+<li><p><strong>Check if cron job exists</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">crontab -l</code></pre>
+</doc-codeblock></div>
+<p>You should see your WordPress cron job listed (something like <code v-pre>*/15 * * * * /usr/bin/php /home/runcloud/webapps/...</code>)</p>
+</li>
+</ol>
+<doc-anchor-target id="method-2-test-the-command-manually-immediate-test">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#method-2-test-the-command-manually-immediate-test">#</doc-anchor-trigger>
+        <span>Method 2: Test the Command Manually (Immediate Test)</span>
+    </h2>
+</doc-anchor-target>
+<p>Run the cron command manually to see if it works:</p>
+<ol>
+<li><p><strong>In SSH Terminal</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">/usr/bin/php /home/runcloud/webapps/[YOUR-APP-NAME]/public/wp-cron.php</code></pre>
+</doc-codeblock></div>
+<p>Replace <code v-pre>[YOUR-APP-NAME]</code> with your actual app name.</p>
+</li>
+<li><p><strong>What to expect</strong>:</p>
+<ul>
+<li>If it works: Command completes with no errors (or minimal output)</li>
+<li>If there&#x27;s an error: You&#x27;ll see error messages</li>
+</ul>
+</li>
+</ol>
+<doc-anchor-target id="method-3-check-cron-execution-logs">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#method-3-check-cron-execution-logs">#</doc-anchor-trigger>
+        <span>Method 3: Check Cron Execution Logs</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="option-a-check-system-cron-logs">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#option-a-check-system-cron-logs">#</doc-anchor-trigger>
+        <span>Option A: Check System Cron Logs</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># View recent cron activity
+grep CRON /var/log/syslog | tail -20
+
+# Or on some systems:
+grep CRON /var/log/cron | tail -20</code></pre>
+</doc-codeblock></div>
+<p>Look for entries showing your WordPress cron job running.</p>
+<doc-anchor-target id="option-b-create-a-log-file-recommended">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#option-b-create-a-log-file-recommended">#</doc-anchor-trigger>
+        <span>Option B: Create a Log File (Recommended)</span>
+    </h3>
+</doc-anchor-target>
+<p>Modify your cron job to log output. Edit the cron job:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">crontab -e</code></pre>
+</doc-codeblock></div>
+<p>Change from:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">*/15 * * * * /usr/bin/php /home/runcloud/webapps/[APP]/public/wp-cron.php &gt;/dev/null 2&gt;&amp;1</code></pre>
+</doc-codeblock></div>
+<p>To:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">*/15 * * * * /usr/bin/php /home/runcloud/webapps/[APP]/public/wp-cron.php &gt;&gt; /home/runcloud/webapps/[APP]/logs/wp-cron.log 2&gt;&amp;1</code></pre>
+</doc-codeblock></div>
+<p>Then check the log:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">tail -f /home/runcloud/webapps/[APP]/logs/wp-cron.log</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="method-4-use-wordpress-plugin-easiest-visual-check">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#method-4-use-wordpress-plugin-easiest-visual-check">#</doc-anchor-trigger>
+        <span>Method 4: Use WordPress Plugin (Easiest Visual Check)</span>
+    </h2>
+</doc-anchor-target>
+<ol>
+<li><p><strong>Install WP Crontrol Plugin</strong>:</p>
+<ul>
+<li>In WordPress admin, go to <strong>Plugins</strong> → <strong>Add New</strong></li>
+<li>Search for &quot;WP Crontrol&quot;</li>
+<li>Install and activate</li>
+</ul>
+</li>
+<li><p><strong>Check Cron Events</strong>:</p>
+<ul>
+<li>Go to <strong>Tools</strong> → <strong>Cron Events</strong></li>
+<li>You&#x27;ll see all scheduled WordPress events</li>
+<li>Check the &quot;Next Run&quot; times - they should update when cron runs</li>
+<li>You can also manually run events to test</li>
+</ul>
+</li>
+<li><p><strong>What to look for</strong>:</p>
+<ul>
+<li>Events should have &quot;Next Run&quot; times in the future</li>
+<li>After cron runs, &quot;Next Run&quot; times update</li>
+<li>You can see when events last executed</li>
+</ul>
+</li>
+</ol>
+<doc-anchor-target id="method-5-check-wordpress-debug-log">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#method-5-check-wordpress-debug-log">#</doc-anchor-trigger>
+        <span>Method 5: Check WordPress Debug Log</span>
+    </h2>
+</doc-anchor-target>
+<p>If you have WordPress debugging enabled:</p>
+<ol>
+<li><p><strong>Check debug log</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">tail -f /home/runcloud/webapps/[APP]/public/wp-content/debug.log</code></pre>
+</doc-codeblock></div>
+<p>(If debug logging is enabled in wp-config.php)</p>
+</li>
+</ol>
+<doc-anchor-target id="method-6-monitor-in-real-time">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#method-6-monitor-in-real-time">#</doc-anchor-trigger>
+        <span>Method 6: Monitor in Real-Time</span>
+    </h2>
+</doc-anchor-target>
+<p>Watch cron execute in real-time:</p>
+<ol>
+<li><p><strong>Set up logging</strong> (if not already done):
+Edit cron job to include logging:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">*/15 * * * * /usr/bin/php /home/runcloud/webapps/[APP]/public/wp-cron.php &gt;&gt; /tmp/wp-cron-test.log 2&gt;&amp;1</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><strong>Watch the log</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">tail -f /tmp/wp-cron-test.log</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><strong>Wait for next cron run</strong> (up to 15 minutes if using <code v-pre>*/15</code> schedule)</p>
+</li>
+</ol>
+<doc-anchor-target id="method-7-force-immediate-test">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#method-7-force-immediate-test">#</doc-anchor-trigger>
+        <span>Method 7: Force Immediate Test</span>
+    </h2>
+</doc-anchor-target>
+<p>Test immediately without waiting:</p>
+<ol>
+<li><p><strong>Manually trigger cron</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">/usr/bin/php /home/runcloud/webapps/[APP]/public/wp-cron.php</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><strong>Or use WP-CLI</strong> (if available):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">cd /home/runcloud/webapps/[APP]/public
+wp cron event run --due-now</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><strong>Check WordPress</strong>:</p>
+<ul>
+<li>If you have scheduled posts, check if they published</li>
+<li>Check plugin updates</li>
+<li>Check any scheduled tasks</li>
+</ul>
+</li>
+</ol>
+<doc-anchor-target id="quick-verification-checklist">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#quick-verification-checklist">#</doc-anchor-trigger>
+        <span>Quick Verification Checklist</span>
+    </h2>
+</doc-anchor-target>
+<p>Run these commands to verify everything:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># 1. Check cron job exists
+crontab -l | grep wp-cron
+
+# 2. Check DISABLE_WP_CRON is set
+grep DISABLE_WP_CRON /home/runcloud/webapps/[APP]/public/wp-config.php
+
+# 3. Test the command works
+/usr/bin/php /home/runcloud/webapps/[APP]/public/wp-cron.php
+
+# 4. Check file exists and is readable
+ls -la /home/runcloud/webapps/[APP]/public/wp-cron.php
+
+# 5. Check PHP path is correct
+which php</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="what-success-looks-like">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#what-success-looks-like">#</doc-anchor-trigger>
+        <span>What Success Looks Like</span>
+    </h2>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2705;</span> <strong>Cron job is working if</strong>:</p>
+<ul>
+<li><code v-pre>crontab -l</code> shows your cron job</li>
+<li>Manual execution of the command completes without errors</li>
+<li>WP Crontrol plugin shows events with future &quot;Next Run&quot; times</li>
+<li>Scheduled WordPress tasks (posts, updates, etc.) execute on time</li>
+<li>No errors in logs</li>
+</ul>
+<p><span class="docs-emoji">&#x274C;</span> <strong>Cron job NOT working if</strong>:</p>
+<ul>
+<li>Command produces errors when run manually</li>
+<li>WP Crontrol shows events never running</li>
+<li>Scheduled tasks don&#x27;t execute</li>
+<li>Errors in system logs</li>
+</ul>
+<doc-anchor-target id="troubleshooting">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#troubleshooting">#</doc-anchor-trigger>
+        <span>Troubleshooting</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="if-cron-job-doesnt-appear-in-crontab--l">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#if-cron-job-doesnt-appear-in-crontab--l">#</doc-anchor-trigger>
+        <span>If cron job doesn&#x27;t appear in <code v-pre>crontab -l</code>:</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Make sure you saved it in RunCloud&#x27;s cron manager</li>
+<li>Or make sure you saved after <code v-pre>crontab -e</code></li>
+</ul>
+<doc-anchor-target id="if-command-fails-when-run-manually">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#if-command-fails-when-run-manually">#</doc-anchor-trigger>
+        <span>If command fails when run manually:</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Check PHP path: <code v-pre>which php</code></li>
+<li>Check WordPress path is correct</li>
+<li>Check file permissions</li>
+<li>Check DISABLE_WP_CRON is set in wp-config.php</li>
+</ul>
+<doc-anchor-target id="if-cron-runs-but-wordpress-events-dont-execute">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#if-cron-runs-but-wordpress-events-dont-execute">#</doc-anchor-trigger>
+        <span>If cron runs but WordPress events don&#x27;t execute:</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Verify <code v-pre>DISABLE_WP_CRON</code> is set to <code v-pre>true</code> in wp-config.php</li>
+<li>Check WordPress debug log for errors</li>
+<li>Verify cron is running as the correct user</li>
+</ul>
+<doc-anchor-target id="recommended-install-wp-crontrol">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-install-wp-crontrol">#</doc-anchor-trigger>
+        <span>Recommended: Install WP Crontrol</span>
+    </h2>
+</doc-anchor-target>
+<p>The easiest way to monitor cron is with the <strong>WP Crontrol</strong> plugin:</p>
+<ol>
+<li>Install it from WordPress admin</li>
+<li>Go to <strong>Tools</strong> → <strong>Cron Events</strong></li>
+<li>You&#x27;ll see all scheduled events and can verify they&#x27;re running</li>
+</ol>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../stock-updates/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">Stock Updates (Inventory Sync)</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../troubleshooting/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Troubleshooting</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2026 Shopwise App. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Testing Your WordPress Cron Job", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

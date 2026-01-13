@@ -1,0 +1,49 @@
+<h3 data-bind="i18n: 'Payment Method'"></h3>
+<a href="#" class="close-payment-underlay" title="Close Payment" data-bind="click: hidePaymentUnderlay">Set Payment Details</a>
+<div data-bind="attr: {id: 'order-billing_method'}, event: {updatePaymentMethods: updatePayments}">
+    <!-- ko if:countPaymentMethods() > 0 -->
+        <div id="order-billing_method_form">
+                <dl class="admin__payment-methods control">
+                    <!-- ko foreach: paymentMethodData -->
+                    <dt class="admin__field-option">
+                        <!-- ko if: $parent.countPaymentMethods() > 1 -->
+                        <input class="admin__control-radio"
+                               type="radio"
+                               tabindex="61"
+                               name="payment[method]"
+                               data-validate="{'validate-one-required-by-name':true}"
+                               data-bind="attr: {id: 'p_method_'+code, title: title, value: code, disabled: $parent.isPaymentDisabled()}, click: $parent.selectPaymentMethod" />
+                        <!-- /ko -->
+                        <!-- ko ifnot: $parent.countPaymentMethods() > 1 -->
+                        <span class="no-display">
+                        <input class="admin__control-radio"
+                               type="radio"
+                               tabindex="61"
+                               name="payment[method]"
+                               checked="checked"
+                               data-bind="attr: {id: 'p_method_'+code, value: code}" />
+                        </span>
+                        <!-- /ko -->
+                        <label class="admin__field-label"
+                               data-bind="attr: {for: 'p_method_'+code}, text: title">
+                        </label>
+                    </dt>
+                    <dd class="admin__payment-method-wrapper" data-bind="html: paymentMethodFormTemplate"></dd>
+                    <!-- /ko -->
+                </dl>
+        </div>
+    <!-- /ko -->
+    <!-- ko ifnot:countPaymentMethods() > 0 -->
+    <div class="admin__message-empty" data-bind="i18n: 'No Payment Methods'"></div>
+    <!-- /ko -->
+</div>
+<div class="dashboard-modal-wrapper">
+    <div class="dashboard-modal" data-bind="attr: {id: 'section-payment-dashboard-modal'}">
+        <div class="dashboard-modal__inner-div">
+            <div class="dashboard-modal__inner-div--message">
+                <p data-bind="i18n: 'Please ensure you stop recording the call while capturing credit card information'"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<label class="error selectedPaymentMethod" data-bind="i18n: 'This is a required field'"></label>

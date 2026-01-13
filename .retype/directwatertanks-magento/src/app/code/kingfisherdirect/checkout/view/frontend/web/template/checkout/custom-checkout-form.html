@@ -1,0 +1,15 @@
+<div class="checkout-delivery-instructions">
+    <div class="step-title" data-bind="i18n: 'Comments and Delivery Instructions'" data-role="title">Comments and Delivery Instructions</div>
+    <div class="step-content">
+        <div>Any restrictions at the delivery address? If so, please enter details here *:</div>
+        <form id="custom-checkout-form" class="form" data-bind="attr: {'data-hasrequired': $t('* Required Fields')}, event: {change: onFormChange()}">
+            <fieldset class="fieldset">
+                <!-- ko foreach: getRegion('custom-checkout-form-fields') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+            </fieldset>
+        </form>
+
+        <small>* We will always do our best to accommodate any special requirements. However, please be aware that orders are delivered using an external delivery partner, so we cannot make any guarantees.</small>
+    </div>
+</div>

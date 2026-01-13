@@ -1,0 +1,35 @@
+<!--@subject Your quote is going to expire soon {{var quote_reference}} @-->
+
+{{template config_path="design/email/header_template"}}
+<table style="width: 100%; margin: 10px 0">
+    <tr class="email-intro">
+        <td>
+            <p style="font-size: 13px;">Hello {{var customer_name}}</p>
+
+            <h1 style="font-size: 20px">{{trans "Your quote is about to expire"}}</h1>
+            <p>
+                {{trans "To view all details, edit or accept this proposal visit the My Quotes section in your customer dashboard by "}}
+                <a href="{{var account_url}}">{{trans "Logging into your account"}}</a>.
+            </p>
+            <p>
+                {{trans "If you have any questions about your quotation, you can email us at"}} <a href="mailto: {{var sales_email}}">{{var sales_email}}</a> or call us on <a href="tel: {{var store_telephone}}">{{var store_telephone}}</a>
+            </p>
+        </td>
+    </tr>
+</table>
+
+<h2 style="font-size: 25px;">{{trans "Your Quote Reference "}} {{var quote_reference}}</h2>
+
+{{block class='Rixxo\Odb\Block\Email\Quote\Notify\Items' area='frontend' template='Rixxo_Odb::quotes/email/notify/items.phtml'}}
+
+<div class="comments">
+    <h3>{{trans "Comments"}}</h3>
+    <p>{{var quote_comments}}</p>
+</div>
+
+<div class="proceedToCheckout">
+    <a style="font-size: 15px; float: right; padding: 15px; margin: 15px 0 0 0; border: 2px solid #207DC5; " href="{{var proceed_to_checkout_url}}">{{trans "Proceed To Checkout"}}</a>
+</div>
+
+{{template config_path="design/email/footer_template"}}
+l

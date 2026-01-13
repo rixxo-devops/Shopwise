@@ -1,0 +1,322 @@
+/* Rixxo Brand Guidelines - Custom Styles for Shopwise Documentation */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400&display=swap');
+
+/* ============================================
+   ROOT VARIABLES - Rixxo Brand Colors
+   ============================================ */
+:root {
+  /* Primary Colors */
+  --rixxo-green: #33CC99;
+  --rixxo-blue: #3399CC;
+  --rixxo-red: #EA4D44;
+  --rixxo-pink: #E24699;
+  --rixxo-orange: #EE6730;
+  --rixxo-yellow: #FBB716;
+  
+  /* Darker Shades */
+  --rixxo-green-darker: #218262;
+  --rixxo-blue-darker: #216282;
+  
+  /* Text Colors - Light Mode */
+  --text-primary: #1a2f37;
+  --text-secondary: #5a6e77;
+  --text-disabled: #b0bec5;
+  
+  /* Background Colors - Light Mode */
+  --bg-main: #ffffff;
+  --bg-sections: #fdf8f8;
+  --bg-panels: #f5f0f0;
+  --bg-cards: #f9f4f4;
+  --bg-deep: #fafafa;
+  --bg-alternative: #f6f6f6;
+  --border-color: #dadada;
+  
+  /* Fonts */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+/* Headings - Poppins Bold */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 110%;
+  letter-spacing: -1.2px;
+  text-align: left; /* Always left-align per brand guidelines */
+}
+
+/* Desktop Typography Sizes */
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+/* Mobile Typography Sizes */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.44rem;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Body Text - Roboto Regular */
+body, p, li, td, th, div, span {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 150%;
+  font-size: 1rem;
+  text-align: left; /* Always left-align per brand guidelines */
+}
+
+/* Minimum font size */
+body {
+  font-size: 16px; /* Base size, minimum 10px per guidelines */
+}
+
+/* ============================================
+   LINKS
+   ============================================ */
+a {
+  color: var(--rixxo-green);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--rixxo-green-darker);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--rixxo-green);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+button, .btn, input[type="submit"], input[type="button"] {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.9375rem 1.125rem; /* 150% top/bottom, 200% left/right of font size */
+  border: 1px solid var(--rixxo-green); /* 5% of text size, minimum 1px */
+  background-color: var(--rixxo-green);
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: var(--rixxo-green-darker);
+  border-color: var(--rixxo-green-darker);
+}
+
+/* Stroked Button Variant */
+.btn-stroked {
+  background-color: transparent;
+  color: var(--rixxo-green);
+  border: 1px solid var(--rixxo-green);
+}
+
+.btn-stroked:hover {
+  background-color: var(--rixxo-green);
+  color: #ffffff;
+}
+
+/* ============================================
+   NAVIGATION & HEADER
+   ============================================ */
+.navbar, header, .header {
+  background-color: var(--bg-main);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-brand, .brand-title {
+  color: var(--rixxo-green) !important;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.nav-link, .nav-item a {
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+.nav-link:hover, .nav-item a:hover {
+  color: var(--rixxo-green);
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.sidebar, .nav-sidebar {
+  background-color: var(--bg-sections);
+  border-right: 1px solid var(--border-color);
+}
+
+.sidebar a, .nav-sidebar a {
+  color: var(--text-primary);
+}
+
+.sidebar a:hover, .nav-sidebar a:hover {
+  color: var(--rixxo-green);
+  background-color: var(--bg-cards);
+}
+
+/* ============================================
+   CONTENT AREA
+   ============================================ */
+.main-content, .content {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+}
+
+/* Code Blocks */
+pre, code {
+  font-family: 'Roboto Mono', monospace;
+  background-color: var(--bg-panels);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+/* ============================================
+   CARDS & PANELS
+   ============================================ */
+.card, .panel {
+  background-color: var(--bg-cards);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.card:hover, .panel:hover {
+  background-color: var(--bg-panels);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer, .footer {
+  background-color: var(--bg-deep);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+/* ============================================
+   HIGHLIGHTING
+   ============================================ */
+/* Highlight up to 3 words per line in Rixxo Green */
+mark, .highlight {
+  background-color: transparent;
+  color: var(--rixxo-green);
+  font-weight: 700;
+}
+
+/* ============================================
+   SEARCH
+   ============================================ */
+.search-input, input[type="search"] {
+  font-family: var(--font-body);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.search-input:focus, input[type="search"]:focus {
+  border-color: var(--rixxo-green);
+  outline: none;
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: var(--bg-panels);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  border: 1px solid var(--border-color);
+}
+
+td {
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-main);
+}
+
+/* ============================================
+   BREADCRUMBS
+   ============================================ */
+.breadcrumb, .breadcrumbs {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+.breadcrumb a {
+  color: var(--rixxo-green);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-rixxo-green {
+  color: var(--rixxo-green);
+}
+
+.bg-rixxo-green {
+  background-color: var(--rixxo-green);
+}
+
+.border-rixxo-green {
+  border-color: var(--rixxo-green);
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1, h2, h3 {
+    letter-spacing: -0.8px; /* Slightly less on mobile */
+  }
+}
+
+/* ============================================
+   OVERRIDE RETYPE DEFAULTS
+   ============================================ */
+/* Ensure Rixxo styles take precedence */
+.retype-app {
+  font-family: var(--font-body);
+}
+
+/* Apply Rixxo green to primary action elements */
+.retype-app a[href^="#"],
+.retype-app .active {
+  color: var(--rixxo-green);
+}

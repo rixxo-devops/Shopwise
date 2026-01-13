@@ -1,0 +1,236 @@
+<h2>
+    <span class="step-count" data-bind="text: 1"></span>
+    <span class="title" data-bind="text: 'Customer Information'"></span>
+</h2>
+<div class="find-customer width-50">
+    <h3 data-bind="{text: 'Find Customer'}"></h3>
+    <div class="find-or-create">
+        <div class="admin__field-control search">
+            <input class="admin__control-text" type="text" tabindex="1" id="findCustomer" name="findCustomer" title="Find Customer", autocomplete="off"
+                   data-bind="value: findQuery, event: {keyup: findCustomer, focus: toggleShowResultsFocus, blur: toggleShowResultsFocus }, attr: {placeholder:  'Find customer by name, email or postcode'}" />
+
+            <div class="findCustomerResults">
+                <ul class="header">
+                    <li class="customerFirstname" data-bind="i18n: 'First Name'"></li>
+                    <li class="customerLastname" data-bind="i18n: 'Last Name'"></li>
+                    <li class="customerEmail" data-bind="i18n: 'Email'"></li>
+                    <li if="getAwCaEnabled()" class="customerCompany" data-bind="i18n: 'Company'"></li>
+                </ul>
+                <ul data-bind="foreach: findQueryMatches" class="results">
+                    <li class="result" data-customer-id="customer_id">
+                        <a href="javascript: void(0)"  tabindex="2" class="result-customer" data-bind="attr: {'data-customer-id': customer_id }, event: {click: $parent.addCustomerToQuote, blur: $parent.toggleShowResultsFocus, keyup: $parent.closeFindCustomResults}">
+                            <ul>
+                                <li class="customer-detail customerFirstname" data-bind="text: firstname"></li>
+                                <li class="customer-detail customerLastname" data-bind="text: lastname"></li>
+                                <li class="customer-detail customerEmail" data-bind="text: email"></li>
+                                <li  if="$parent.getAwCaEnabled()" class="customer-detail customerCompany" data-bind="text: company"></li>
+                            </ul>
+                        </a>
+                    </li>
+                </ul>
+                <p if="findCustomerResultCount() < 1" class="no-results" data-bind="i18n: 'No Customers Found'"></p>
+                <ul class="footer">
+                    <li class="result-count">
+                        <span class="label" data-bind="i18n: 'Number of results: '"></span>
+                        <span class="value" data-bind="text: findCustomerResultCount"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="or" data-bind="text: '- Or -'"></p>
+        <div class="admin__field-control create">
+            <button class="button create-new secondary" tabindex="3" id="showCreateCustomer" data-bind="{event: {click: showCreateCustomer}}">
+                <span data-bind="text: 'Create New'"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="customer-stats">
+        <table>
+            <thead>
+                <tr>
+                    <th data-bind="i18n: 'Open Quotes'"></th>
+                    <th data-bind="i18n: 'Open Orders'"></th>
+                    <th data-bind="i18n: 'Last Order'"></th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td data-bind="text: customerOpenQuotes"></td>
+                <td data-bind="text: customerOpenOrders"></td>
+                <td data-bind="text: customerLastOrderId"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="customer-details width-50" data-bind="attr: {'data-customer-action': customerAction}, event: {customerDataChanged: populateCustomerData}">
+    <div class="title-container">
+        <h3 if="customerEmail()" data-bind="{text: 'Customer Details'}"></h3>
+    </div>
+    <ul class="details">
+        <li>
+            <p>
+                <span class="detail-label" data-bind="text: 'Email Address'"></span>
+                <span class="detail-value customerEmail" data-bind="text: customerEmail"></span>
+            </p>
+        </li>
+        <li if="getAwCaEnabled()">
+            <p>
+                <span class="detail-label" data-bind="text: 'Company'"></span>
+                <span class="detail-value company" data-bind="text: company"></span>
+                <input class="companyId" type="hidden" name="companyId" id="companyId" data-bind="{value: companyId}" />
+            </p>
+        </li>
+        <li>
+            <p>
+                <span class="detail-label" data-bind="text: 'First Name'"></span>
+                <span class="detail-value customerFirstname" data-bind="text: customerFirstname"></span>
+            </p>
+        </li>
+        <li>
+            <p>
+                <span class="detail-label" data-bind="text: 'Last Name'"></span>
+                <span class="detail-value customerLastname" data-bind="text: customerLastname"></span>
+            </p>
+        </li>
+        <li>
+            <p>
+                <span class="detail-label" data-bind="text: 'Phone'"></span>
+                <span class="detail-value customerTelephone" data-bind="text: customerTelephone"></span>
+            </p>
+        </li>
+        <li>
+            <p>
+                <span class="detail-label" data-bind="text: 'Customer Group'"></span>
+                <span class="detail-value customerGroup" data-bind="text: customerGroup"></span>
+            </p>
+        </li>
+    </ul>
+
+    <div name="newCustomerDetails" id="newCustomerDetails" class="newCustomerDetails">
+        <a href="javascript: void(0)" class="closeNewCustomer" data-bind="event: {click: closeNewCustomer}">X</a>
+        <form name="newCustomerDetailsForm" class="newCustomerDetailsForm" id="newCustomerDetailsForm"  data-bind="afterRender: addCustomerValidation">
+            <div if="getCompanyConfigShowField()" class="admin__field-control company">
+                <input type="hidden" if="getCompanyConfigAwCaIntegration()" name="company_id" data-bind="value: createCustomerCompanyId, event: {'updateCompanyId': updateCreateCustomerCompany}" />
+                <a href="javascript: void(0)" if="getCompanyConfigAwCaIntegration()" class="reset" data-bind="event: {click: resetSelectedCompany}, if: createCustomerCompanyId != false, i18n: 'Reset Company'"></a>
+
+
+                <input class="admin__control-text" id="findCompany" type="text" name="company" autocomplete="off"
+                       data-bind="attr: {placeholder: 'Company', title: 'Company'}, value: findCompanyQuery, event: {keyup: findCompany,
+                   focus: toggleShowCompanyResultsFocus, blur: toggleShowCompanyResultsFocus }"
+                />
+
+                <div class="findCompanyResults" if="getCompanyConfigAwCaIntegration()">
+                    <ul class="results" data-bind="foreach: findCompanyMatches">
+                        <li class="result">
+                            <a href="javascript: void(0)" class="selectCompany" data-bind="text: name, event: {click: $parent.selectCompany, blur: $parent.toggleShowCompanyResultsFocus, keyup: $parent.closeFindCompanyResults}, attr: {'data-company-id': company_id}"></a>
+                        </li>
+                    </ul>
+                    <p if="findCompanyResultCount() < 1" class="no-results" data-bind="i18n: 'No Companies Found'"></p>
+                    <ul class="footer">
+                        <li class="result-count">
+                            <span class="label" data-bind="i18n: 'Number of results: '"></span>
+                            <span class="value" data-bind="text: findCompanyResultCount"></span>
+                        </li>
+
+                        <li class="create-company">
+                            <a href="javascript: void(0)" class="showCreateCompany" data-bind="text: 'Create New Company', event: {click: showCreateCompany}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="admin__field-control email create-email">
+                <input class="admin__control-text createCustomerEmail" type="text" name="email" id="findCustomerCreate" autocomplete="off" data-bind="value: createCustomerEmail, event: {keyup: findCustomerCreate, focus: toggleShowResultsFocusCreate, blur: toggleShowResultsFocusCreate}, attr: {placeholder:  'Email', title: 'Email'}" />
+                <div class="findCustomerResultsCreate createAndFind">
+                    <ul class="header">
+                        <li class="customerFirstname" data-bind="i18n: 'First Name'"></li>
+                        <li class="customerLastname" data-bind="i18n: 'Last Name'"></li>
+                        <li class="customerEmail" data-bind="i18n: 'Email'"></li>
+                    </ul>
+                    <ul data-bind="foreach: findQueryMatchesCreate" class="results">
+                        <li class="result" data-customer-id="customer_id">
+                            <a href="javascript: void(0)"  tabindex="2" class="result-customer" data-bind="attr: {'data-customer-id': customer_id }, event: {click: $parent.addCustomerToQuote, blur: $parent.toggleShowResultsFocus, keyup: $parent.closeFindCustomResults}">
+                                <ul>
+                                    <li class="customer-detail customerFirstname" data-bind="text: firstname"></li>
+                                    <li class="customer-detail customerLastname" data-bind="text: lastname"></li>
+                                    <li class="customer-detail customerEmail" data-bind="text: email"></li>
+                                </ul>
+                            </a>
+                        </li>
+                    </ul>
+                    <p if="findCustomerResultCountCreate() < 1" class="no-results" data-bind="i18n: 'No Customers Found'"></p>
+                    <ul class="footer">
+                        <li class="result-count">
+                            <span class="label" data-bind="i18n: 'Number of results: '"></span>
+                            <span class="value" data-bind="text: findCustomerResultCountCreate"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="admin__field-control firstname">
+                <input class="admin__control-text" type="text" name="firstname" data-bind="value: createCustomerFirstname, attr: {placeholder: 'First Name', title: 'First Name'}" />
+            </div>
+            <div class="admin__field-control lastname">
+                <input class="admin__control-text" type="text" name="lastname" data-bind="value: createCustomerLastname, attr: {placeholder: 'Last Name', title: 'Last Name'}" />
+            </div>
+            <div class="admin__field-control telephone">
+                <input class="admin__control-text" type="number" name="telephone" data-bind="value: createCustomerTelephone, attr: {placeholder: 'Telephone', title: 'Telephone'}" />
+            </div>
+
+            <div class="admin__field-control customer_group">
+                <select class="admin__control-select" name="customer_group" data-bind="value: createCustomerGroup, attr: {title: 'Customer Group'}">
+                    <option value="" data-bind="text: 'Select a Customer Group'"></option>
+                    <!-- ko foreach: customerGroups -->
+                    <option data-bind="{attr: {value: id}, text: code}"></option>
+                    <!-- /ko -->
+                </select>
+            </div>
+            <div class="admin__field-control create">
+                <button type="submit" class="button create-new secondary" id="createCustomer">
+                    <span data-bind="text: 'Save Customer'"></span>
+                </button>
+            </div>
+        </form>
+
+        <div class="create-company-modal-wrapper">
+            <div class="create-company-modal-content">
+                <form id="companyCreateForm" data-bind="afterRender: addCompanyValidation">
+                    <div class="admin__field-control name">
+                        <input class="admin__control-text" type="text" name="name"
+                               data-bind="value: createCompanyName, attr: {placeholder: 'Company Name', title: 'Company Name'}" />
+                    </div>
+                    <div class="admin__field-control email">
+                        <input class="admin__control-text" type="text" name="email" data-bind="value: createCompanyEmail, attr: {placeholder: 'Company Email Address', title: 'Company Email Address'}" />
+                    </div>
+                    <div class="admin__field-control street">
+                        <input class="admin__control-text" type="text" name="street" data-bind="value: createCompanyStreet, attr: {placeholder: 'Street Address', title: 'Street Address'}" />
+                    </div>
+                    <div class="admin__field-control city">
+                        <input class="admin__control-text" type="text" name="city" data-bind="value: createCompanyCity, attr: {placeholder: 'City', title: 'City'}" />
+                    </div>
+                    <div class="admin__field-control postcode">
+                        <input class="admin__control-text" type="text" name="postcode" data-bind="value: createCompanyPostcode, attr: {placeholder: 'Postcode', title: 'Postcode'}" />
+                    </div>
+                    <div class="admin__field-control country">
+                        <select class="admin__field-control admin__control-select country" name="country" data-bind="value: createCompanyCountry, attr: {title: 'Country'}">
+                            <option value="" data-bind="text: 'Select a Country'"></option>
+                            <!-- ko foreach: countryData -->
+                            <option data-bind="value: id, text: name"></option>
+                            <!-- /ko -->
+                        </select>
+                    </div>
+                    <div class="admin__field-control customer_group">
+                        <select class="admin__control-select customer_group" name="customer_group" data-bind="value: createCompanyCustomerGroup, attr: {title: 'Company User Customer Group'}">
+                            <option value="" data-bind="text: 'Select a Customer Group'"></option>
+                            <!-- ko foreach: customerGroups -->
+                            <option data-bind="{attr: {value: id}, text: code}"></option>
+                            <!-- /ko -->
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,17 @@
+<h2>
+    <span class="title" data-bind="text: 'Store Selection'"></span>
+</h2>
+<div class="select-store width-50">
+    <div class="admin__field-control" data-bind="visible: !selectedStoreId()">
+        <select class="admin__control-select"
+                data-bind="options: stores,
+                           optionsText: 'name',
+                           optionsValue: 'id',
+                           optionsCaption: 'Please select a store...',
+                           value: selectedStoreId">
+        </select>
+    </div>
+    <div class="selected-store-name" data-bind="visible: selectedStoreId">
+        <h3 data-bind="{text: getSelectedStoreName()}"></h3>
+    </div>
+</div>

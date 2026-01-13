@@ -1,0 +1,47 @@
+{
+  "name": "@kingfisherdirect/magento2-theme-kingfisherdirect-24",
+  "description": "",
+  "scripts": {
+    "webpack": "webpack",
+    "lint": "npm run lint:scss",
+    "lint:scss": "stylelint '**/*.scss'",
+    "dev": "NODE_ENV=development npx vite --config vite.config.mjs serve --mode development --host 0.0.0.0",
+    "build": "npm run build:vite && npm run copyEmailStyles",
+    "build:vite": "NODE_ENV=production vite build -c vite.config.mjs --mode production",
+    "watch": "NODE_ENV=development vite build --watch -c vite.config.mjs --mode development",
+    "copyEmailStyles": "mkdir -p ./web/css ./Magento_Sales/web/css/source ./Magento_Rma/web/css/source ./Magento_Bundle/web/css/source && cp -r -n ../../vendor/magento/theme-frontend-blank/web/css/email*.less ./web/css&& cp -r -n ../../vendor/magento/theme-frontend-blank/web/css/source ./web/css&& cp -r -n ../../vendor/magento/theme-frontend-blank/Magento_Sales/web/css/source/_email.less ./Magento_Sales/web/css/source&& cp -r -n ../../vendor/magento/theme-frontend-blank/Magento_Rma/web/css/source/_email.less ./Magento_Rma/web/css/source&& cp -r -n ../../vendor/magento/theme-frontend-blank/Magento_Bundle/web/css/source/_email.less ./Magento_Bundle/web/css/source"
+  },
+  "author": "",
+  "license": "ISC",
+  "magento2-theme": {
+    "parent": "@kingfisherdirect/magento2-theme-blank-coraciidae"
+  },
+  "devDependencies": {
+    "@kingfisherdirect/magento2-theme-blank-coraciidae": "file:../blank-coraciidae",
+    "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "css-byebye": "^4.0.1",
+    "magento-2-theme-tools": "^1.2.0",
+    "postcss": "^8.5.1",
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@fontsource/ubuntu": "^5.1.0",
+    "@sidsbrmnn/scrollspy": "^1.1.0",
+    "@splidejs/splide": "^4.1.4",
+    "@tabler/icons": "^3.29.0",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vueuse/core": "^11.1.0",
+    "bootstrap": "^5.3.3",
+    "express": "^4.21.0",
+    "file-loader": "^6.2.0",
+    "sass-embedded": "^1.83.4",
+    "swiper": "^11.2.2",
+    "vite": "^5.4.7",
+    "vite-plugin-list-directory-contents": "^1.4.5",
+    "vue": "^3.5.6",
+    "vue-tsc": "^2.1.6"
+  }
+}

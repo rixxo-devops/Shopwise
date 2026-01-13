@@ -1,0 +1,170 @@
+<h2>
+    <span class="step-count" data-bind="text: 3"></span>
+    <span class="title" data-bind="text: 'Address Information'"></span>
+</h2>
+<div class="address-wrapper" data-bind="afterRender: bindAddresses">
+    <div class="billing-address address width-50" data-address-type="billing">
+        <h3 data-bind="{text: 'Billing Address'}"></h3>
+
+        <form id="billingAddressForm" name="billingAddressForm" data-bind="afterRender: addBillingAddressValidation">
+            <!-- ko if: addresses().length -->
+            <div class="admin__field-control saved-addresses">
+                <select class="admin__control-select" tabindex="40" name="saved-addresses" data-bind="value: selectedBillingAddressId, attr: {title: 'Select Billing Address'}, event: {change: useSelectedAddress('billing')}">
+                    <option value="" data-bind="text: 'Select saved address...'"></option>
+                    <!-- ko foreach: addresses -->
+                    <option data-bind="attr: {value: address_id}, text: street + ', ' + city"></option>
+                    <!-- /ko -->
+                </select>
+            </div>
+            <!-- /ko -->
+            <div class="admin__field-control billing-first-name">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'First Name'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="43"  data-type="first_name" name="billing_firstname" data-key="billingFirstName" data-bind="value: billingFirstName, attr: {placeholder: 'First Name', title: 'First Name'}, event: {keyup: updateAddressFields, change: saveAddresses}">
+            </div>
+            <div class="admin__field-control billing-last-name">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'Last Name'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="44"  data-type="last_name" name="billing_lastname" data-key="billingLastName" data-bind="value: billingLastName, attr: {placeholder: 'Last Name', title: 'Last Name'}, event: {keyup: updateAddressFields, change: saveAddresses}">
+            </div>
+            <div class="admin__field-control billing-postcode">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'Postcode'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="45"   data-type="postcode" autocomplete="none" data-key="billingPostcode" name="billing_postcode" data-bind="value: billingPostcode, attr: {placeholder: 'Postcode', title: 'Postcode'}, event: {keyup: updateAddressFields, change: saveAddresses, focus: toggleAddressLookupResults, blur:  toggleAddressLookupResults}">
+                <div class="postcode-lookup-results">
+                    <ul data-bind="foreach: billingAddressLookupResults">
+                        <li>
+                            <a href="javascript: void(0)" tabindex="46"  data-bind="text: description, event: {click: $parent.setLookupAddress}"></a>
+                        </li>
+                    </ul>
+                    <ul ifnot="billingAddressLookupResults().length">
+                        <li data-bind="text: 'No Places Found'"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="admin__field-control billing-street-1">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'Address Line 1'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="47"  data-type="street_1" name="billing_street_1" data-key="billingStreet1" data-bind="value: billingStreet1, attr: {placeholder: 'Address Line 1', title: 'Address Line 1'}, event: {keyup: updateAddressFields, change: saveAddresses}">
+            </div>
+            <div class="admin__field-control billing-street-2">
+                <div class="admin__field-label">
+                    <span data-bind="i18n: 'Address Line 2'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="48" data-type="street_2" name="billing_street_2" data-key="billingStreet2"  data-bind="value: billingStreet2, attr: {placeholder: 'Address Line 2', title: 'Address Line 2'}, event: {keyup: updateAddressFields, change: saveAddresses}">
+            </div>
+            <div class="admin__field-control billing-city">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'City'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="49"   data-type="city" name="billing_city" data-key="billingCity"  data-bind="value: billingCity, attr: {placeholder: 'City', title: 'City'}, event: {keyup: updateAddressFields, change: saveAddresses}">
+            </div>
+            <div class="admin__field-control billing-telephone">
+                <div class="admin__field-label" data-bind="attr: {class: getTelephoneClasses()}">
+                    <span data-bind="i18n: 'Telephone'"></span>
+                </div>
+                <input class="admin__control-text" type="number" tabindex="50"  data-type="telephone" name="billing_telephone" data-key="billingTelephone"  data-bind="value: billingTelephone, attr: {placeholder: 'Telephone', title: 'Telephone'}, event: {keyup: updateAddressFields, change: saveAddresses}">
+            </div>
+            <div class="admin__field-control billing-country">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'Country'"></span>
+                </div>
+                <select class="admin__field-control admin__control-select country" tabindex="51" data-type="country" name="billing_country" data-key="billingCountry" data-bind="value: billingCountry, attr: {title: 'Country'}, event: {change: updateCountryFields}">
+                    <option value="" data-bind="text: 'Select a Country'"></option>
+                    <!-- ko foreach: countryData -->
+                    <option data-bind="value: value, text: label, attr: {selected: $parent.isCountrySelected(value, 'billing')}" ></option>
+                    <!-- /ko -->
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div class="shipping-address address width-50" data-address-type="shipping">
+        <h3 data-bind="{text: 'Shipping Address'}"></h3>
+        <div class="admin__field-control use-different shipping">
+            <input class="admin__control" type="checkbox" tabindex="41" id="differentShipping" data-type="shipping" name="different-shipping" data-bind="value: useDifferentShipping, attr: {checked: useDifferentShipping}, event: {change: toggleUseDifferentAddress}" />
+            <span class="label" data-bind="i18n: 'Different Delivery Address'"></span>
+        </div>
+
+        <form id="shippingAddressForm" name="shippingAddressForm" data-bind="afterRender: addShippingAddressValidation">
+            <!-- ko if: addresses().length -->
+            <div class="admin__field-control saved-addresses">
+                <select class="admin__control-select" tabindex="42" name="saved-addresses" data-bind="value: selectedShippingAddressId, attr: {title: 'Select Shipping Address', disabled: !useDifferentShipping},  event: {change: useSelectedAddress('shipping')}, afterRender: allowAddressReset">
+                    <option value="" data-bind="text: 'Select saved address...'"></option>
+                    <!-- ko foreach: addresses -->
+                    <option data-bind="attr: {value: address_id}, text: street + ', ' + city"></option>
+                    <!-- /ko -->
+                </select>
+            </div>
+            <!-- /ko -->
+
+            <div class="admin__field-control shipping-first-name">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'First Name'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="52" data-type="first_name" data-key="shippingFirstName"  name="shipping_firstname" data-bind="value: shippingFirstName, attr: {placeholder: 'First Name', title: 'First Name', disabled: isShippingElementDisabled()}, event: {change: saveAddresses}">
+            </div>
+            <div class="admin__field-control shipping-last-name">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'Last Name'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="53" data-type="last_name" data-key="shippingLastName" name="shipping_lastname" data-bind="value: shippingLastName, attr: {placeholder: 'Last Name', title: 'Last Name', disabled: isShippingElementDisabled()}, event: {change: saveAddresses}">
+            </div>
+            <div class="admin__field-control shipping-postcode">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'Postcode'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="54"  autocomplete="off"  disabled="disabled" data-type="postcode" data-key="shippingPostcode"  name="shipping_postcode" data-bind="value: shippingPostcode, attr: {placeholder: 'Postcode', title: 'Postcode', disabled: isShippingElementDisabled()}, event: {change: saveAddresses, keyup: updateAddressFields, focus: toggleAddressLookupResults, blur:  toggleAddressLookupResults}">
+                <div class="postcode-lookup-results">
+                    <ul data-bind="foreach: shippingAddressLookupResults">
+                        <li>
+                            <a href="javascript: void(0)" tabindex="55"  data-bind="text: description, event: {click: $parent.setLookupAddress}"></a>
+                        </li>
+                    </ul>
+                    <ul ifnot="shippingAddressLookupResults().length">
+                        <li data-bind="text: 'No Places Found'"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="admin__field-control shipping-street-1">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'Address Line 1'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="56"  disabled="disabled" data-type="street_1" data-key="shippingStreet1" name="shipping_street_1" data-bind="value: shippingStreet1, attr: {placeholder: 'Address Line 1', title: 'Address Line 1', disabled: isShippingElementDisabled()}, event: {change: saveAddresses}">
+            </div>
+            <div class="admin__field-control shipping-street-2">
+                <div class="admin__field-label">
+                    <span data-bind="i18n: 'Address Line 2'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="57"  disabled="disabled" data-type="street_2" data-key="shippingStreet2" name="shipping_street_2" data-bind="value: shippingStreet2, attr: {placeholder: 'Address Line 2', title: 'Address Line 2', disabled: isShippingElementDisabled()}, event: {change: saveAddresses}">
+            </div>
+            <div class="admin__field-control shipping-city">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'City'"></span>
+                </div>
+                <input class="admin__control-text" type="text" tabindex="58"  disabled="disabled" data-type="city" data-key="shippingCity" name="shipping_city" data-bind="value: shippingCity, attr: {placeholder: 'City', title: 'City', disabled: isShippingElementDisabled()}, event: {change: saveAddresses}">
+            </div>
+            <div class="admin__field-control shipping-telephone">
+                <div class="admin__field-label"  data-bind="attr: {class: getTelephoneClasses()}">
+                    <span data-bind="i18n: 'Telephone'"></span>
+                </div>
+                <input class="admin__control-text" type="number" tabindex="59" disabled="disabled" data-type="telephone"  data-key="shippingTelephone" name="shipping_telephone" data-bind="value: shippingTelephone, attr: {placeholder: 'Telephone', title: 'Telephone', disabled: isShippingElementDisabled()}, event: {change: saveAddresses}">
+            </div>
+            <div class="admin__field-control shipping-country">
+                <div class="admin__field-label required">
+                    <span data-bind="i18n: 'Country'"></span>
+                </div>
+                <select class="admin__field-control admin__control-select country" tabindex="60" data-type="country" data-key="shippingCountry" disabled="disabled" name="shipping_country" data-bind="value: shippingCountry, attr: {title: 'Country', disabled: isShippingElementDisabled()}, event: {change: updateCountryFields}">
+                    <option value="" data-bind="text: 'Select a Country'"></option>
+                    <!-- ko foreach: countryData -->
+                    <option data-bind="value: value, text: label, attr: {selected: $parent.isCountrySelected(value, 'shipping')}"></option>
+                    <!-- /ko -->
+                </select>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<!--@subject {{var form_subject}} @-->
+{{template config_path="design/email/header_template"}}
+<div>
+    <h1>Quote/Pro Forma Invoice</h1>
+    <div class="details-with-border">
+        <p>
+            {{config path="general/store_information/name"}}<br />
+            {{config path="general/store_information/street_line1"}}<br />
+            {{config path="general/store_information/street_line2"}}<br />
+            {{config path="general/store_information/city"}}<br />
+            {{config path="general/store_information/region_id"}}<br />
+            {{config path="general/store_information/postcode"}}
+        </p>
+        <p>
+            Company Reg No: 07752788 <br />
+            VAT No: {{config path="general/store_information/merchant_vat_number"}} <br/>
+            Email: {{config path="trans_email/ident_sales/email"}} <br />
+            Telephone: {{config path="general/store_information/phone"}}
+        </p>
+    </div>
+    <div class="details-with-border">
+        {{var form_result|raw}}
+        <p><strong>Net Amount:</strong></p>
+        <p><strong>Delivery:</strong></p>
+        <p><strong>Total:</strong></p>
+    </div>
+
+    <div class="details-with-border">
+        {{customVar code=payment_details}}
+    </div>
+</div>
+{{template config_path="design/email/footer_template"}}

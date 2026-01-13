@@ -1,0 +1,20 @@
+{
+  "name": "@kingfisherdirect/magento2-theme-blank-coraciidae",
+  "description": "",
+  "main": ".",
+  "scripts": {
+    "webpack": "webpack",
+    "lint:scss": "stylelint **/*.scss",
+    "dev": "webpack --mode development --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.1",
+    "magento-2-theme-tools": "*"
+  },
+  "devDependencies": {
+    "stylelint": "^14.14.0",
+    "stylelint-config-standard-scss": "^6.1.0"
+  }
+}

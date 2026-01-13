@@ -1,0 +1,17 @@
+{
+    "name": "kingfisherdirect/magento2-theme-gritbins-22",
+    "type": "magento2-theme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kamil",
+            "email": "kamil@kingfisherdirect.co.uk"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    },
+    "require": {}
+}

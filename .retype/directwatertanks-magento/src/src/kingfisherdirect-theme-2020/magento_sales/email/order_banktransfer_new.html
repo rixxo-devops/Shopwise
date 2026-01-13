@@ -1,0 +1,151 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "%store_name - Order No: " store_name=$store.getFrontendName()}} {{var order.increment_id}} @-->
+<!--@vars {
+"var formattedBillingAddress|raw":"Billing Address",
+"var order.getEmailCustomerNote()":"Email Order Note",
+"var order.increment_id":"Order Id",
+"layout handle=\"sales_email_order_items\" order=$order area=\"frontend\"":"Order Items Grid",
+"var payment_html|raw":"Payment Details",
+"var formattedShippingAddress|raw":"Shipping Address",
+"var order.getShippingDescription()":"Shipping Description",
+"var shipping_msg":"Shipping message"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p>
+                {{trans "Thank you for placing an order with %store_name. Your order has been received and will be processed once payment has been confirmed." store_name=$store.getFrontendName()}}
+                {{trans 'You can check the status of your order by <a href="%account_url">logging into your account</a>.' account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}
+            </p>
+            <p>
+                {{trans 'If you have any questions about your order, you can email us at <a href="mailto:%store_email">%store_email</a>' store_email=$store_email |raw}}{{depend store_phone}} {{trans 'or call us on <a href="tel:%store_phone">%store_phone</a>' store_phone=$store_phone |raw}}{{/depend}}.
+                {{depend store_hours}}
+                    {{trans 'Our hours are <span class="no-link">%store_hours</span>.' store_hours=$store_hours |raw}}
+                {{/depend}}
+            </p>
+        </td>
+    </tr>
+
+    <tr class="bank-transfer-instructions">
+        <td class="payment-instructions">
+            <h3>{{trans "Bank Transfer Instructions"}}</h3>
+            <p>
+                {{trans "To pay via bank transfer, we require full payment before your order can be processed and dispatched. Please make payment for the total value of your order using your order number as the payment reference. Our bank account details are:"}}
+            </p>
+            <p>
+                {{trans "Account Name: Kingfisher Direct Ltd"}} <br>
+                {{trans "Bank: TSB"}} <br>
+                {{trans "Account Number: 19639068"}} <br>
+                {{trans "Sort Code: 30-17-00"}}
+            </p>
+            <p>
+                <strong>{{trans "Your order can only be processed when we have received payment."}}</strong>
+            </p>
+
+        </td>
+    </tr>
+
+    <tr class="email-summary">
+        <td>
+            <h2>{{trans 'Your Order <span class="no-link">#%increment_id</span>' increment_id=$order.increment_id |raw}}</h2>
+            <p>{{trans 'Placed on <span class="no-link">%created_at</span>' created_at=$order.getCreatedAtFormatted(2) |raw}}</p>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            {{depend order.getEmailCustomerNote()}}
+            <table class="message-info">
+                <tr>
+                    <td>
+                        {{var order.getEmailCustomerNote()|escape|nl2br}}
+                    </td>
+                </tr>
+            </table>
+            {{/depend}}
+            <table class="order-details">
+                <tr>
+                    <td class="address-details">
+                        <h3>{{trans "Payment Address"}}</h3>
+                        <p>{{var formattedBillingAddress|raw}}</p>
+                    </td>
+                    {{depend order.getIsNotVirtual()}}
+                    <td class="address-details">
+                        <h3>{{trans "Delivery Address"}}</h3>
+                        <p>{{var formattedShippingAddress|raw}}</p>
+                    </td>
+                    {{/depend}}
+                </tr>
+                {{depend order.getCheckoutComment()}}
+                <tr>
+                    <td>
+                        <h3>{{trans "Comments & Delivery Instructions"}}</h3>
+                        <p>{{trans "%checkout_comment" checkout_comment=$order.getCheckoutComment()}}</p>
+                    </td>
+                </tr>
+                {{/depend}}
+                <tr>
+                    <td class="method-info">
+                        <h3>{{trans "Payment Method"}}</h3>
+                        {{var payment_html|raw}}
+                    </td>
+                    {{depend order.getIsNotVirtual()}}
+                    <td class="method-info">
+                        <h3>{{trans "Shipping Method"}}</h3>
+                        <p>{{var order.getShippingDescription()}}</p>
+                        {{if shipping_msg}}
+                        <p>{{var shipping_msg}}</p>
+                        {{/if}}
+                    </td>
+                    {{/depend}}
+                </tr>
+            </table>
+            {{layout handle="sales_email_order_items" order=$order area="frontend"}}
+        </td>
+    </tr>
+    <tr>
+        <td class="order-footer">
+            <h3>{{trans "How can we help?"}}</h3>
+            <p>
+                {{trans "Our knowledgeable and friendly team are available to answer any questions that you may have about our products and services. You can contact us by phone, email, live chat or fax."}}
+            </p>
+            <h3>{{trans "Sales & Technical Support"}}</h3>
+            <p>
+                {{trans 'If you would like to place an order, need any help choosing a suitable product or would like us to provide you with a quote, please email'}} <a href="mailto:%store_email">{{config path="trans_email/ident_sales/email"}}</a> {{trans 'or call <a href="tel:%store_phone">%store_phone</a>' store_phone=$store_phone |raw}}.
+            </p>
+            <h3>{{trans "Customer Services"}}</h3>
+            <p>
+                {{trans 'If you have placed an order with us and have any questions regarding your delivery or the products you have received, please email <a href="mailto:%store_email">%store_email</a>' store_email=$store_email |raw}} {{trans 'or call <a href="tel:%store_phone">%store_phone</a>' store_phone=$store_phone |raw}}.
+            </p>
+            <h3>{{trans "Office hours"}}</h3>
+            <p>
+                {{trans 'Our hours are <span class="no-link">%store_hours</span>.' store_hours=$store_hours |raw}}
+            </p>
+            <p>
+                {{trans 'Outside office hours please send an email and we will respond as soon as we can.'}}
+            </p>
+            <h3>{{trans "Postal address"}}</h3>
+            <p>
+                {{config path="general/store_information/name"}}<br>
+                {{config path="general/store_information/street_line1"}}<br>
+                {{config path="general/store_information/city"}}<br>
+                {{config path="general/store_information/region_id"}}<br>
+                {{config path="general/store_information/postcode"}}<br>
+                {{trans "United Kingdom"}}<br>
+            </p>
+            <p>
+                {{trans "Company Reg No:"}} 07752788<br>
+                {{trans "VAT No:"}} {{config path="general/store_information/merchant_vat_number"}}
+            </p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

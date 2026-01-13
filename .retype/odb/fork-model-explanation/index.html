@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.821637298173">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>ODB Fork Model: Explanation and Implementation</title>
+    <meta name="title" content="ODB Fork Model: Explanation and Implementation">
+    <meta name="description" content="Move from client-specific branches to separate fork repositories for client customizations of ODB.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://shopwise-docs.example.com/odb/fork-model-explanation/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shopwise-docs.example.com/odb/fork-model-explanation/">
+    <meta property="og:title" content="ODB Fork Model: Explanation and Implementation">
+    <meta property="og:description" content="Move from client-specific branches to separate fork repositories for client customizations of ODB.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shopwise-docs.example.com/odb/fork-model-explanation/">
+    <meta property="twitter:title" content="ODB Fork Model: Explanation and Implementation">
+    <meta property="twitter:description" content="Move from client-specific branches to separate fork repositories for client customizations of ODB.">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../resources/css/retype.css?v=3.11.0.821637298173" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.821637298173" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.821637298173" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.821637298173" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-2xl">
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Shopwise App</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">Documentation</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../getting-started/">Getting Started</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../session-setup/">Session Setup</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../orderwise-integration/">Orderwise Integration</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../troubleshooting/">Troubleshooting</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-base-border">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../getting-started/">Getting Started</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../session-setup/">Session Setup</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../orderwise-integration/">Orderwise Integration</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../troubleshooting/">Troubleshooting</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="odb-fork-model-explanation-and-implementation" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#odb-fork-model-explanation-and-implementation">#</doc-anchor-trigger>
+        <span>ODB Fork Model: Explanation and Implementation</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="the-goal">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#the-goal">#</doc-anchor-trigger>
+        <span>The Goal</span>
+    </h2>
+</doc-anchor-target>
+<p>Move from <strong>client-specific branches</strong> to <strong>separate fork repositories</strong> for client customizations of ODB.</p>
+<p><strong>Current State:</strong></p>
+<ul>
+<li>ODB installed via Composer</li>
+<li>Client customizations done as branches in the main ODB repo</li>
+<li>All branches in one repository (<code v-pre>rxmodules-development/odb</code>)</li>
+</ul>
+<p><strong>Desired State:</strong></p>
+<ul>
+<li>Each client has their own repository</li>
+<li>Client-specific code isolated from main ODB</li>
+<li>Easier to manage client-specific changes</li>
+<li>Clear separation of concerns</li>
+</ul>
+<doc-anchor-target id="the-challenge-github-fork-limitations">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#the-challenge-github-fork-limitations">#</doc-anchor-trigger>
+        <span>The Challenge: GitHub Fork Limitations</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="githubs-native-fork-feature">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#githubs-native-fork-feature">#</doc-anchor-trigger>
+        <span>GitHub&#x27;s Native Fork Feature</span>
+    </h3>
+</doc-anchor-target>
+<p>GitHub&#x27;s &quot;Fork&quot; button creates a <strong>UI relationship</strong> between repositories:</p>
+<ul>
+<li>Shows &quot;forked from...&quot; in the repository UI</li>
+<li>Enables easy pull requests back to the original</li>
+<li><strong>Limitation:</strong> Cannot fork within the same organization</li>
+</ul>
+<p><strong>Why this matters:</strong></p>
+<ul>
+<li>We typically work within <code v-pre>rixxo-devops</code> organization</li>
+<li>We don&#x27;t put repositories in client organizations</li>
+<li>Therefore, GitHub&#x27;s native fork feature <strong>cannot be used</strong></li>
+</ul>
+<doc-anchor-target id="our-solution-manual-fork-model">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#our-solution-manual-fork-model">#</doc-anchor-trigger>
+        <span>Our Solution: Manual Fork Model</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="what-weve-implemented">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#what-weve-implemented">#</doc-anchor-trigger>
+        <span>What We&#x27;ve Implemented</span>
+    </h3>
+</doc-anchor-target>
+<p>We&#x27;ve created <strong>separate repositories</strong> with <strong>manual upstream configuration</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">rixxo-devops/
+  ├── ODB (upstream, source of truth)
+  ├── kingfisher-ODB (client fork)
+  └── monsterplumb-odb (client fork)</code></pre>
+</doc-codeblock></div>
+<p>Each client repository has:</p>
+<ul>
+<li><code v-pre>origin</code> remote → points to itself</li>
+<li><code v-pre>upstream</code> remote → points to <code v-pre>rixxo-devops/ODB</code></li>
+</ul>
+<doc-anchor-target id="how-it-works">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-it-works">#</doc-anchor-trigger>
+        <span>How It Works</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Syncing from upstream (same as forking):</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">cd kingfisher-ODB
+git fetch upstream
+git merge upstream/main
+# or
+git rebase upstream/main</code></pre>
+</doc-codeblock></div>
+<p><strong>Making client-specific changes:</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># Work directly in the client repo
+git checkout -b feature/client-specific-change
+# Make changes, commit, push</code></pre>
+</doc-codeblock></div>
+<p><strong>Pulling generic improvements from upstream:</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">git fetch upstream
+git merge upstream/main
+# Resolve conflicts, push</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="why-this-achieves-the-same-thing">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#why-this-achieves-the-same-thing">#</doc-anchor-trigger>
+        <span>Why This Achieves the Same Thing</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>GitHub Native Fork</th>
+<th>Our Manual Fork Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shows &quot;forked from&quot; in UI</td>
+<td>No UI indicator (but functionally identical)</td>
+</tr>
+<tr>
+<td>Can create PRs to upstream</td>
+<td>Can create PRs to upstream (same org)</td>
+</tr>
+<tr>
+<td>Automatic upstream tracking</td>
+<td>Manual upstream remote (same result)</td>
+</tr>
+<tr>
+<td>Can&#x27;t fork same org</td>
+<td>Works within same org <span class="docs-emoji">&#x2705;</span></td>
+</tr>
+<tr>
+<td>Requires separate org</td>
+<td>Works in our org <span class="docs-emoji">&#x2705;</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Key Point:</strong> The <strong>workflow is identical</strong>. The only difference is the GitHub UI doesn&#x27;t show the fork relationship, but all the functionality works the same.</p>
+<doc-anchor-target id="if-we-want-true-github-forks">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#if-we-want-true-github-forks">#</doc-anchor-trigger>
+        <span>If We Want True GitHub Forks</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="the-requirement">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#the-requirement">#</doc-anchor-trigger>
+        <span>The Requirement</span>
+    </h3>
+</doc-anchor-target>
+<p>To use GitHub&#x27;s native fork feature, we would need to:</p>
+<ol>
+<li><strong>Host forks in client organizations</strong> (not <code v-pre>rixxo-devops</code>)</li>
+<li>Each client would need their own GitHub organization</li>
+<li>We&#x27;d fork <code v-pre>rixxo-devops/ODB</code> → <code v-pre>client-org/ODB</code></li>
+</ol>
+<p><strong>Example:</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">rixxo-devops/ODB (upstream)
+    ↓ (GitHub fork)
+kingfisher-org/ODB (client fork)
+monsterplumb-org/ODB (client fork)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="why-this-typically-doesnt-work-for-us">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#why-this-typically-doesnt-work-for-us">#</doc-anchor-trigger>
+        <span>Why This Typically Doesn&#x27;t Work for Us</span>
+    </h3>
+</doc-anchor-target>
+<ol>
+<li><p><strong>Client organizations don&#x27;t exist:</strong></p>
+<ul>
+<li>Clients don&#x27;t have GitHub organizations</li>
+<li>We don&#x27;t want to create/manage client GitHub accounts</li>
+<li>Clients don&#x27;t need direct GitHub access</li>
+</ul>
+</li>
+<li><p><strong>Composer installation:</strong></p>
+<ul>
+<li>ODB is installed via Composer in client projects</li>
+<li>Composer pulls from repositories</li>
+<li>Having repos in client orgs would require:
+<ul>
+<li>Managing client GitHub credentials</li>
+<li>Setting up authentication for each client</li>
+<li>More complex deployment process</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Our workflow:</strong></p>
+<ul>
+<li>We maintain all code in <code v-pre>rixxo-devops</code></li>
+<li>We control access and permissions</li>
+<li>We don&#x27;t want to distribute repos across multiple organizations</li>
+</ul>
+</li>
+</ol>
+<doc-anchor-target id="benefits-of-our-approach">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#benefits-of-our-approach">#</doc-anchor-trigger>
+        <span>Benefits of Our Approach</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="-works-within-same-organization">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-works-within-same-organization">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2705;</span> Works Within Same Organization</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>All repos in <code v-pre>rixxo-devops</code></li>
+<li>No need for client organizations</li>
+<li>Centralized management</li>
+</ul>
+<doc-anchor-target id="-same-functionality-as-forks">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-same-functionality-as-forks">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2705;</span> Same Functionality as Forks</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Can sync from upstream</li>
+<li>Can merge upstream changes</li>
+<li>Can create PRs (within same org)</li>
+<li>Isolated client code</li>
+</ul>
+<doc-anchor-target id="-better-than-branches">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-better-than-branches">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2705;</span> Better Than Branches</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Clear separation per client</li>
+<li>No branch clutter in main repo</li>
+<li>Easier to manage client-specific code</li>
+<li>Can set different permissions per client repo</li>
+</ul>
+<doc-anchor-target id="-composer-compatible">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-composer-compatible">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2705;</span> Composer Compatible</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Can still install via Composer</li>
+<li>Points to <code v-pre>rixxo-devops/ODB</code> or client-specific repo</li>
+<li>No authentication complexity</li>
+</ul>
+<doc-anchor-target id="comparison-branches-vs-our-fork-model-vs-true-forks">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#comparison-branches-vs-our-fork-model-vs-true-forks">#</doc-anchor-trigger>
+        <span>Comparison: Branches vs Our Fork Model vs True Forks</span>
+    </h2>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Feature</th>
+<th>Branches (Old)</th>
+<th>Our Fork Model</th>
+<th>True GitHub Forks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Same organization</td>
+<td><span class="docs-emoji">&#x2705;</span></td>
+<td><span class="docs-emoji">&#x2705;</span></td>
+<td><span class="docs-emoji">&#x274C;</span></td>
+</tr>
+<tr>
+<td>Code isolation</td>
+<td><span class="docs-emoji">&#x274C;</span></td>
+<td><span class="docs-emoji">&#x2705;</span></td>
+<td><span class="docs-emoji">&#x2705;</span></td>
+</tr>
+<tr>
+<td>UI fork indicator</td>
+<td><span class="docs-emoji">&#x274C;</span></td>
+<td><span class="docs-emoji">&#x274C;</span></td>
+<td><span class="docs-emoji">&#x2705;</span></td>
+</tr>
+<tr>
+<td>Sync from upstream</td>
+<td>Manual</td>
+<td>Manual (same)</td>
+<td>Manual (same)</td>
+</tr>
+<tr>
+<td>Client org required</td>
+<td><span class="docs-emoji">&#x274C;</span></td>
+<td><span class="docs-emoji">&#x274C;</span></td>
+<td><span class="docs-emoji">&#x2705;</span></td>
+</tr>
+<tr>
+<td>Composer friendly</td>
+<td><span class="docs-emoji">&#x2705;</span></td>
+<td><span class="docs-emoji">&#x2705;</span></td>
+<td><span class="docs-emoji">&#x26A0;&#xFE0F;</span> (more complex)</td>
+</tr>
+<tr>
+<td>Centralized management</td>
+<td><span class="docs-emoji">&#x2705;</span></td>
+<td><span class="docs-emoji">&#x2705;</span></td>
+<td><span class="docs-emoji">&#x274C;</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="conclusion">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#conclusion">#</doc-anchor-trigger>
+        <span>Conclusion</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Our manual fork model achieves the same goals as GitHub forking:</strong></p>
+<ul>
+<li><span class="docs-emoji">&#x2705;</span> Isolated client repositories</li>
+<li><span class="docs-emoji">&#x2705;</span> Ability to sync from upstream</li>
+<li><span class="docs-emoji">&#x2705;</span> Clear separation of concerns</li>
+<li><span class="docs-emoji">&#x2705;</span> Works within our organization</li>
+<li><span class="docs-emoji">&#x2705;</span> Compatible with our workflow</li>
+</ul>
+<p><strong>The only difference:</strong> GitHub&#x27;s UI doesn&#x27;t show a &quot;forked from&quot; indicator, but <strong>functionally it works identically</strong>.</p>
+<p><strong>If we want true GitHub forks:</strong> We&#x27;d need to host repositories in client organizations, which doesn&#x27;t fit our typical workflow and Composer-based installation process.</p>
+<doc-anchor-target id="recommendation">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommendation">#</doc-anchor-trigger>
+        <span>Recommendation</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Stick with our manual fork model</strong> because:</p>
+<ol>
+<li>It achieves all the same goals</li>
+<li>Works within our organization</li>
+<li>Compatible with Composer</li>
+<li>Easier to manage centrally</li>
+<li>No need for client GitHub organizations</li>
+</ol>
+<p>The lack of a GitHub UI fork indicator is a minor cosmetic difference that doesn&#x27;t affect functionality.</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../odb/fork-migration-guide/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">ODB Fork Migration Guide</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../odb/quick-start/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Quick Start: ODB Fork Migration</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2026 Shopwise App. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "ODB Fork Model: Explanation and Implementation", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

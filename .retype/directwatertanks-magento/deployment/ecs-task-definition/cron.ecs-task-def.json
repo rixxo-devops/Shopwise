@@ -1,0 +1,177 @@
+{
+  "family": "magento-cron_{{TASK_DEFINITION_TAG}}",
+  "executionRoleArn": "arn:aws:iam::520431583319:role/MagentoECSTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::520431583319:role/MagentoECSTaskRole",
+  "containerDefinitions": [
+    {
+      "name": "php",
+      "image": "{{AWS_REGISTRY_URL}}/kfd-magento/php:{{DOCKER_IMAGE_TAG}}",
+      "cpu": 0,
+      "memoryReservation": {{ECS_CRON_MEMORY_RESERVATION}},
+      "memory": {{ECS_CRON_MEMORY}},
+      "links": [],
+      "portMappings": [],
+      "essential": true,
+      "entryPoint": [
+        "/usr/local/bin/cron-entrypoint"
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "efs-media",
+          "containerPath": "/var/www/html/pub/media"
+        },
+        {
+          "sourceVolume": "efs-export",
+          "containerPath": "/var/www/html/var/export"
+        },
+        {
+          "sourceVolume": "efs-flags",
+          "containerPath": "/var/www/html/var/flags"
+        },
+        {
+          "sourceVolume": "efs-amasty-feed",
+          "containerPath": "/var/www/html/var/amasty/feed"
+        }
+      ],
+      "volumesFrom": [],
+      "environment": [
+        {
+          "name": "MAGE_DEPLOY__ENV_TEMPLATE",
+          "value": "prod"
+        },
+        {
+          "name": "MAGE_DEPLOY__ALLOW_OUTDATED_DB",
+          "value": "{{MAGE_DEPLOY__ALLOW_OUTDATED_DB}}"
+        },
+        {
+          "name": "MAGE__CACHE_ID_PREFIX",
+          "value": "69d_"
+        },
+        {
+          "name": "CONFIG__DEFAULT__SMILE_ELASTICSUITE_CORE_BASE_SETTINGS__INDICES__SETTINGS_ALIAS",
+          "value": "elasticsuite_{{ENVIRONMENT}}"
+        },
+        {
+          "name": "PHP_MEMORY_LIMIT",
+          "value": "{{ECS_CRON_MEMORY}}M"
+        }
+      ],
+      "secrets": [
+        {
+          "name": "MAGE__BACKEND_FRONTNAME",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/magento/backend_frontname"
+        },
+        {
+          "name": "MAGE__DB_HOST",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/database/host"
+        },
+        {
+          "name": "MAGE__DB_NAME",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/database/name"
+        },
+        {
+          "name": "MAGE__DB_USER",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/database/username"
+        },
+        {
+          "name": "MAGE__DB_PASSWORD",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/database/password"
+        },
+        {
+          "name": "MAGE__KEY",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/magento/key"
+        },
+        {
+          "name": "MAGE__CACHE_REDIS_SERVER",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/redis/host"
+        },
+        {
+          "name": "MAGE__PAGE_CACHE_REDIS_SERVER",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/redis/host"
+        },
+        {
+          "name": "MAGE__SESSION_REDIS_HOST",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/session-redis/host"
+        },
+        {
+          "name": "CONFIG__DEFAULT__CATALOG__SEARCH__ELASTICSEARCH7_SERVER_HOSTNAME",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/elasticsearch7/host"
+        },
+        {
+          "name": "CONFIG__DEFAULT__CATALOG__SEARCH__ELASTICSEARCH7_SERVER_PORT",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/elasticsearch7/port"
+        },
+        {
+          "name": "CONFIG__DEFAULT__CATALOG__SEARCH__ELASTICSEARCH7_ENABLE_AUTH",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/elasticsearch7/auth"
+        },
+        {
+          "name": "CONFIG__DEFAULT__CATALOG__SEARCH__ELASTICSEARCH7_USERNAME",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/elasticsearch7/username"
+        },
+        {
+          "name": "CONFIG__DEFAULT__CATALOG__SEARCH__ELASTICSEARCH7_PASSWORD",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/elasticsearch7/password"
+        },
+        {
+          "name": "CONFIG__DEFAULT__SMILE_ELASTICSUITE_CORE_BASE_SETTINGS__ES_CLIENT__SERVERS",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/elasticsearch7/servers"
+        },
+        {
+          "name": "CONFIG__DEFAULT__SMILE_ELASTICSUITE_CORE_BASE_SETTINGS__ES_CLIENT__HTTP_AUTH_USER",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/elasticsearch7/username"
+        },
+        {
+          "name": "CONFIG__DEFAULT__SMILE_ELASTICSUITE_CORE_BASE_SETTINGS__ES_CLIENT__HTTP_AUTH_PWD",
+          "valueFrom": "arn:aws:ssm:eu-west-2:520431583319:parameter/{{ENVIRONMENT}}/magento/elasticsearch7/password"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/magento-cron-{{ENVIRONMENT}}",
+          "awslogs-region": "eu-west-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "volumes": [
+    {
+      "name": "efs-media",
+      "efsVolumeConfiguration": {
+        "fileSystemId": "{{MEDIA_FILESYSTEM_ID}}",
+        "rootDirectory": "/media",
+        "transitEncryption": "ENABLED"
+      }
+    },
+    {
+      "name": "efs-export",
+      "efsVolumeConfiguration": {
+        "fileSystemId": "{{MEDIA_FILESYSTEM_ID}}",
+        "rootDirectory": "/export",
+        "transitEncryption": "ENABLED"
+      }
+    },
+    {
+      "name": "efs-flags",
+      "efsVolumeConfiguration": {
+        "fileSystemId": "{{MEDIA_FILESYSTEM_ID}}",
+        "rootDirectory": "/flags/{{ENVIRONMENT}}",
+        "transitEncryption": "ENABLED"
+      }
+    },
+    {
+      "name": "efs-amasty-feed",
+      "efsVolumeConfiguration": {
+        "fileSystemId": "{{MEDIA_FILESYSTEM_ID}}",
+        "rootDirectory": "/amasty-feed",
+        "transitEncryption": "ENABLED"
+      }
+    }
+  ],
+  "placementConstraints": [],
+  "requiresCompatibilities": [
+    "EC2"
+  ]
+}

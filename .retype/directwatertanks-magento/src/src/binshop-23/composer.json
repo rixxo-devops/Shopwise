@@ -1,0 +1,17 @@
+{
+    "name": "kingfisherdirect/magento2-theme-binshop-23",
+    "type": "magento2-theme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Uncle Matt",
+            "email": "matthewbtindall@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    },
+    "require": {}
+}

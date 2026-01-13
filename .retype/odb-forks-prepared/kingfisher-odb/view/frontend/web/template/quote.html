@@ -1,0 +1,156 @@
+<ul class="actions">
+    <li>
+        <!-- ko if: getStatus() == 'quote' -->
+        <button class="button addToCart primary">
+            <span data-bind="i18n: 'Accept Quote', event: {click: addToCart}"></span>
+        </button>
+        <!-- /ko -->
+        <!-- ko if: getStatus() == 'order' -->
+        <span class="quote-status" data-bind="text: 'Complete'"></span>
+        <!-- /ko -->
+        <!-- ko if: getStatus() == 'expired' -->
+        <span class="quote-status" data-bind="text: 'Expired'"></span>
+        <!-- /ko -->
+    </li>
+</ul>
+
+<div class="quote" data-bind="afterRender: initQuote">
+    <div class="items">
+        <h2 data-bind="i18n: 'Items'"></h2>
+        <table>
+            <thead>
+            <tr>
+                <th class="name" data-bind="i18n: 'Name'"></th>
+                <th class="sku" data-bind="i18n: 'Sku'"></th>
+                <th class="price" data-bind="i18n: 'Price'">/th>
+                <th class="qty" data-bind="i18n: 'Qty'"></th>
+                <th class="comments" data-bind="i18n: 'Comments'"></th>
+                <th class="subotal" data-bind="i18n: 'Subtotal'"></th>
+            </tr>
+            </thead>
+            <tbody data-bind="foreach: quoteItems">
+                <tr class="item">
+                    <td class="name" data-bind="text: name"></td>
+                    <td class="sku" data-bind="text: sku"></td>
+                    <td class="price" data-bind="text: $parent.formatCurrency(custom_price)"></td>
+                    <td class="qty" data-bind="text: qty"></td>
+                    <td class="comments">
+                        <a href="javascript: void(0)" class="show-comments" data-bind="event: {click: $parent.showComments}">
+                            <span class="label" data-bind="i18n: 'View Comments', "></span>
+                            (<span class="comment-count" data-bind="text: comment_count"></span>)
+                        </a>
+                    </td>
+                    <td class="subtotal" data-bind="text: $parent.formatCurrency(row_total)"></td>
+                </tr>
+            </tbody>
+            <tfoot class="totals" data-bind="foreach: quoteTotals">
+                <tr data-bind="attr :{ class: type}">
+                    <td class="label" colspan="5"  data-bind="i18n: label"></td>
+                    <td data-bind="text: $parent.formatCurrency(total)"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="quote-row addresses">
+        <div class="billing">
+            <h2 data-bind="i18n: 'Billing Address'"></h2>
+            <!-- ko if: billingAddress().length -->
+            <ul class="address" data-bind="foreach: billingAddress">
+                <!-- ko if: first_name -->
+                <li data-bind="text: first_name + ' ' + last_name"></li>
+                <!-- /ko -->
+                <!-- ko if: street_1 -->
+                <li data-bind="text: street_1"></li>
+                <!-- /ko -->
+                <!-- ko if: street_2 -->
+                <li data-bind="text: street_2"></li>
+                <!-- /ko -->
+                <!-- ko if: city -->
+                <li data-bind="text: city"></li>
+                <!-- /ko -->
+                <!-- ko if: postcode -->
+                <li data-bind="text: postcode"></li>
+                <!-- /ko -->
+                <!-- ko if: country -->
+                <li data-bind="text: country"></li>
+                <!-- /ko -->
+                <!-- ko if: telephone -->
+                <li data-bind="text: telephone"></li>
+                <!-- /ko -->
+            </ul>
+            <!-- /ko -->
+        </div>
+        <div class="shipping">
+            <h2 data-bind="i18n: 'Shipping Address'"></h2>
+            <!-- ko if: shippingAddress().length -->
+            <ul class="address" data-bind="foreach: shippingAddress">
+                <!-- ko if: first_name -->
+                <li data-bind="text: first_name + ' ' + last_name"></li>
+                <!-- /ko -->
+                <!-- ko if: street_1 -->
+                <li data-bind="text: street_1"></li>
+                <!-- /ko -->
+                <!-- ko if: street_2 -->
+                <li data-bind="text: street_2"></li>
+                <!-- /ko -->
+                <!-- ko if: city -->
+                <li data-bind="text: city"></li>
+                <!-- /ko -->
+                <!-- ko if: postcode -->
+                <li data-bind="text: postcode"></li>
+                <!-- /ko -->
+                <!-- ko if: country -->
+                <li data-bind="text: country"></li>
+                <!-- /ko -->
+                <!-- ko if: telephone -->
+                <li data-bind="text: telephone"></li>
+                <!-- /ko -->
+            </ul>
+            <!-- /ko -->
+        </div>
+    </div>
+
+    <div class="quote-row summary">
+        <div class="shipping">
+            <h2 data-bind="i18n: 'Shipping'"></h2>
+            <div class="shipping-method">
+                <span class="label" data-bind="text: quoteShippingMethod"></span>
+                <span class="separator">-</span>
+                <span class="amount" data-bind="text: quoteShippingAmount"></span>
+            </div>
+        </div>
+<!--        <div class="delivery-date">-->
+<!--            <h2 data-bind="i18n: 'Requested Delivery Date'"></h2>-->
+<!--            <div class="date" data-bind="text: quoteShippingDeliveryDate"></div>-->
+<!--        </div>-->
+        <div class="comments-wrapper">
+            <h2 data-bind="i18n: 'Comments'"></h2>
+            <div class="comments">No Comments</div>
+        </div>
+    </div>
+</div>
+
+<div class="item-comments" data-bind="afterRender: bindItemComments">
+    <div class="item-comments-modal-contents">
+        <ul data-bind="attr: {class: allowCustomerItemComments ? 'comments' : 'comments no-comment'}, foreach: currentItemComments">
+            <li class="comment" data-bind="attr:{'data-type': author_type}">
+                <div class="header">
+                    <span class="date" data-bind="text: created_at"></span>
+                    <span class="author-type" data-bind="text: author_type"></span>
+                </div>
+                <div class="contents" data-bind="text: contents"></div>
+                <div class="footer">
+
+                </div>
+            </li>
+        </ul>
+        <!-- ko if: allowCustomerItemComments -->
+        <div class="new-comment">
+            <div class="admin__field-control">
+                <textarea class="admin__control-textarea" name="contents" placeholder="Enter your comment here"></textarea>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+</div>

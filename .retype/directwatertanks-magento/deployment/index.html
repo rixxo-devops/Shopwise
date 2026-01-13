@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.821637298173">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Magento Deployment</title>
+    <meta name="title" content="Magento Deployment">
+    <meta name="description" content="This project is beeing deployed on AWS - London (region: eu-west-2)">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://shopwise-docs.example.com/directwatertanks-magento/deployment/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shopwise-docs.example.com/directwatertanks-magento/deployment/">
+    <meta property="og:title" content="Magento Deployment">
+    <meta property="og:description" content="This project is beeing deployed on AWS - London (region: eu-west-2)">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shopwise-docs.example.com/directwatertanks-magento/deployment/">
+    <meta property="twitter:title" content="Magento Deployment">
+    <meta property="twitter:description" content="This project is beeing deployed on AWS - London (region: eu-west-2)">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../resources/css/retype.css?v=3.11.0.821637298173" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.821637298173" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.821637298173" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-2xl">
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Shopwise App</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">Documentation</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../getting-started/">Getting Started</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../session-setup/">Session Setup</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../orderwise-integration/">Orderwise Integration</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../troubleshooting/">Troubleshooting</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-base-border">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../getting-started/">Getting Started</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../session-setup/">Session Setup</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../orderwise-integration/">Orderwise Integration</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../troubleshooting/">Troubleshooting</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="magento-deployment" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#magento-deployment">#</doc-anchor-trigger>
+        <span>Magento Deployment</span>
+    </h1>
+</doc-anchor-target>
+<p>This project is beeing deployed on AWS - London (region: <code v-pre>eu-west-2</code>)</p>
+<doc-anchor-target id="prerequisites">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#prerequisites">#</doc-anchor-trigger>
+        <span>Prerequisites</span>
+    </h2>
+</doc-anchor-target>
+<p>Before starting on this ensure you have knowledge of following</p>
+<ul>
+<li>Docker
+<ul>
+<li>what problems it solves</li>
+<li>Dockerfile</li>
+<li>difference between image and container</li>
+<li>registry</li>
+<li>docker volumes</li>
+<li><a href="https://medium.com/@nagarwal/lifecycle-of-docker-container-d2da9f85959">container lifecycle</a></li>
+</ul>
+</li>
+<li>Basic Linux
+<ul>
+<li>basic commands</li>
+<li>shell scripts</li>
+<li>environment variables</li>
+</ul>
+</li>
+<li>Networking
+<ul>
+<li>ports</li>
+<li>HTTP / HTTPS</li>
+<li>DNS SRV records</li>
+</ul>
+</li>
+<li>AWS
+<ul>
+<li>EC2
+<ul>
+<li><strong>Launch Template / Launch Configuration</strong> - a description of how EC2 instance should be configured. Type, size, network, etc... It also includes userdata field where you can put your script to run when EC2 instance starts. <em>Only Launch Configuration in past was for Autoscaling, now both can be used</em></li>
+<li><strong>Auto Scaling Group (AS/ASG)</strong> - a service that automatically creates/removes instances to match your desired number and to address temporary higher or lower usage of them. Creates inscances based on Lauch Template or Launch Configuration.</li>
+<li><strong>Application Load Balancer (ALB)</strong> - distributes a traffic between multiple same instances serving same purpose. Used often with combination of autoscaling so it can handle bigger/lower demand.
+<ul>
+<li><strong>Target Group (TG)</strong> - a group of services (for exampe EC2) that can are used in ALB. ALB can switch quickly between multiple Target groups allowing quick seamless deployments.</li>
+</ul>
+</li>
+<li><strong>Security groups (SG)</strong> - firewall in short. Describes what ports and ip can be accessed. SG is can be attached to many things in AWS. Such as EC2, ALB, RDS, EFS, ElastiCache etc - all that can handle any network traffic at all</li>
+</ul>
+</li>
+<li><strong>ECR</strong> - an AWS managed Docker registry allowing us to upload our docker images. Our private Docker Hub</li>
+<li>ECS
+<ul>
+<li><strong>ECS Instance</strong> - an EC2 instance that has Docker installed and runs ECS container agent. It belongs to one cluster and it&#x27;s able to run tasks</li>
+<li><strong>Cluster</strong> - A logic group of ECS instances</li>
+<li><strong>Task Definition</strong> - A file which is used to tell Cluster and ECS Instance how to run Docker container(s)</li>
+<li><strong>Task</strong> - A running container with the settings defined in task definition. In other words instance of Task definition</li>
+<li><strong>Service</strong> - Long running tasks of the specified task definition. This can be any number (0..n) tasks running same task definition. Can be updated to use newer or different version of task definition</li>
+</ul>
+</li>
+<li><strong>Systems Manager (SSM) - Parameter Store</strong> - a place where we can safely store parameters (such as database host, username, password). Those parameters can be then used in Task Definition.</li>
+<li><strong>Elastic File Storage (EFS)</strong> - an AWS network drive.</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="general">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#general">#</doc-anchor-trigger>
+        <span>General</span>
+    </h2>
+</doc-anchor-target>
+<p>This applies to both test and production setups. Further down there is more
+detailed information about each specific environment.</p>
+<doc-anchor-target id="cluster-setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cluster-setup">#</doc-anchor-trigger>
+        <span>Cluster setup</span>
+    </h3>
+</doc-anchor-target>
+<p>This is one time setup. Clusters should be used for more than just one project.
+I missed that knowledge, but we&#x27;re heading that way.<br />
+And at the moment it is setup, but it will be good for you to know how to set it up.</p>
+<ol>
+<li>Create ECS Cluster. This also creates following resources:
+<ul>
+<li>Auto Scaling Group</li>
+<li>Lauch Configuration</li>
+</ul>
+</li>
+<li>Update Auto Scaling group
+<ol>
+<li>Convert Launch Configuration to Launch Template (easier to manage)</li>
+<li>Update ASG to use our new Launch Template</li>
+<li>Create EFS for media storage. Using SG allow only ECS Instances to access it</li>
+<li>Update Launch Template, so:
+<ol>
+<li>It mounts an media EFS so it can be accessed</li>
+<li>Installs awscli command (it&#x27;s usefull)</li>
+<li><em>(To be changed)</em> Create a script that will upload backups created by tasks to S3</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>The cluster should be now ready to use.</p>
+<doc-anchor-target id="other-aws-services">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#other-aws-services">#</doc-anchor-trigger>
+        <span>Other AWS services</span>
+    </h3>
+</doc-anchor-target>
+<p>As AWS offers RDS - Database service we&#x27;ll create a MySQL server there, and let
+them manage it.</p>
+<p>Same applies for Redis offered from ElastiCache server.</p>
+<doc-anchor-target id="ecs-task-definition-setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ecs-task-definition-setup">#</doc-anchor-trigger>
+        <span>ECS Task Definition setup</span>
+    </h3>
+</doc-anchor-target>
+<p>As we have now cluster we need to setup the project so it can run on the cluser.
+To do that in short we&#x27;ll need to understand a nature of the project.</p>
+<p>Magento as a website will need to run on a configured web server. In our case
+we use <code v-pre>nginx</code> software backed up by <code v-pre>php</code>.</p>
+<p>Apart from that Magento runs several tasks in background. For that it uses
+<code v-pre>cron</code> software.</p>
+<p>Based on that knowledge we&#x27;ll need to create 2 task definitions.<br />
+One for webserver, which will run 2 connected docker containers (nginx + php)<br />
+And other for cron which will run one docker container (php).</p>
+<doc-anchor-target id="project-code">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#project-code">#</doc-anchor-trigger>
+        <span>Project Code</span>
+    </h4>
+</doc-anchor-target>
+<p>Based on knowledge from previous paragraph we need to create our docker images.
+Before we do that though we need Magento code to put in the images.</p>
+<p>Code is created on first few steps of Bitbucket Pipeline. In short it does:</p>
+<ol>
+<li>Installs composer depenedncies</li>
+<li>Prepares theme(s)
+<ol>
+<li>Install npm dependencies</li>
+<li>Compiles styles fonts etc.</li>
+</ol>
+</li>
+<li>Runs magento command to compile DI files and deploy static files</li>
+<li>Result files will be available for later steps in pipeline (described later)</li>
+</ol>
+<doc-anchor-target id="docker-images">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#docker-images">#</doc-anchor-trigger>
+        <span>Docker images</span>
+    </h4>
+</doc-anchor-target>
+<p>As we understand how Magento works we realised 2 docker images will be needed.</p>
+<p>They&#x27;re created in next pipeline steps using the repository code + the one created
+in previous steps.</p>
+<p>The result images are uploaded to ECR with appropriate names.</p>
+<doc-anchor-target id="nginx-kingfisherdirectkfd-magento-nginx">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#nginx-kingfisherdirectkfd-magento-nginx">#</doc-anchor-trigger>
+        <span>nginx (kingfisherdirect/kfd-magento-nginx)</span>
+    </h5>
+</doc-anchor-target>
+<p>This image is simple as it should contain only nginx configuration and
+Magento public assets (as they don&#x27;t need php for processing). PHP file requests
+will be passed to php, so that files are not needed here.</p>
+<p>The <a href="https://bitbucket.org/kingfisherdirect/directwatertanks-magento/src/master/deployment/docker/nginx/Dockerfile">Dockerfile</a> is quite simple and all it really does:</p>
+<ol>
+<li>Extends default nginx image</li>
+<li>Copies <a href="https://bitbucket.org/kingfisherdirect/directwatertanks-magento/src/master/deployment/etc/nginx">nginx configurations</a></li>
+<li>Copies over public files to appripriate location</li>
+</ol>
+<doc-anchor-target id="php-kingfisherdirectkfd-magento-php">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#php-kingfisherdirectkfd-magento-php">#</doc-anchor-trigger>
+        <span>php (kingfisherdirect/kfd-magento-php)</span>
+    </h5>
+</doc-anchor-target>
+<p><strong>php</strong> image will contain all compiled magento code, php + configuration and
+optionally run cron service.</p>
+<p><a href="https://bitbucket.org/kingfisherdirect/directwatertanks-magento/src/master/deployment/docker/nginx/Dockerfile">Dockerfile</a> is more complex than nginx, and depends on our other project, which configures generic Magento 2 PHP image with required extensions - <a href="%5BDockerfile%5D(https://bitbucket.org/kingfisherdirect/directwatertanks-magento/src/master/deployment/docker/nginx/Dockerfile)">docker-magento2-php</a></p>
+<p>Please have look on that other project as it&#x27;s essential to our setup. Here is a little of a summary:</p>
+<ol>
+<li>Installs php and required extensions</li>
+<li>Puts php.ini values recommended by Magento</li>
+<li>Installs composer</li>
+<li>Adds scripts to allow us configure Magento env.php (database, cache, and few other bits)</li>
+</ol>
+<p>The docker file from this repository adds the project code on top of that.</p>
+<doc-anchor-target id="finally-task-definitions">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#finally-task-definitions">#</doc-anchor-trigger>
+        <span>Finally Task Definitions</span>
+    </h4>
+</doc-anchor-target>
+<p>At this point we have our Docker images with compiled Magento in ECR.</p>
+<p>Further pipeline steps are creating task definition based on a <a href="https://bitbucket.org/kingfisherdirect/directwatertanks-magento/src/master/deployment/ecs-task-definition/">template files</a>.</p>
+<p>There is no point of me describing all parameters from there. For that please
+refeer to <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html">AWS Task Definition Parameters Documentation</a>.</p>
+<p>Few of the values are a &#x60;&#x60; which are replaced with a script.
+Those values differ based on environment we deploy to. Values are configured
+somewhere within Bitbucker Pipeline or Settings.</p>
+<p>The script will also push the task definitions to ECS.</p>
+<p><strong>Note on env variables:</strong> <a href="https://bitbucket.org/kingfisherdirect/directwatertanks-magento/src/master/deployment/docker/nginx/Dockerfile">docker-magento2-php</a> project mentions environment variables that need to be present in
+order to sucessfully start this container.<br />
+Those values should be saved in SSM Parameter Storage and are already referenced
+in task definition templates._</p>
+<p><strong>Note on ports:</strong> Internally nginx docker image exposes port 8080.
+Task definition is set to forward this port to the port 0 on host (ECS Instance).
+That means docker will find any available port on host and assign it to it.<br />
+That&#x27;s not a problem as the webserver is behind load balancer, which is available
+to ports 80 and 443 to customers and it just connects internally to ECS Task on
+different ports.</p>
+<doc-anchor-target id="running-ecs-service">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#running-ecs-service">#</doc-anchor-trigger>
+        <span>Running ECS Service</span>
+    </h3>
+</doc-anchor-target>
+<p>We have now all we needed prepared. Last step is to run docker images.</p>
+<p>When you run/update ECS service you&#x27;ll approach multiple questions and based on the
+environment it differs. That will be described later per environment, but there
+are few important things to know now:</p>
+<ul>
+<li>Service uses task definition to start new tasks.</li>
+<li>You can decide how many &quot;copies&quot; of the tasks you want.</li>
+<li>You can setup a Load Balancer for your tasks.</li>
+<li>You can setup a DNS SRV records.</li>
+<li>In general the services should be already there and configured and your task
+will be mostly to update them to use newer task definition.</li>
+</ul>
+<doc-anchor-target id="production">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#production">#</doc-anchor-trigger>
+        <span>Production</span>
+    </h2>
+</doc-anchor-target>
+<p>Production revolves around the <code v-pre>master</code> branch, when a feature or fix branch is merged into master.</p>
+<doc-anchor-target id="ecr">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ecr">#</doc-anchor-trigger>
+        <span>ECR</span>
+    </h3>
+</doc-anchor-target>
+<p>Docker images created are tagged as follows to avoid conflicts and keep older
+images in case we need to rollback.</p>
+<ul>
+<li><code v-pre>kingfisherdirect/kfd-magento-php:release-{commit}</code></li>
+<li><code v-pre>kingfisherdirect/kfd-magento-nginx:release-{commit}</code></li>
+</ul>
+<doc-anchor-target id="redis">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#redis">#</doc-anchor-trigger>
+        <span>Redis</span>
+    </h3>
+</doc-anchor-target>
+<p>For production we use Redis and it&#x27;s parameters are stored in SSM
+<code v-pre>prod/magento/redis/...</code>, which are passed in Task Definition to Magento setup
+script.</p>
+<doc-anchor-target id="task-definition">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#task-definition">#</doc-anchor-trigger>
+        <span>Task Definition</span>
+    </h3>
+</doc-anchor-target>
+<p>Task definition will use parameters from SSM Parameters Store with the prefix
+<code v-pre>/prod/magento/...</code></p>
+<p>The pipeline sets an environment variable (<code v-pre>MAGE_DEPLOY__SKIP_SETUP</code>)
+preventing [docker-magento2-php](<a href="https://bitbucket.org/kingfisherdirect/directwatertanks-magento/src/master/deployment/docker/nginx/Dockerfile">Dockerfile</a>
+entrypoint script from running and complaining about need of  <code v-pre>setup:upgrade</code></p>
+<p>Task definition names are as follows:</p>
+<ul>
+<li><code v-pre>magento-webserver_prod</code></li>
+<li><code v-pre>magento-cli_prod</code></li>
+<li><code v-pre>magento-cron_prod</code></li>
+</ul>
+<doc-anchor-target id="ecs-service">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ecs-service">#</doc-anchor-trigger>
+        <span>ECS Service</span>
+    </h3>
+</doc-anchor-target>
+<p>ECS service is setup with load balancer which is connected to our domain.</p>
+<p>It also uses blue/green deployment to avoid downtimes during deployment.</p>
+<p>Using blue/green deployment allows us also run Lambda function just after new
+task is created, but before traffic is redirected to it. This allows us to run
+Lambda function, that runs <code v-pre>bin/magento setup:upgrade</code> using not mentioned
+previously <code v-pre>cli</code> task definition (PHP but able to run bin/magento command, not as different).</p>
+<p>Once setup is done b/g deployment runs health checks on new task and if all good
+it replaces ALB to use new task group (which contains new task). It keeps also
+old task in old task group for an hour in case new one will start playing up.</p>
+<p>This setup is not perfect and may cause problems with rollbacks, but that&#x27;s to
+sort out later. Because of this its <strong>RECOMMENDED</strong> to update service during
+less busy periods - especiall if any of module is added, updated or removed.</p>
+<doc-anchor-target id="application-load-balancer">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#application-load-balancer">#</doc-anchor-trigger>
+        <span>Application Load Balancer</span>
+    </h3>
+</doc-anchor-target>
+<p>Apart from what has been said above the load balancer is also configured with
+SSL certificate and redirects all traffic to HTTPS.</p>
+<doc-anchor-target id="development">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#development">#</doc-anchor-trigger>
+        <span>Development</span>
+    </h2>
+</doc-anchor-target>
+<p>Development revolves around <code v-pre>feature</code> &amp; <code v-pre>fix</code> branches, when a pull request is created.</p>
+<doc-anchor-target id="deployment-targets">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#deployment-targets">#</doc-anchor-trigger>
+        <span>Deployment Targets</span>
+    </h3>
+</doc-anchor-target>
+<p>We have 4 test places where you can deploy your changes.</p>
+<ul>
+<li><strong>Default</strong>: <code v-pre>[WEBSITE].mage.dev.kingfisherdirect.co.uk</code></li>
+<li><strong>Echo</strong>: <code v-pre>[WEBSITE].echo.mage.dev.kingfisherdirect.co.uk</code></li>
+<li><strong>Golf</strong>: <code v-pre>[WEBSITE].golf.mage.dev.kingfisherdirect.co.uk</code></li>
+<li><strong>Lima</strong>: <code v-pre>[WEBSITE].lima.mage.dev.kingfisherdirect.co.uk</code></li>
+</ul>
+<p>All of them are using Load Balancer. Custom one, not the AWS as we don&#x27;t want to
+spend too much money on them.</p>
+<p>HAProxy LB is setup on Bastion server and its status can be seen on
+<a href="https://mage.dev.kingfisherdirect.co.uk/hpx?statistics">https://mage.dev.kingfisherdirect.co.uk/hpx?statistics</a></p>
+<p>All you need to know on this is that it uses DNS SRV entries to resolve into
+[HOST]:[PORT] which it uses internally to to serve page.</p>
+<doc-anchor-target id="ecr-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ecr-1">#</doc-anchor-trigger>
+        <span>ECR</span>
+    </h3>
+</doc-anchor-target>
+<p>Docker images tags:</p>
+<ul>
+<li><code v-pre>kingfisherdirect/kfd-magento-php:{branch-name}</code></li>
+<li><code v-pre>kingfisherdirect/kfd-magento-nginx:{branch-name}</code></li>
+</ul>
+<doc-anchor-target id="task-definitions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#task-definitions">#</doc-anchor-trigger>
+        <span>Task Definitions</span>
+    </h3>
+</doc-anchor-target>
+<p>Task definition names are as follows:</p>
+<ul>
+<li><code v-pre>magento-webserver_{branch-name}_{environment}</code></li>
+<li><code v-pre>magento-cli_{branch-name}_{environment}</code></li>
+<li><code v-pre>magento-cron_{branch-name}_{environment}</code></li>
+</ul>
+<p>Environment depends on where you want to deploy your changes and may be one of
+<code v-pre>test</code>, <code v-pre>test-echo</code>, <code v-pre>test-golf</code> and <code v-pre>test-lima</code>.</p>
+<doc-anchor-target id="ssm-parameters">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ssm-parameters">#</doc-anchor-trigger>
+        <span>SSM Parameters</span>
+    </h3>
+</doc-anchor-target>
+<p>Each environment will also have it&#x27;s own set of SSM parameters with prefix
+beeing one of <code v-pre>test</code>, <code v-pre>test-echo</code>, <code v-pre>test-golf</code> and <code v-pre>test-lima</code>.</p>
+<doc-anchor-target id="ecs-service-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ecs-service-1">#</doc-anchor-trigger>
+        <span>ECS Service</span>
+    </h3>
+</doc-anchor-target>
+<p>No blue/green deployment here.</p>
+<p>Each task creates an autodiscovery DNS SRV entry, to be used with HaProxy LB.</p>
+<p>Again same as on production, you don&#x27;t need to create a service - just update.</p>
+<doc-anchor-target id="updating-test-databases">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#updating-test-databases">#</doc-anchor-trigger>
+        <span>Updating test databases</span>
+    </h3>
+</doc-anchor-target>
+<p>There is a script on bastion called <code v-pre>clone-db.sh</code>.</p>
+<p>It will import last backup into DB of specified test server.</p>
+<p>Usage: <code v-pre>clone-db.sh [TARGET]</code>, where <code v-pre>[TARGET]</code> is one of <code v-pre>default, echo, golf, lima</code>.</p>
+<p>During script execution it will ask you about DB password. Command to get it from
+AWS is provided by a script - just run it from your computer.</p>
+<p>After DB is imported few changes must be done to database. Log in into appropriate
+EC2 Instance which runs the docker task for your environment, and run provided
+commands on PHP container.</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../directwatertanks-magento/pass-coding-standards/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">Coding Standards</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../odb/composer-installation-guide/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Composer Installation with Fork Repositories</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2026 Shopwise App. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Magento Deployment", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<h2>
+    <span class="step-count" data-bind="text: 4"></span>
+    <span class="title" data-bind="text: 'Quote Expiration'"></span>
+</h2>
+<div class="expiration-wrapper" data-bind="afterRender: bindExpiration, attr: {'data-days': expirationDays}">
+    <div class="admin__field-control expiration-days">
+        <select class="admin__control-select" tabindex="40" name="expiration-days" data-bind="value: expirationDays, attr: {title: 'Select Expiration Days'}, event: {change: setExpirationDays}">
+            <option value="15">15 Days</option>
+            <option value="30">30 Days</option>
+            <option value="90">60 Days</option>
+            <option value="custom">Choose Custom Date</option>
+        </select>
+        <div class="admin__field-control expiration-date">
+            <input class="admin__control-text expirationDatePicker" type="text" tabindex="44"  data-type="expiration_date" name="expiration_date" data-key="expirationDate" data-bind="attr: {'placeholder':'Select Specific Date'},  afterRender: expirationDatepickerInit, event: {change: setExpirationDate, keydown: epxirationDatePickerKeydown}">
+<!--            <span class="expirationDateReset">-->
+<!--                <a href="javascript: void()" data-bind="text: 'reset', click: expirationDatePickerReset"></a>-->
+<!--            </span>-->
+        </div>
+    </div>
+</div>
+

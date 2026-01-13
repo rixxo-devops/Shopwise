@@ -1,0 +1,42 @@
+<h3 data-bind="i18n: 'Comments & Instructions'"></h3>
+<div class="comment-type customer-comment closed">
+    <a href="javascript: void(0)" class="comments-instructions" data-bind="event: {click: toggleCommentsInstructions}">
+        <h4  data-bind="text: 'Customer Comments'"></h4>
+    </a>
+    <div class="admin__field field-comment">
+        <div class="admin__field-control">
+        <textarea
+            class="admin__control-textarea"
+            tabindex="62"
+            data-bind="attr: {id: 'order-comment', name: 'order[comment][customer_note]', placeholder: 'Enter comments here...'}, value: commentsContent, event: {change: saveComments}"></textarea>
+        </div>
+    </div>
+</div>
+<div class="comment-type delivery-instructions closed">
+    <a href="javascript: void(0)" class="comments-instructions" data-bind="event: {click: toggleCommentsInstructions}">
+        <h4  data-bind="text: 'Delivery Instructions'"></h4>
+    </a>
+    <div class="admin__field field-comment">
+        <div class="admin__field-control">
+        <textarea
+            class="admin__control-textarea"
+            tabindex="62"
+            data-bind="attr: {id: 'order-comment', name: 'order[comment][delivery_instructions]', placeholder: 'Enter delivery instructions...'}, value: deliveryInstructions, event: {change: saveDeliveryInstructions}"></textarea>
+        </div>
+    </div>
+</div>
+<div class="comment-type warehouse-instructions closed">
+    <a href="javascript: void(0)" class="comments-instructions" data-bind="event: {click: toggleCommentsInstructions}">
+        <h4  data-bind="text: 'Warehouse Instructions'"></h4>
+    </a>
+    <div class="admin__field field-comment">
+        <div class="admin__field-control">
+        <textarea
+            class="admin__control-textarea"
+            tabindex="62"
+            data-bind="attr: {id: 'order-comment', name: 'order[comment][warehouse_instructions]', placeholder: 'Enter warehouse instuctions...'}, value: warehouseInstructions, event: {change: saveWarehouseInstructions}"></textarea>
+        </div>
+    </div>
+</div>
+
+</div>

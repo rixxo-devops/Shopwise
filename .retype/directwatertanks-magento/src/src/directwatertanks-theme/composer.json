@@ -1,0 +1,24 @@
+{
+    "name": "kingfisherdirect/directwatertanks-theme",
+    "type": "magento2-theme",
+    "authors": [
+        {
+            "name": "Kamil Sochacki",
+            "email": "kamil@kingfisherdirect.co.uk"
+        }
+    ],
+    "require": {
+        "kingfisherdirect/theme-blank-sass": "^1.5.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    },
+    "repositories": {
+        "kingfisherdirect": {
+            "type": "composer",
+            "url": "https://repository.kingfisherdirect.co.uk"
+        }
+    }
+}

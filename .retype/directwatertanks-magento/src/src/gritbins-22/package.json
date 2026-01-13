@@ -1,0 +1,27 @@
+{
+  "name": "@kingfisherdirect/magento2-theme-gritbins-22",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "webpack": "webpack",
+    "lint": "npm run lint:scss",
+    "lint:scss": "stylelint **/*.scss",
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production && npm run copyEmailStyles",
+    "postinstall": "webpack --mode production && npm run copyEmailStyles",
+    "copyEmailStyles": "mkdir -p ./web/css ./Magento_Sales/web/css/source ./Magento_Rma/web/css/source ./Magento_Bundle/web/css/source && cp -r ../../vendor/magento/theme-frontend-blank/web/css/email*.less ./web/css && cp -r ../../vendor/magento/theme-frontend-blank/web/css/source ./web/css && cp -r ../../vendor/magento/theme-frontend-blank/Magento_Sales/web/css/source/_email.less ./Magento_Sales/web/css/source && cp -r ../../vendor/magento/theme-frontend-blank/Magento_Rma/web/css/source/_email.less ./Magento_Rma/web/css/source && cp -r ../../vendor/magento/theme-frontend-blank/Magento_Bundle/web/css/source/_email.less ./Magento_Bundle/web/css/source"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@kingfisherdirect/magento2-theme-blank-coraciidae": "file:../blank-coraciidae",
+    "bootstrap": "^5.3.1",
+    "bootstrap-icons": "^1.9.1",
+    "inter-ui": "^3.19.3",
+    "magento-2-theme-tools": "*"
+  },
+  "devDependencies": {
+    "stylelint": "^14.14.0",
+    "stylelint-config-twbs-bootstrap": "^6.0.0"
+  }
+}

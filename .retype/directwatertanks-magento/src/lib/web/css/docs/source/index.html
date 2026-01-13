@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.821637298173">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Magento UI library</title>
+    <meta name="title" content="Magento UI library">
+    <meta name="description" content="The Magento UI library is a flexible modular Magento frontend library that is designed to assist Magento theme developers.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://shopwise-docs.example.com/directwatertanks-magento/src/lib/web/css/docs/source/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shopwise-docs.example.com/directwatertanks-magento/src/lib/web/css/docs/source/">
+    <meta property="og:title" content="Magento UI library">
+    <meta property="og:description" content="The Magento UI library is a flexible modular Magento frontend library that is designed to assist Magento theme developers.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shopwise-docs.example.com/directwatertanks-magento/src/lib/web/css/docs/source/">
+    <meta property="twitter:title" content="Magento UI library">
+    <meta property="twitter:description" content="The Magento UI library is a flexible modular Magento frontend library that is designed to assist Magento theme developers.">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../../../../../../resources/css/retype.css?v=3.11.0.821637298173" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../../../../resources/js/config.js?v=3.11.0.821637298173" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../../../resources/js/lunr.js?v=3.11.0.821637298173" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../../../../resources/js/prism.js?v=3.11.0.821637298173" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../../../../../../../" class="flex items-center leading-snug text-2xl">
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Shopwise App</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">Documentation</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../../../../../../getting-started/">Getting Started</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../../../../../../session-setup/">Session Setup</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../../../../../../orderwise-integration/">Orderwise Integration</a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../../../../../../troubleshooting/">Troubleshooting</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-base-border">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../../../../../../getting-started/">Getting Started</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../../../../../../session-setup/">Session Setup</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../../../../../../orderwise-integration/">Orderwise Integration</a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="../../../../../../../troubleshooting/">Troubleshooting</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="magento-ui-library" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#magento-ui-library">#</doc-anchor-trigger>
+        <span>Magento UI library</span>
+    </h1>
+</doc-anchor-target>
+<p>The Magento UI library is a flexible modular Magento frontend library that is designed to assist Magento theme developers. It employs a set of mixins for base elements to ease frontend theme development and customization. The Magento UI library offers the following characteristics for those who develop or customize Magento themes. It is:</p>
+<ul>
+<li>Built on LESS preprocessor</li>
+<li>Focused on web standards</li>
+<li>Customizable</li>
+<li>Easy to maintain</li>
+<li>Responsive</li>
+<li>Accessible</li>
+</ul>
+<p>The library provides the ability to customize all of the following user interface elements:</p>
+<ul>
+<li>actions-toolbar</li>
+<li>breadcrumbs</li>
+<li>buttons</li>
+<li>components</li>
+<li>drop-downs</li>
+<li>forms</li>
+<li>icons</li>
+<li>layout</li>
+<li>loaders</li>
+<li>messages</li>
+<li>pagination</li>
+<li>popups</li>
+<li>ratings</li>
+<li>resets</li>
+<li>responsive</li>
+<li>sections -  tabs and accordions</li>
+<li>tables</li>
+<li>tooltips</li>
+<li>typography</li>
+<li>utilities</li>
+<li>list of theme variables</li>
+</ul>
+<doc-anchor-target id="magento-ui-library-file-structure">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#magento-ui-library-file-structure">#</doc-anchor-trigger>
+        <span>Magento UI library file structure</span>
+    </h1>
+</doc-anchor-target>
+<p>Magento UI library is located under <code v-pre>/lib/web/</code> folder. It and employs:</p>
+<ul>
+<li><code v-pre>css/</code> folder where the library files are placed</li>
+<li><code v-pre>fonts/</code> folder where default and icon fonts are placed</li>
+<li><code v-pre>images/</code> folder where default images are placed</li>
+<li><code v-pre>jquery/</code> folder where jQuery and jQuery widgets are placed</li>
+</ul>
+<doc-anchor-target id="magento-ui-library-structure">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#magento-ui-library-structure">#</doc-anchor-trigger>
+        <span>Magento UI library structure</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">/lib/web/
+    ├── css/
+    │    ├── docs/ (Library documentation)
+    │    │    ├── source/
+    │    │    │    ├── _actions-toolbar.less
+    │    │    │    ├── _breadcrumbs.less
+    │    │    │    ├── _buttons.less
+    │    │    │    ├── _dropdowns.less
+    │    │    │    ├── _forms.less
+    │    │    │    ├── _icons.less
+    │    │    │    ├── _layout.less
+    │    │    │    ├── _lib.less
+    │    │    │    ├── _loaders.less
+    │    │    │    ├── _messages.less
+    │    │    │    ├── _pages.less
+    │    │    │    ├── _popups.less
+    │    │    │    ├── _rating.less
+    │    │    │    ├── _resets.less
+    │    │    │    ├── _responsive.less
+    │    │    │    ├── _sections.less
+    │    │    │    ├── _tables.less
+    │    │    │    ├── _tooltips.less
+    │    │    │    ├── _typography.less
+    │    │    │    ├── _utilities.less
+    │    │    │    ├── _variables.less
+    │    │    │    ├── _components.less
+    │    │    │    ├── docs.less
+    │    │    │    └── README.md
+    │    │    ├─── extends.html
+    │    │    ├─── actions-toolbar.html
+    │    │    ├─── breadcrumbs.html
+    │    │    ├─── buttons.html
+    │    │    ├─── components.html
+    │    │    ├─── docs.css
+    │    │    ├─── docs.html
+    │    │    ├─── dropdowns.html
+    │    │    ├─── forms.html
+    │    │    ├─── icons.html
+    │    │    ├─── index.html
+    │    │    ├─── layout.html
+    │    │    ├─── lib.html
+    │    │    ├─── loaders.html
+    │    │    ├─── messages.html
+    │    │    ├─── pages.html
+    │    │    ├─── popups.html
+    │    │    ├─── rating.html
+    │    │    ├─── resets.html
+    │    │    ├─── responsive.html
+    │    │    ├─── sections.html
+    │    │    ├─── tables.html
+    │    │    ├─── tooltips.html
+    │    │    ├─── typography.html
+    │    │    ├─── utilities.html
+    │    │    └─── variables.html
+    │    └── source/
+    │          ├── components/ (Reusable components files)
+    │          │    └── _modals.less
+    │          ├── lib/ (Library source files)
+    │          │    └── variables/ (Decoupled variables)
+    │          │          └── ...
+    │          │    ├── _extends.less
+    │          │    ├── _actions-toolbar.less
+    │          │    ├── _breadcrumbs.less
+    │          │    ├── _buttons.less
+    │          │    ├── _dropdowns.less
+    │          │    ├── _forms.less
+    │          │    ├── _icons.less
+    │          │    ├── _layout.less
+    │          │    ├── _lib.less
+    │          │    ├── _loaders.less
+    │          │    ├── _messages.less
+    │          │    ├── _navigation.less
+    │          │    ├── _pages.less
+    │          │    ├── _popups.less
+    │          │    ├── _rating.less
+    │          │    ├── _resets.less
+    │          │    ├── _responsive.less
+    │          │    ├── _sections.less
+    │          │    ├── _tables.less
+    │          │    ├── _tooltips.less
+    │          │    ├── _typography.less
+    │          │    ├── _utilities.less
+    │          │    └── _variables.less
+    │          ├── _extend.less
+    │          └── _theme.less
+    ├── fonts/
+    │    └── Blank-Theme-Icons/ (Library custom icons font)
+    ├── images/
+    │    └── blank-theme-icons.png (Library icons sprite)
+    └── jquery/ (Library javascript files)
+</code></pre>
+</doc-codeblock></div>
+<p> </p>
+<doc-anchor-target id="magento-ui-library-naming-convention">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#magento-ui-library-naming-convention">#</doc-anchor-trigger>
+        <span>Magento UI library naming convention</span>
+    </h1>
+</doc-anchor-target>
+<p>Magento UI library employs a variables and mixins naming convention whereby names of variables and mixins describe their purpose or functions they perform.</p>
+<p>A variable or a mixins name may only contain lowercase alphanumeric characters, &quot;-&quot; and &quot;_&quot; characters. A variable name must start with &quot;@&quot; character.</p>
+<p>If a variable or mixins name consists of more than one word, they must be concatenated with one hyphen character.</p>
+<doc-anchor-target id="less-variables-naming">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#less-variables-naming">#</doc-anchor-trigger>
+        <span>Less variables naming</span>
+    </h1>
+</doc-anchor-target>
+<p>A *.less file variable can contain lowercase letters, numbers, special characters: &quot;@&quot;, &quot;-&quot; and &quot;_&quot;. It must start with &quot;@&quot; character and consist of words concatenated with one hyphen. It should not contain capital letters. A variable name should describe its purpose.</p>
+<p>A variable name should be formed according to the following rule:</p>
+<p><code v-pre>'@' + 'object' + '-' + 'property' + '-' + 'state' = @object-property-state</code></p>
+<p>If it is a private variable (is used only in a mixin), it must start with &quot;_&quot; character after &quot;@&quot;:</p>
+<p><code v-pre>'@' + '_' + 'object' + '-' + 'property' + '-' + 'state' = @_object-property-state</code></p>
+<doc-anchor-target id="examples">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#examples">#</doc-anchor-trigger>
+        <span>Examples:</span>
+    </h4>
+</doc-anchor-target>
+<doc-anchor-target id="acceptable">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#acceptable">#</doc-anchor-trigger>
+        <span>Acceptable:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    @link-color-hover;
+    @color-primary;
+    @color-2;</code></pre>
+</doc-codeblock></div>
+<p>Private variables:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    @_padding-left;
+    @_font-size;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="unacceptable">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#unacceptable">#</doc-anchor-trigger>
+        <span>Unacceptable:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    @Link-Color-Hover;
+    @colorPrimary;
+    @color--primary;
+    @paddingleft;
+    @__font-size;</code></pre>
+</doc-codeblock></div>
+<p> </p>
+<doc-anchor-target id="less-mixins-naming">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#less-mixins-naming">#</doc-anchor-trigger>
+        <span>Less mixins naming</span>
+    </h1>
+</doc-anchor-target>
+<p>A less mixin name can contain lowercase letters, numbers, &quot;-&quot; and &quot;_&quot; characters. It should not contain capital letters.</p>
+<p>A mixin name can consist of one or several words, concatenated with one hyphen. If the mixin is private, its name must start with the &quot;_&quot; character. Mixin should be named after property or action it describes.</p>
+<doc-anchor-target id="examples-1">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#examples-1">#</doc-anchor-trigger>
+        <span>Examples:</span>
+    </h4>
+</doc-anchor-target>
+<doc-anchor-target id="acceptable-1">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#acceptable-1">#</doc-anchor-trigger>
+        <span>Acceptable:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .mixin-name() {}
+    .transition() {}
+    .mixin() {}
+    ._button-gradient() {}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="unacceptable-1">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#unacceptable-1">#</doc-anchor-trigger>
+        <span>Unacceptable:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .mixinName() {}
+    .__transition() {}
+    .MiXiN() {}
+    ._button--gradient() {}</code></pre>
+</doc-codeblock></div>
+<p> </p>
+<doc-anchor-target id="less-code-standards">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#less-code-standards">#</doc-anchor-trigger>
+        <span>Less Code Standards</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="general-rules">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#general-rules">#</doc-anchor-trigger>
+        <span>General rules</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="indentation">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#indentation">#</doc-anchor-trigger>
+        <span>Indentation</span>
+    </h3>
+</doc-anchor-target>
+<p>Please verified that you use spaces instead tabs:</p>
+<ul>
+<li>Tab size: 4 spaces</li>
+<li>Indent size: 4 spaces</li>
+<li>Continuation indent: 4 spaces</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        .nav-item {
+            ...
+        }
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="format">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#format">#</doc-anchor-trigger>
+        <span>Format</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="braces">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#braces">#</doc-anchor-trigger>
+        <span>Braces</span>
+    </h4>
+</doc-anchor-target>
+<p>Add space before opening brace and line break after. And line break before closing brace.</p>
+<doc-anchor-target id="not-recommended">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav{color: @nav__color;}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        color: @nav__color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="selector-delimiters">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#selector-delimiters">#</doc-anchor-trigger>
+        <span>Selector delimiters</span>
+    </h4>
+</doc-anchor-target>
+<p>Add line break after each selector delimiter. Delimeter shouldn&#x27;t have spaces before and after.</p>
+<doc-anchor-target id="not-recommended-1">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-1">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav, .bar {
+        color: @color__base;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-1">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-1">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav,
+    .bar {
+        color: @color__base;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="quotes">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#quotes">#</doc-anchor-trigger>
+        <span>Quotes</span>
+    </h4>
+</doc-anchor-target>
+<p>Use single quotes</p>
+<doc-anchor-target id="not-recommended-2">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-2">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        content: &quot;lorem ipsum&quot;;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-2">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-2">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        content: 'lorem ipsum';
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="combinator-indents">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#combinator-indents">#</doc-anchor-trigger>
+        <span>Combinator indents</span>
+    </h4>
+</doc-anchor-target>
+<p>Use spaces before and after combinators</p>
+<doc-anchor-target id="not-recommended-3">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-3">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav+.bar {
+        color: @bar__color;
+    }
+
+    .nav +.bar {
+        color: @bar__color;
+    }
+
+    .nav+ .bar {
+        color: @bar__color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-3">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-3">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav + .bar {
+        color: @bar__color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="properties-line-break">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#properties-line-break">#</doc-anchor-trigger>
+        <span>Properties line break</span>
+    </h4>
+</doc-anchor-target>
+<p>Use line break for each property declaration</p>
+<doc-anchor-target id="not-recommended-4">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-4">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        color: @nav__color; background-color: @nav__background-color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-4">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-4">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        background-color: @nav__background-color;
+        color: @nav__color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="properties-colon-indents">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#properties-colon-indents">#</doc-anchor-trigger>
+        <span>Properties colon indents</span>
+    </h4>
+</doc-anchor-target>
+<p>Use no space before property colon, and space after</p>
+<doc-anchor-target id="not-recommended-5">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-5">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        color : @nav__color;
+    }
+
+    .bar {
+        color:@bar__color;
+    }
+
+    .item {
+        color :@item__color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-5">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-5">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        color: @nav__color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="end-of-file">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#end-of-file">#</doc-anchor-trigger>
+        <span>End of file</span>
+    </h4>
+</doc-anchor-target>
+<p>Each less file should be finished with new line</p>
+<doc-anchor-target id="end-of-the-selector">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#end-of-the-selector">#</doc-anchor-trigger>
+        <span>End of the selector</span>
+    </h4>
+</doc-anchor-target>
+<p>Each selector should be finished with new line</p>
+<doc-anchor-target id="not-recommended-6">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-6">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        background-color: @nav__background-color;
+    }
+    .bar {
+        background-color: @bar__background-color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-6">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-6">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        background-color: @nav__background-color;
+    }
+
+    .bar {
+        background-color: @bar__background-color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="end-of-the-property-line">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#end-of-the-property-line">#</doc-anchor-trigger>
+        <span>End of the property line</span>
+    </h4>
+</doc-anchor-target>
+<p>Each property should be finished with semicolon</p>
+<doc-anchor-target id="not-recommended-7">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-7">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        background-color: @nav__background-color
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-7">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-7">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        background-color: @nav__background-color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="important-property">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#important-property">#</doc-anchor-trigger>
+        <span>!Important property</span>
+    </h4>
+</doc-anchor-target>
+<p>Basically avoid use this property at all, but if you really really need it use the following format:</p>
+<doc-anchor-target id="not-recommended-8">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-8">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .jquery-ui-calendar-item {
+        background-color: @nav__background-color!important;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-8">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-8">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .jquery-ui-calendar-item {
+        background-color: @nav__background-color !important;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="comments">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#comments">#</doc-anchor-trigger>
+        <span>Comments</span>
+    </h3>
+</doc-anchor-target>
+<p>Please follow the next format of comments</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    //
+    //  First level comment
+    //  _____________________________________________
+
+    .nav {
+        background-color: @nav__background-color;
+    }
+
+    //
+    //  Second level comment
+    //  ---------------------------------------------
+
+    .nav {
+        background-color: @nav__background-color;
+    }
+
+    //  Comment
+    .nav {
+        //  New line comment
+        background-color: @nav__background-color; // ToDo UI: todo inline comment
+        color: @nav__color; // inline comment
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="selectors">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#selectors">#</doc-anchor-trigger>
+        <span>Selectors</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="types">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#types">#</doc-anchor-trigger>
+        <span>Types</span>
+    </h4>
+</doc-anchor-target>
+<p>According to browser support standards the oldest browser that we support is IE9+, it means that you can feel free to use almost all CSS3 selectors: descendants, attributes, pseudo classes, structural, pseudo elements, etc.
+Exeption: Please avoid to use id selector.</p>
+<doc-anchor-target id="not-recommended-9">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-9">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    #foo {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-9">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-9">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        ...
+    }
+
+    .nav + bar {
+        ...
+    }
+
+    .nav:not(.bar) {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="naming">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#naming">#</doc-anchor-trigger>
+        <span>Naming</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="standard-classes">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#standard-classes">#</doc-anchor-trigger>
+        <span>Standard classes</span>
+    </h4>
+</doc-anchor-target>
+<p>All classes should be written in lowercase, starts with letter (exept helpers), words in classes should be separated with dash (minus sign &#x27;-&#x27;)</p>
+<doc-anchor-target id="not-recommended-10">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-10">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .navBar {
+       ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="not-recommended-underscore-separation">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-underscore-separation">#</doc-anchor-trigger>
+        <span>Not recommended: underscore separation</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav_bar {
+       ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-10">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-10">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav-bar {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="helper-classes">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#helper-classes">#</doc-anchor-trigger>
+        <span>Helper classes</span>
+    </h4>
+</doc-anchor-target>
+<p>Helper classes should be written in lowercase, starts with underscore (&quot;_&quot;)</p>
+<doc-anchor-target id="example">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example">#</doc-anchor-trigger>
+        <span>Example:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    ._active {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="size">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#size">#</doc-anchor-trigger>
+        <span>Size</span>
+    </h3>
+</doc-anchor-target>
+<p>Use class names that are as short as possible but as long as necessary.
+Try to convey what class is about while being as brief as possible.
+Using class names this way contributes to acceptable levels of understandability and code efficiency.</p>
+<doc-anchor-target id="not-recommended-too-long">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-too-long">#</doc-anchor-trigger>
+        <span>Not recommended: too long</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">
+    .navigation-panel-in-footer {
+       ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="not-recommended-too-short">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-too-short">#</doc-anchor-trigger>
+        <span>Not recommended: too short</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nvpf {
+       ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-11">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-11">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav-bar {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="writing">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#writing">#</doc-anchor-trigger>
+        <span>Writing</span>
+    </h3>
+</doc-anchor-target>
+<p>Write selector name together in single line, don&#x27;t use concatenation</p>
+<doc-anchor-target id="not-recommended-11">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-11">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .product {
+        ...
+        &amp;-list {
+            ...
+            &amp;-item {
+                ...
+            }
+        }
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-12">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-12">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .product-list-item {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="meaning">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#meaning">#</doc-anchor-trigger>
+        <span>Meaning</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Use meaningful or generic class names.</strong></p>
+<p>Instead of presentational or cryptic names, always use class names that reflect the purpose of the element in question, or that are otherwise generic.
+Names that are specific and reflect the purpose of the element should be preferred as these are most understandable and the least likely to change.
+Generic names are simply a fallback for elements that have no particular or no meaning different from their siblings. They are typically needed as “helpers.”
+Using functional or generic names reduces the probability of unnecessary document or template changes.</p>
+<doc-anchor-target id="not-recommended-12">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-12">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .foo-1901 {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="not-recommended-presentational">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-presentational">#</doc-anchor-trigger>
+        <span>Not recommended: presentational</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .button-green {
+       ...
+    }
+
+    .clear {
+       ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-specific">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-specific">#</doc-anchor-trigger>
+        <span>Recommended: specific</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .category {
+        ...
+    }
+    .category-title {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="type-selectors">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#type-selectors">#</doc-anchor-trigger>
+        <span>Type selectors</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Avoid qualifying class names with type selectors.</strong></p>
+<p>Unless necessary (for example with helper classes), do not use element names in conjunction with IDs or classes.
+Avoiding unnecessary ancestor selectors is useful for performance reasons.</p>
+<doc-anchor-target id="not-recommended-13">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-13">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    div.error {
+       ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-13">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-13">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .error {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<p>Use type selectors in lowercase</p>
+<doc-anchor-target id="not-recommended-14">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-14">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav &gt; LI {
+       ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-14">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-14">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav &gt; li {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="nesting">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#nesting">#</doc-anchor-trigger>
+        <span>Nesting</span>
+    </h3>
+</doc-anchor-target>
+<p>Be careful with selectors nesting. In general try to use 3 nested levels as max.
+Exception are pseudo elements and states</p>
+<doc-anchor-target id="not-recommended-15">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-15">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .footer {
+        ...
+        .nav {
+            ...
+            .nav-list {
+                ...
+                .nav-list-item {
+                    ...
+                }
+            }
+        }
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-15">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-15">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .footer {
+        ...
+        .nav {
+            ...
+        }
+        .nav-list {
+            ...
+        }
+        .nav-list-item {
+            ...
+         }
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="properties">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#properties">#</doc-anchor-trigger>
+        <span>Properties</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="sort">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sort">#</doc-anchor-trigger>
+        <span>Sort</span>
+    </h3>
+</doc-anchor-target>
+<p>Sort all properties alphabetical. Mixins, variables etc. should go first</p>
+<doc-anchor-target id="not-recommended-16">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-16">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        color: @nav__color;
+        text-align: center;
+        background-color: @nav__background-color;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-16">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-16">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .nav {
+        background-color: @nav__background-color;
+        color: @nav__color;
+        text-align: center;
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="shorthand">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#shorthand">#</doc-anchor-trigger>
+        <span>Shorthand</span>
+    </h3>
+</doc-anchor-target>
+<p>Use shortland properties where possible.</p>
+<p>CSS offers a variety of shorthand properties (like font) that should be used whenever possible, even in cases where only one value is explicitly set.
+Using shorthand properties is useful for code efficiency and understandability.</p>
+<doc-anchor-target id="not-recommended-17">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-17">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    border-top-style: none;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-17">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-17">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    border-top: 0;
+    padding: 0 1em 2em;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="0-and-units">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#0-and-units">#</doc-anchor-trigger>
+        <span>0 and units</span>
+    </h3>
+</doc-anchor-target>
+<p>Omit unit specification after &quot;0&quot; values.</p>
+<doc-anchor-target id="not-recommended-18">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-18">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    border-width: 0px;
+    margin: 0rem;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-18">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-18">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    border-width: 0;
+    margin: 0;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="floating-values">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#floating-values">#</doc-anchor-trigger>
+        <span>Floating values</span>
+    </h3>
+</doc-anchor-target>
+<p>Omit leading &quot;0&quot;s in values, use dot instead</p>
+<doc-anchor-target id="not-recommended-19">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-19">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    margin-left: 0.5rem;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-19">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-19">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    margin-left: .5rem;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="hexadecimal-notation">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#hexadecimal-notation">#</doc-anchor-trigger>
+        <span>Hexadecimal notation</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Use lowercase only</li>
+<li>Use 3 character hexadecimal notation where possible.</li>
+<li>For color values that permit it, 3 character hexadecimal notation is shorter and more succinct.</li>
+<li>Also please avoid hex color in properties, use only variables instead.</li>
+</ul>
+<doc-anchor-target id="not-recommended-20">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#not-recommended-20">#</doc-anchor-trigger>
+        <span>Not recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    color: #ff0000;
+    @nav__color: #FAFAFA;
+    @nav-item__color: red;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="recommended-20">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-20">#</doc-anchor-trigger>
+        <span>Recommended:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    @nav__color: #fafafa;
+    @nav-item__color: #f00;
+    ...
+    color: @nav-item__color;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="variables">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#variables">#</doc-anchor-trigger>
+        <span>Variables</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="location">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#location">#</doc-anchor-trigger>
+        <span>Location</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="local-variables">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#local-variables">#</doc-anchor-trigger>
+        <span>Local variables</span>
+    </h4>
+</doc-anchor-target>
+<p>If variables are local and used only in module scope it should be located in module file, on the top of the file with general comment</p>
+<p>Example <strong>_module.less</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    ...
+
+    //
+    //  Variables
+    //  _____________________________________________
+
+    //  Colors
+    @btn__color: @color-brownie;
+    @btn-primary__color: @color-white;
+    @btn-secondary__color: @color-white;
+    ...</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="theme-variables">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#theme-variables">#</doc-anchor-trigger>
+        <span>Theme variables</span>
+    </h4>
+</doc-anchor-target>
+<p>If variables are common for couple modules it should be located in <strong>_theme.less</strong> file</p>
+<doc-anchor-target id="global-variables">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#global-variables">#</doc-anchor-trigger>
+        <span>Global variables</span>
+    </h4>
+</doc-anchor-target>
+<p>If variables are common for couple themes it should be located in global lib in <strong>_variables.less</strong> file</p>
+<doc-anchor-target id="naming-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#naming-1">#</doc-anchor-trigger>
+        <span>Naming</span>
+    </h3>
+</doc-anchor-target>
+<p>All variables should be written in lowercase.</p>
+<doc-anchor-target id="value-variables">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#value-variables">#</doc-anchor-trigger>
+        <span>Value variables</span>
+    </h4>
+</doc-anchor-target>
+<doc-anchor-target id="general-model-is">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#general-model-is">#</doc-anchor-trigger>
+        <span>General model is:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    @property-name</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="examples-2">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#examples-2">#</doc-anchor-trigger>
+        <span>Examples:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    @primary__color: @color-phoenix;
+    @indent__base: 2rem;
+    @border-radius-round: 100%;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="parameter-variables">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#parameter-variables">#</doc-anchor-trigger>
+        <span>Parameter variables</span>
+    </h4>
+</doc-anchor-target>
+<doc-anchor-target id="general-model-is-1">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#general-model-is-1">#</doc-anchor-trigger>
+        <span>General model is:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    @component-element__state__property__modifier</code></pre>
+</doc-codeblock></div>
+<p>Please mention that component can be not only element name, it also can be primary, secondary, tertiary
+Base is a modifier</p>
+<doc-anchor-target id="examples-3">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#examples-3">#</doc-anchor-trigger>
+        <span>Examples:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    @color-orange: '';
+    @link__hover__color: '';
+    @nav-element__background-color: '';
+    @secondary__color: '';
+    @side-nav__indent__s: '';
+    @side-nav-el__background-color: '';
+    @side-nav-el__active__background-color: '';
+    @side-nav-el__active-focus__background-color: '';
+    @side-nav-el__active-focus__font-size__xl: '';
+    @text__color__base: '';</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="mixins">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#mixins">#</doc-anchor-trigger>
+        <span>Mixins</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="location-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#location-1">#</doc-anchor-trigger>
+        <span>Location</span>
+    </h3>
+</doc-anchor-target>
+<p>Theme mixins (except extends) should be saved in <strong>source/utilities</strong> folder
+Extends that used in more than one theme should be saved in lib <strong>lib/source/utilities.less</strong> (will be separated into utilities folder)</p>
+<doc-anchor-target id="naming-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#naming-2">#</doc-anchor-trigger>
+        <span>Naming</span>
+    </h3>
+</doc-anchor-target>
+<p>In name creation you can follow the same rules as for the creation of class names.
+For mixins grouping use prefix__</p>
+<doc-anchor-target id="example-1">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example-1">#</doc-anchor-trigger>
+        <span>Example:</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-css"><code v-pre class="language-css">    .extend__clearfix (...) {
+        ...
+    }
+
+    .vendor-prefix__flex-direction (...) {
+        ...
+    }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="extends">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#extends">#</doc-anchor-trigger>
+        <span>Extends</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="location-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#location-2">#</doc-anchor-trigger>
+        <span>Location</span>
+    </h3>
+</doc-anchor-target>
+<p>Local extends that used only in one file, should be written in this <strong>local file</strong>.
+Extends that used in more than two files should be saved in theme <strong>source/_extend.less</strong>
+Extends that used in more than one theme should be saved in lib <strong>lib/source/_abstract.less</strong> (will be renamed to _extend.less)</p>
+<doc-anchor-target id="naming-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#naming-3">#</doc-anchor-trigger>
+        <span>Naming</span>
+    </h3>
+</doc-anchor-target>
+<p>Extend class names should have prefix <strong>.abs-</strong> (from abstract)</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../../../directwatertanks-magento/src/dev/tests/varnish/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">Varnish</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../../../directwatertanks-magento/src/lib/web/hugerte/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Huge​RTE</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2026 Shopwise App. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Magento UI library", level: 7, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

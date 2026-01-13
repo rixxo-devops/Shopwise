@@ -1,0 +1,213 @@
+{
+    "name": "kingfisherdirect/magento",
+    "description": "Magento Community Edition",
+    "type": "project",
+    "version": "2.4.5-p1",
+    "require": {
+        "composer/composer": "@alpha",
+        "kingfisherdirect/directwatertanks-theme": "dev-master@dev",
+        "kingfisherdirect/kingfisherdirect-theme-2020": "dev-master@dev",
+        "magepal/magento2-gmailsmtpapp": "^3.0.2",
+        "amasty/paction": "^1.1.4",
+        "mageworx/module-shippingrulesmeta": "^2.11.19",
+        "snowdog/module-menu": "^2.8",
+        "kingfisherdirect/mageworx-shipping": "^0.1.0",
+        "mageworx/module-seosuiteultimate": "^2.25",
+        "amasty/pgrid": "^1.12",
+        "amasty/product-attachment": "^3.4",
+        "amasty/module-faq-product-questions": "^2.13",
+        "snowdog/theme-blank-sass": "^1.5",
+        "amasty/feed": "5.0.1",
+        "amasty/blog": "^2.12",
+        "reviewscouk/reviews": "^0.0.66",
+        "amasty/adminactionslog": "^2.1",
+        "creativestyle/magesuite-magepack": "^1.1",
+        "mageside/module-subscribe-at-checkout": "^1.1",
+        "magento/composer-root-update-plugin": "^2.0.4",
+        "cweagans/composer-patches": "^1.7",
+        "kingfisherdirect/magento2-format-decimal-attributes": "^1.0",
+        "bsscommerce/disable-compare": "dev-master",
+        "kingfisherdirect/magento2-out-of-stock-configurable-option-text": "^1.0",
+        "smile/elasticsuite": "^2.11.13",
+        "kingfisherdirect/magento2-configurable-extra-api": "^1.1",
+        "kingfisherdirect/magento2-theme-blank-coraciidae": "dev-master",
+        "kingfisherdirect/magento2-theme-gritbins-22": "dev-master",
+        "magento-hackathon/module-eavcleaner-m2": "^1.5",
+        "elgentos/regenerate-catalog-urls": "^0.4.5",
+        "kingfisherdirect/magento2-theme-binshop-23": "dev-master",
+        "kingfisherdirect/magento2-cookieconsent": "^0.2.0",
+        "klaviyo/magento2-extension": "^4.1",
+        "magento/product-community-edition": "2.4.8-p3",
+        "magearray/formbuilder": "^1.2.3",
+        "kingfisherdirect/magento2-theme-kingfisherdirect-24": "dev-master",
+        "amasty/module-ajax-shopping-cart-subscription-pack": "^1.11",
+        "m2epro/magento2-extension": "^1.77",
+        "amasty/module-admin-api-actions-log": "^1.0",
+        "amasty/module-admin-actions-log-subscription-package": "^2.6",
+        "lumnn/magento2-aws-cloudfront": "dev-master",
+        "lumnn/magento2-lazy-sessions": "dev-master",
+        "rixxo/module-order-dashboard": "dev-feature/ODB-CH"
+    },
+    "require-dev": {
+        "allure-framework/allure-phpunit": "^3.1",
+        "carlos-mg89/oauth": "^0.8.17",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7 || ^1.0",
+        "dg/bypass-finals": "^1.4",
+        "friendsofphp/php-cs-fixer": "^3.22",
+        "magento/magento-coding-standard": "*",
+        "magento/magento2-functional-testing-framework": "^5.0",
+        "pdepend/pdepend": "3.x-dev",
+        "phpmd/phpmd": "3.x-dev",
+        "phpstan/phpstan": "^1.9",
+        "phpunit/phpunit": "^10.5",
+        "symfony/finder": "^6.4",
+        "magento/magento-allure-phpunit": "^3.0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Magento\\Setup\\": "setup/src/Magento/Setup/"
+        },
+        "psr-0": {
+            "": [
+                "app/code/",
+                "generated/code/"
+            ]
+        },
+        "files": [
+            "app/etc/NonComposerComponentRegistration.php"
+        ],
+        "exclude-from-classmap": [
+            "**/dev/**",
+            "**/update/**",
+            "*/*/Test/**/*Test"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Magento\\Sniffs\\": "dev/tests/static/framework/Magento/Sniffs/",
+            "Magento\\Tools\\": "dev/tools/Magento/Tools/",
+            "Magento\\Tools\\Sanity\\": "dev/build/publication/sanity/Magento/Tools/Sanity/",
+            "Magento\\TestFramework\\Inspection\\": "dev/tests/static/framework/Magento/TestFramework/Inspection/",
+            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repository.kingfisherdirect.co.uk"
+        },
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        },
+        {
+            "type": "path",
+            "url": "src/*",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "composer",
+            "url": "https://composer.amasty.com/community/"
+        },
+        {
+            "type": "composer",
+            "url": "https://packages.mageworx.com/"
+        },
+        {
+            "type": "composer",
+            "url": "https://packages.ebizmarts.com"
+        },
+        {
+            "type": "composer",
+            "url": "https://magento2connector.unific.com"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/lumnn/magento2-lazy-sessions.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/lumnn/magento2-aws-cloudfront.git"
+        },
+        {
+            "type": "composer",
+            "url": "https://rixxo.repo.repman.io"
+        }
+    ],
+    "extra": {
+        "magento-force": "override",
+        "composer-exit-on-patch-failure": true,
+        "patches": {
+            "paypal/module-braintree-core": {
+                "Remove Apple Pay and Google Pay buttons from cart and mini cart": "patches/composer/remove_applepay_gpay_cart_buttons.diff"
+            },
+            "amasty/blog": {
+                "Fix amasty blog images": "patches/composer/fix_amasty_blog_images.diff"
+            },
+            "amasty/module-faq-product-questions": {
+                "Disable category image resizing": "patches/composer/amasty_faq_category_resize.diff"
+            },
+            "magento/module-checkout": [
+                "patches/composer/mage_remove_jquery_effect.diff",
+                "patches/composer/fix_checkout_abort_error.diff",
+                "patches/composer/fix_basket_total_information_recalc.diff"
+            ],
+            "magento/module-catalog": {
+                "Skip loading magnifier if not needed": "patches/composer/mage_conditional_magnifier_js.diff",
+                "GH#33965 Fix Call to a member function count() on array": "patches/composer/gh33965_fix_product_count.diff",
+                "Fix category product count": "patches/composer/fix-category-product-count.diff"
+            },
+            "magento/module-product-video": {
+                "Remove Vimeo video support": "patches/composer/mage_remove_vimeo_js.diff"
+            },
+            "magento/module-tax": {
+                "Fix HTML Error": "patches/composer/module_tax_fix_html.diff"
+            },
+            "magento/module-sales": [
+                "patches/composer/log_emails_sent.diff"
+            ],
+            "magento/module-swatches": [
+                "patches/composer/fix_undefined_salable_swatch.diff"
+            ],
+            "magento/framework": {
+                "Add flags directory to dirlist": "patches/composer/maintenance_dir_dirlist.diff",
+                "Change mainenance flag dir": "patches/composer/maintenance_dir.diff"
+            },
+            "magento/module-product-alert": {
+                "Remove prices from product alerts": "patches/composer/product_alert_remove_prices.diff"
+            },
+            "amasty/module-admin-api-actions-log": [
+                "patches/composer/472903-Amasty_AdminApiActionsLog-6.diff",
+                "patches/composer/472903-nullable-result.patch"
+            ],
+            "smile/elasticsuite": [
+                "patches/composer/elasticsuite_remove_message.diff"
+            ],
+            "reviewscouk/reviews": {
+                "Fix PHP 8.4 support": "patches/composer/57_reviewscouk_php84.diff"
+            },
+            "mageworx/module-shippingrules": [
+                "patches/composer/mageworx_around_to_after_perf.diff"
+            ],
+            "rixxo/module-order-dashboard": {
+                "Fix PHP 8.4 support": "patches/composer/order-dashboard.diff"
+            }
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "laminas/laminas-dependency-plugin": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "magento/magento-composer-installer": true,
+            "magento/inventory-composer-installer": true,
+            "magento/composer-root-update-plugin": true,
+            "cweagans/composer-patches": true,
+            "magento/composer-dependency-version-audit-plugin": true,
+            "php-http/discovery": true
+        }
+    }
+}

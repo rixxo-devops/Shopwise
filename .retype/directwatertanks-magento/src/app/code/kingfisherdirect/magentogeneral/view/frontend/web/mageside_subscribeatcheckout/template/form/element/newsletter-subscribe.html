@@ -1,0 +1,36 @@
+<!--
+/**
+ * Copyright © Mageside. All rights reserved.
+ * See MS-LICENSE.txt for license details.
+ */
+-->
+<!-- ko if: visible -->
+    <div class="step-title" data-bind="i18n: 'Newsletter Preferences'" data-role="title"></div>
+
+    <div class="field choice checkout-newsletter-subscribe">
+        <!-- ko if: changeable -->
+            <input type="checkbox"
+                   data-bind="
+                                textInput: 1,
+                                checked: checked"
+                   name="newsletter-subscribe"
+                   id="newsletter-subscribe" />
+            <label class="label" for="newsletter-subscribe">
+                <span data-bind="i18n: checkoutLabel"></span>
+            </label>
+        <!-- /ko -->
+        <!-- ko ifnot: changeable -->
+            <input type="checkbox"
+                   id="newsletter-subscribe-disabled"
+                   disabled="disabled"
+                   checked="checked"/>
+            <label class="label" for="newsletter-subscribe-disabled">
+                <span data-bind="i18n: checkoutLabel"></span>
+            </label>
+        <!-- /ko -->
+    </div>
+
+    <div class="newsletter-asterisk">
+        <p><small>** If you wish to stop receiving our newsletter, you can unsubscribe at any time. For full details of how we handle your personal information please see our <a href="/privacy-policy">Privacy Policy</a>.</small></p>
+    </div>
+<!-- /ko -->

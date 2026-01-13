@@ -1,0 +1,6 @@
+<h3 data-bind="i18n: 'Payment Method'"></h3>
+<div if="hasPaymentMethod() == true" data-bind="attr: {id: 'order-billing_method'}">
+    <p data-bind="text: getPaymentMethod()"></p>
+</div>
+<div if="hasPaymentMethod() == false" class="admin__message-empty" data-bind="i18n: 'No Payment Method Selected'"></div>
+
