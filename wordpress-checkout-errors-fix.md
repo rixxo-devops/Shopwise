@@ -18,7 +18,7 @@ Non-equal value keys: getValidationError
 
 ### 1. Check for Plugin Conflicts
 - **Temporarily deactivate plugins** one by one, especially:
-  - Payment gateway plugins (2Checkout, WooCommerce extensions)
+  - Payment gateway plugins (2Checkout, payment extensions)
   - Checkout optimization plugins
   - Cart/checkout customizers
 - Test checkout after each deactivation
@@ -35,14 +35,9 @@ Non-equal value keys: getValidationError
 
 ### 4. Update Everything
 - Update WordPress core
-- Update WooCommerce
 - Update all plugins
 - Update your theme
-
-### 5. Check WooCommerce Status
-- Go to **WooCommerce** → **Status** → **Tools**
-- Click **Clear transients**
-- Click **Clear template cache**
+- Clear all caches
 
 ## Error 2: 2Checkout Payment Gateway Error
 
@@ -64,7 +59,7 @@ by returning true, but the message channel closed before a response was received
 - Try a different browser
 
 ### 2. Check 2Checkout Plugin Settings
-- Go to **WooCommerce** → **Settings** → **Payments**
+- Go to your WordPress admin → **Settings** → **Payments** (or plugin settings)
 - Find 2Checkout payment method
 - Verify API credentials are correct
 - Check if test mode is enabled (might cause issues)
@@ -75,8 +70,8 @@ by returning true, but the message channel closed before a response was received
 - **Deactivate and reactivate** it
 - Check for plugin updates
 
-### 4. Check WooCommerce Logs
-- Go to **WooCommerce** → **Status** → **Logs**
+### 4. Check WordPress Logs
+- Go to your WordPress admin → **Tools** → **Site Health** → **Info** (or check debug.log)
 - Look for errors related to:
   - `2checkout`
   - `payment`
@@ -143,16 +138,16 @@ In browser Developer Tools:
 - [ ] Test in incognito mode
 - [ ] Deactivate plugins one by one to find conflict
 - [ ] Switch to default theme temporarily
-- [ ] Update WordPress, WooCommerce, and all plugins
+- [ ] Update WordPress and all plugins
 - [ ] Check 2Checkout plugin settings and credentials
-- [ ] Check WooCommerce logs for errors
+- [ ] Check WordPress logs for errors
 - [ ] Enable WordPress debugging and check debug.log
 - [ ] Test with different payment method
 
 ## Most Common Causes
 
 1. **Browser Extension Conflict** (especially ad blockers)
-2. **Outdated Plugin/Theme** (2Checkout plugin or WooCommerce)
+2. **Outdated Plugin/Theme** (2Checkout plugin or other plugins)
 3. **Plugin Conflict** (another plugin interfering with checkout)
 4. **Theme Conflict** (theme JavaScript conflicting with checkout)
 5. **Caching Issues** (cached JavaScript causing problems)
@@ -163,7 +158,7 @@ In browser Developer Tools:
    - They may have known issues or updates
    - Provide them with the error message
 
-2. **Check WooCommerce Support Forums**:
+2. **Check WordPress Support Forums**:
    - Search for similar issues
    - Post your error details
 
