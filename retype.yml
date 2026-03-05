@@ -2,6 +2,13 @@
 input: .
 output: .retype
 
+# Exclude legacy, non-Shopwise documentation from the docs site
+exclude:
+  - directwatertanks-magento
+  - odb
+  - odb-forks-prepared
+  - rixxo-firedepot-project-m2
+
 url: shopwise-docs.example.com # Use your website address here
 
 start:
@@ -29,7 +36,3 @@ footer:
 theme:
   primary: "#33CC99"  # Rixxo Green
   accent: "#3399CC"   # Rixxo Blue
-
-# Custom CSS for Rixxo Brand Guidelines
-# CSS file located at resources/css/rixxo-brand.css
-# JavaScript injection file at resources/js/rixxo-brand.js
