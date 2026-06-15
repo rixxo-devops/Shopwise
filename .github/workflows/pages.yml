@@ -28,7 +28,7 @@ jobs:
           node-version: '20'
 
       - name: Install Retype
-        run: npm install -g retypeapp
+        run: npm install -g retypeapp@4.6.0
 
       - name: Build site
         run: retype build

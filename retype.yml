@@ -19,6 +19,7 @@ branding:
   title: Shopwise App
   label: Documentation
   logo: images/01_header_rixxo_logo.png
+  baseColor: "#33CC99"  # Rixxo Green
 
 links:
 - text: Getting Started
@@ -32,8 +33,3 @@ links:
 
 footer:
   copyright: "&copy; Copyright {{ year }} Shopwise App. All rights reserved."
-
-# Rixxo Brand Colors
-theme:
-  primary: "#33CC99"  # Rixxo Green
-  accent: "#3399CC"   # Rixxo Blue

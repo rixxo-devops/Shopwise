@@ -1,0 +1,14 @@
+﻿# Shopwise App Documentation
+
+> Welcome to the Shopify ↔ Orderwise Integration App documentation. This comprehensive guide will help you set up and configure the Shopwise app to seamlessly integrate your Shopify store with your Orderwise system.
+
+- [Shopwise App Documentation](https://shopwise-docs.example.com/readme.md): Shopwise App Documentation
+- [Getting Started](https://shopwise-docs.example.com/getting-started.md): This guide will help you get started with the Shopwise app and access its settings within your Shopify admin.
+- [Order Status Mapping](https://shopwise-docs.example.com/status-mapping.md): Order Status Mapping synchronizes order statuses between OrderWise and Shopify. This allows Shopify orders to update to reflect their current status in OrderWise (Fulfilled, Cancelled, or Refunded).
+- [Orderwise Integration](https://shopwise-docs.example.com/orderwise-integration.md): This section covers the main configuration settings for connecting your Shopify store with OrderWise. The integration includes four key areas: Basic Settings, Payment Mappings, Shipping Mappings, and Status Mappings.
+- [Payment Mapping](https://shopwise-docs.example.com/payment-mapping.md): Payment mapping allows you to map Shopify payment methods to corresponding OrderWise payment method IDs. This ensures orders are processed with the correct payment information in OrderWise.
+- [Product Updates & Mapping](https://shopwise-docs.example.com/product-updates.md): Product Updates & Mapping synchronizes product data between OrderWise and Shopify. This feature allows you to keep product information, pricing, and attributes synchronized across both systems using customizable field mappings.
+- [Session Setup](https://shopwise-docs.example.com/session-setup.md): This guide will help you create a fresh e-commerce session in OrderWise for your Shopify integration. Creating a new session avoids legacy quirks and ensures optimal order synchronization.
+- [Shipping Mapping](https://shopwise-docs.example.com/shipping-mapping.md): Shipping mapping allows you to assign OrderWise shipping method IDs to Shopify shipping methods, ensuring orders display the correct shipping information in OrderWise.
+- [Stock Updates (Inventory Sync)](https://shopwise-docs.example.com/stock-updates.md): Stock Updates keeps your Shopify stock levels synchronized with OrderWise. ShopWise reads export data from OrderWise containing each variant's SKU and free stock, then updates the matching Shopify variant.
+- [Troubleshooting](https://shopwise-docs.example.com/troubleshooting.md): This guide helps you diagnose and resolve common issues with your Shopwise integration. Use this section to troubleshoot problems and monitor your integration health.
