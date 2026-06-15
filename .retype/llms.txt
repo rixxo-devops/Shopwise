@@ -3,6 +3,7 @@
 > Welcome to the Shopify ↔ Orderwise Integration App documentation. This comprehensive guide will help you set up and configure the Shopwise app to seamlessly integrate your Shopify store with your Orderwise system.
 
 - [Shopwise App Documentation](https://shopwise-docs.example.com/readme.md): Shopwise App Documentation
+- [FAQ](https://shopwise-docs.example.com/faq.md): Compiled from Shopwise support calls. Use this page for quick answers to common setup, sync, and configuration questions.
 - [Getting Started](https://shopwise-docs.example.com/getting-started.md): This guide will help you get started with the Shopwise app and access its settings within your Shopify admin.
 - [Order Status Mapping](https://shopwise-docs.example.com/status-mapping.md): Order Status Mapping synchronizes order statuses between OrderWise and Shopify. This allows Shopify orders to update to reflect their current status in OrderWise (Fulfilled, Cancelled, or Refunded).
 - [Orderwise Integration](https://shopwise-docs.example.com/orderwise-integration.md): This section covers the main configuration settings for connecting your Shopify store with OrderWise. The integration includes four key areas: Basic Settings, Payment Mappings, Shipping Mappings, and Status Mappings.

@@ -1,6 +1,6 @@
 {
   "version": "4.6.0",
-  "created": "2026-06-15T13:26:30Z",
+  "created": "2026-06-15T13:30:22Z",
   "files": [
     {
       "path": ".nojekyll"
@@ -6562,6 +6562,12 @@
     {
       "path": "directwatertanks-magento\\src\\update\\pub\\js\\status.js",
       "old": true
+    },
+    {
+      "path": "faq.md"
+    },
+    {
+      "path": "faq/index.html"
     },
     {
       "path": "find-wordpress-hosting\\index.html",

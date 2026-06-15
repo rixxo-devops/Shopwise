@@ -30,6 +30,8 @@ links:
   link: orderwise-integration.md
 - text: Troubleshooting
   link: troubleshooting.md
+- text: FAQ
+  link: faq.md
 
 footer:
   copyright: "&copy; Copyright {{ year }} Shopwise App. All rights reserved."

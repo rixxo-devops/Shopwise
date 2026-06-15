@@ -10,36 +10,30 @@
     <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
-    <title>Stock Updates (Inventory Sync)</title>
-    <meta name="title" content="Stock Updates (Inventory Sync)">
-    <meta name="description" content="Stock Updates keeps your Shopify stock levels synchronized with OrderWise. ShopWise reads export data from OrderWise containing each variant's SKU and free stock, then updates the matching Shopify variant.">
+    <title>FAQ</title>
+    <meta name="title" content="FAQ">
+    <meta name="description" content="Compiled from Shopwise support calls. Use this page for quick answers to common setup, sync, and configuration questions.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://shopwise-docs.example.com/stock-updates/">
+    <link rel="canonical" href="https://shopwise-docs.example.com/faq/">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://shopwise-docs.example.com/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shopwise-docs.example.com/stock-updates/">
-    <meta property="og:title" content="Stock Updates (Inventory Sync)">
-    <meta property="og:description" content="Stock Updates keeps your Shopify stock levels synchronized with OrderWise. ShopWise reads export data from OrderWise containing each variant's SKU and free stock, then updates the matching Shopify variant.">
-    <meta property="og:image" content="https://shopwise-docs.example.com/images/api-export-definitions.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Stock Updates (Inventory Sync)">
+    <meta property="og:url" content="https://shopwise-docs.example.com/faq/">
+    <meta property="og:title" content="FAQ">
+    <meta property="og:description" content="Compiled from Shopwise support calls. Use this page for quick answers to common setup, sync, and configuration questions.">
     <meta property="og:site_name" content="Shopwise App">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://shopwise-docs.example.com/stock-updates/">
-    <meta name="twitter:title" content="Stock Updates (Inventory Sync)">
-    <meta name="twitter:description" content="Stock Updates keeps your Shopify stock levels synchronized with OrderWise. ShopWise reads export data from OrderWise containing each variant's SKU and free stock, then updates the matching Shopify variant.">
-    <meta name="twitter:image" content="https://shopwise-docs.example.com/images/api-export-definitions.png">
-    <meta name="twitter:image:alt" content="Stock Updates (Inventory Sync)">
+    <meta name="twitter:url" content="https://shopwise-docs.example.com/faq/">
+    <meta name="twitter:title" content="FAQ">
+    <meta name="twitter:description" content="Compiled from Shopwise support calls. Use this page for quick answers to common setup, sync, and configuration questions.">
 
     <!-- Alternate Markdown -->
-    <link rel="alternate" type="text/markdown" href="https://shopwise-docs.example.com/stock-updates.md">
+    <link rel="alternate" type="text/markdown" href="https://shopwise-docs.example.com/faq.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
@@ -48,7 +42,6 @@
     <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.834845421168" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
     <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.834845421168" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=4.6.0.834845421168" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -181,144 +174,111 @@
                 <doc-page-actions></doc-page-actions>
 
                 <!-- Page content  -->
-<h1 id="stock-updates-inventory-sync">Stock Updates (Inventory Sync)</h1>
-<p>Stock Updates keeps your Shopify stock levels synchronized with OrderWise. ShopWise reads export data from OrderWise containing each variant&#x27;s SKU and free stock, then updates the matching Shopify variant.</p>
-<h2 id="how-it-works">How It Works</h2>
+<h1 id="faq">FAQ</h1>
+<p>Compiled from Shopwise support calls. Use this page for quick answers to common setup, sync, and configuration questions.</p>
+<h2 id="setup--configuration">Setup &amp; Configuration</h2>
+<h3 id="how-do-i-find-the-orderwise-api-base-url">How do I find the OrderWise API base URL?</h3>
+<p>It typically contains <strong>AWAPI</strong> in the URL path. If your OrderWise is hosted on a server, you can try appending <code translate="no" v-pre>/awapi/docs</code> to test if the API is accessible. Once entered correctly in the app, the connection indicator will turn green to confirm it&#x27;s working.</p>
+<h3 id="do-i-need-a-new-orderwise-user-for-the-integration">Do I need a new OrderWise user for the integration?</h3>
+<p>Yes. Create a dedicated admin user in OrderWise (<strong>System → Security → Users</strong>) and assign it to your API user group. Name it after the website for easy identification (e.g. <code translate="no" v-pre>uheat.com</code>). This keeps things clean and auditable.</p>
+<h3 id="what-is-a-session-in-orderwise-and-why-does-the-app-need-one">What is a session in OrderWise and why does the app need one?</h3>
+<p>An OrderWise session is effectively a dedicated &quot;till&quot; or shop channel. You must create a new session for each Shopify store integration — do not share sessions with other websites or channels, as this causes order numbering conflicts. Set the <strong>Transfer Type</strong> to <strong>Web Service</strong> under the Import Setup tab of the session.</p>
+<h3 id="what-session-settings-should-i-enable-in-orderwise">What session settings should I enable in OrderWise?</h3>
+<p>The key ones to turn on are:</p>
 <ul>
-<li><strong>Matching</strong>: Shopify variants are matched by <strong>SKU</strong> (variant code)</li>
-<li><strong>Data Source</strong>: OrderWise export definition provides SKU and free stock data</li>
-<li><strong>Update Frequency</strong>: ShopWise checks for updates every 15 minutes</li>
-<li><strong>Sync Direction</strong>: OrderWise → Shopify (one-way sync)</li>
+<li><strong>Use delivery method system tax code if not provided</strong></li>
+<li><strong>Use variant system tax code if not provided</strong></li>
+<li><strong>Add delivery address to existing customer if not found</strong></li>
+<li><strong>Add customer contact to existing customer if not found</strong></li>
+<li><strong>Use variant stock location if default not available</strong></li>
+<li><strong>Override variant disallow settings</strong></li>
 </ul>
-<h2 id="prerequisites">Prerequisites</h2>
-<p>Before setting up stock updates, you need to create an OrderWise API Export Definition.</p>
-<h3 id="step-1-create-orderwise-api-export-definition">Step 1: Create OrderWise API Export Definition</h3>
+<p>The four customer validation options should also all be ticked.</p>
+<h3 id="what-interval-should-i-set-on-the-orderwise-session">What interval should I set on the OrderWise session?</h3>
+<p>Set it to <strong>5 minutes</strong>. The app polls every 15 minutes for stock and status updates from its side, but the session interval controls how frequently OrderWise checks for incoming orders.</p>
+<h3 id="i-cant-see-api-export-definitions-in-my-orderwise--only-e-commerce-export-definitions-why">I can&#x27;t see &quot;API Export Definitions&quot; in my OrderWise — only &quot;E-Commerce Export Definitions&quot;. Why?</h3>
+<p>This is a user permissions issue. Ask your OrderWise admin to check the API user group permissions and ensure the <strong>API Export Definitions</strong> module is ticked. Without this, stock and order status syncing cannot be set up.</p>
+<h3 id="can-i-launch-with-just-order-sync-enabled-and-add-stockstatusproduct-sync-later">Can I launch with just order sync enabled and add stock/status/product sync later?</h3>
+<p>Yes. The modules are completely independent. You only need to configure payment mapping, shipping mapping, and customer matching to start syncing orders. Stock, order status updates, and product imports can be turned on later once configured.</p>
+<h2 id="order-sync">Order Sync</h2>
+<h3 id="how-does-the-app-match-shopify-customers-to-orderwise-customers">How does the app match Shopify customers to OrderWise customers?</h3>
+<p>It works in cascade:</p>
 <ol>
-<li>Open <strong>OrderWise</strong></li>
-<li>Click <strong>E-Commerce</strong> (bottom-left menu)</li>
-<li>Click <strong>API Export Definitions</strong> (top-left menu)</li>
+<li>First by <strong>OrderWise ID</strong> (stored in a Shopify customer metafield)</li>
+<li>Then by <strong>email</strong></li>
+<li>Then by <strong>name and address</strong></li>
 </ol>
-<figure class="content-center">
-    <img src="../images/api-export-definitions.png" alt="API Export Definitions" class="max-w-full h-auto rounded-image-rounded border-image-border border-image-border-width" width="1233" height="877" />
-    <figcaption class="caption">API Export Definitions</figcaption>
-</figure>
-<ol start="4">
-<li>Click <strong>Add</strong></li>
-<li>Name it clearly, e.g., <strong>ShopWise Stock Sync</strong></li>
-</ol>
-<figure class="content-center">
-    <img src="../images/export-definition-creation.png" alt="Export Definition Creation" class="max-w-full h-auto rounded-image-rounded border-image-border border-image-border-width" width="1222" height="881" />
-    <figcaption class="caption">Export Definition Creation</figcaption>
-</figure>
-<ol start="6">
-<li>In <strong>SQL Statement</strong>, copy the following:</li>
-</ol>
-<div id="step-1-create-orderwise-api-export-definition-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-sql"><code v-pre class="language-sql">-- Adjust the time window to suit. -15 = last 15 minutes, -1500 ≈ last 25 hours.
-WITH DateCheck AS (
-    SELECT DATEADD(MINUTE, -15, GETDATE()) AS DateWindowStart
-)
-SELECT
-  variant_detail.vad_variant_code                 AS sku,        -- REQUIRED: used to match Shopify variants
-  variant_stock_quantity.vasq_free_stock_quantity AS freeStock   -- Free/available stock to publish to Shopify
-FROM variant_detail
-INNER JOIN variant_stock_quantity
-  ON variant_detail.vad_id = variant_stock_quantity.vasq_vad_id
-CROSS JOIN DateCheck
-WHERE
-  vasq_stock_levels_last_calculated &gt;= DateWindowStart;</code></pre>
-</doc-codeblock></div>
-<h3 id="step-2-get-the-export-definition-id">Step 2: Get the Export Definition ID</h3>
-<ol>
-<li>In <strong>API Export Definitions</strong>, right-click the grid and choose <strong>Edit Grid Layout</strong></li>
-</ol>
-<figure class="content-center">
-    <img src="../images/edit-grid-layout.png" alt="Edit Grid Layout" class="max-w-full h-auto rounded-image-rounded border-image-border border-image-border-width" width="1238" height="862" />
-    <figcaption class="caption">Edit Grid Layout</figcaption>
-</figure>
-<ol start="2">
-<li>Add <strong>Export Definition ID</strong> to the grid</li>
-</ol>
-<figure class="content-center">
-    <img src="../images/add-export-id.png" alt="Add Export ID" class="max-w-full h-auto rounded-image-rounded border-image-border border-image-border-width" width="1010" height="634" />
-    <figcaption class="caption">Add Export ID</figcaption>
-</figure>
-<ol start="3">
-<li>Save and note the <strong>Export Definition ID</strong> for your new export</li>
-</ol>
-<h2 id="configure-in-shopwise">Configure in ShopWise</h2>
-<ol>
-<li>Open <strong>ShopWise</strong> in your Shopify admin</li>
-<li>Go to <strong>Configuration → Stock Mappings</strong></li>
-<li>Enter the <strong>Stock Export Definition ID</strong> from OrderWise</li>
-<li>Click <strong>Save</strong></li>
-</ol>
-<figure class="content-center">
-    <img src="../images/stock-mappings.png" alt="Stock Mappings" class="max-w-full h-auto rounded-image-rounded border-image-border border-image-border-width" width="1904" height="906" />
-    <figcaption class="caption">Stock Mappings</figcaption>
-</figure>
-<h2 id="example-output">Example Output</h2>
-<p>The export definition returns data in this format:</p>
-<div id="example-output-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-json"><code v-pre class="language-json">{
-  &quot;sku&quot;: &quot;ABC-100-RED&quot;,
-  &quot;freeStock&quot;: 23
-}</code></pre>
-</doc-codeblock></div>
-<h2 id="important-notes">Important Notes</h2>
-<h3 id="time-window-configuration">Time Window Configuration</h3>
-<ul>
-<li><strong>Default</strong>: 15 minutes (matches ShopWise polling frequency)</li>
-<li><strong>For ~25 hours</strong>: Use <code translate="no" v-pre>DATEADD(MINUTE, -1500, GETDATE())</code></li>
-<li><strong>Recommendation</strong>: Keep window ≥ 15 minutes to avoid missing updates</li>
-</ul>
-<h3 id="field-requirements">Field Requirements</h3>
-<ul>
-<li><strong>Do not change field names</strong> (<code translate="no" v-pre>sku</code>, <code translate="no" v-pre>freeStock</code>)</li>
-<li><strong>SKU must match exactly</strong> (case-sensitive, including spaces)</li>
-<li><strong>freeStock</strong>: Usually represents available/allocatable stock</li>
-</ul>
-<h3 id="performance-considerations">Performance Considerations</h3>
-<ul>
-<li>Filter by changed rows only (as shown in SQL)</li>
-<li>Consider adding warehouse/site filters if needed</li>
-<li>Large datasets may require additional optimization</li>
-</ul>
-<h2 id="troubleshooting">Troubleshooting</h2>
-<h3 id="common-issues">Common Issues</h3>
-<p><strong>SKU Mismatch</strong></p>
-<ul>
-<li>Ensure OrderWise <code translate="no" v-pre>variant_code</code> exactly matches Shopify variant SKU</li>
-<li>Check for extra spaces, case differences, or special characters</li>
-</ul>
-<p><strong>No Stock Updates</strong></p>
-<ul>
-<li>Verify Export Definition ID is correct</li>
-<li>Check that export returns data for recent changes</li>
-<li>Ensure time window includes recent stock changes</li>
-</ul>
-<p><strong>Performance Issues</strong></p>
-<ul>
-<li>Consider filtering by product categories or warehouses</li>
-<li>Adjust time window based on your update frequency needs</li>
-<li>Monitor export performance in OrderWise</li>
-</ul>
-<h3 id="verification-steps">Verification Steps</h3>
-<ol>
-<li><strong>Check Export Data</strong>: Run the SQL query directly in OrderWise</li>
-<li><strong>Verify SKUs</strong>: Compare OrderWise variant codes with Shopify SKUs</li>
-<li><strong>Monitor Logs</strong>: Check ShopWise logs for sync errors</li>
-<li><strong>Test Updates</strong>: Make a stock change in OrderWise and verify Shopify updates</li>
-</ol>
-<h2 id="next-steps">Next Steps</h2>
-<p>With stock updates configured:</p>
-<ol>
-<li><strong><a href="../payment-mapping/">Payment Mapping</a></strong> - Set up payment method mapping</li>
-<li><strong><a href="../shipping-mapping/">Shipping Mapping</a></strong> - Configure shipping method mapping</li>
-<li><strong><a href="../status-mapping/">Status Mapping</a></strong> - Set up order status synchronization</li>
-</ol>
+<p>If no match is found, it creates a new customer in OrderWise. You can pre-import your existing customer list to populate the metafield and avoid duplicates.</p>
+<h3 id="whats-the-difference-between-single-customer-mode-and-one-to-one-customer-matching">What&#x27;s the difference between single-customer mode and one-to-one customer matching?</h3>
+<p><strong>Single-customer mode</strong> sends all orders through one named OrderWise customer account — typical for B2C businesses that don&#x27;t need per-customer records.</p>
+<p><strong>One-to-one mode</strong> creates or matches an individual OrderWise customer per order, storing the OrderWise ID in a Shopify metafield. Most B2B clients use one-to-one.</p>
+<h3 id="how-do-i-map-payment-methods">How do I map payment methods?</h3>
+<p>The app auto-detects standard Shopify gateways (Shopify Payments, PayPal, Klarna). For each, you enter the corresponding OrderWise payment method ID (found under <strong>System → Sales Order → Payment Methods</strong> — enable the ID column in the grid).</p>
+<p>If you have multiple Klarna variants, you may need to create a consolidated payment method in OrderWise or map each handle separately.</p>
+<h3 id="how-do-i-map-shippingdelivery-methods">How do I map shipping/delivery methods?</h3>
+<p>The app pulls all Shopify shipping methods. You map each to an OrderWise delivery method ID (<strong>System → Sales Order → Delivery Methods</strong>).</p>
+<p>If using a third-party shipping rate app (e.g. ShipX), you&#x27;ll need to check what rate IDs it outputs to Shopify — you can inspect these on a test order. If all your methods map to the same delivery method in OrderWise, you can set them all to the same ID to get started.</p>
+<h3 id="can-i-hold-or-delay-certain-orders-from-going-into-orderwise">Can I hold or delay certain orders from going into OrderWise?</h3>
+<p>Yes. Add an <strong>exclusion tag</strong> to orders you don&#x27;t want synced. Any order tagged with that value won&#x27;t be sent to OrderWise.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-primary"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-primary" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>note</h5>
+<p>The app&#x27;s order lookback window is limited to <strong>168 hours (7 days)</strong>. If you remove the tag after that window, the order won&#x27;t retroactively sync.</p>
+        </div>
+    </div>
+</div>
+<h3 id="can-the-app-handle-orders-that-already-come-in-from-another-channel-eg-bq-via-miracle">Can the app handle orders that already come in from another channel (e.g. B&amp;Q via Miracle)?</h3>
+<p>Not natively out of the box, but it&#x27;s achievable. The recommended approach is to use Shopify automation to detect an identifier (e.g. email domain or tag) on marketplace orders and apply a tag, which the app can then exclude from syncing — or pass an analysis field value down to OrderWise to differentiate the source.</p>
+<p>This is typically a custom build but is being considered as a generic feature.</p>
+<h3 id="does-the-app-pass-vattax-flags-from-shopify-orders-through-to-orderwise">Does the app pass VAT/tax flags from Shopify orders through to OrderWise?</h3>
+<p>Yes — it passes exactly the values Shopify sends. If a line item has the taxable flag set to false, that goes down to OrderWise as-is. OrderWise must be configured to accept zero-tax lines; this is an OrderWise-side setting, not something the app controls.</p>
+<h3 id="can-i-pass-order-notes-or-custom-fields-through-to-orderwise">Can I pass order notes or custom fields through to OrderWise?</h3>
+<p>Yes, with customisation. Shopify doesn&#x27;t have a standard location for custom order data, so the mapping needs to be defined based on your specific setup. Order notes can be mapped to customer notes in OrderWise; other fields depend on what analysis fields you have in OrderWise.</p>
+<h2 id="stock-sync">Stock Sync</h2>
+<h3 id="how-does-stock-sync-work-and-how-frequently-does-it-update">How does stock sync work and how frequently does it update?</h3>
+<p>Stock is pulled from an OrderWise API export definition — a small SQL query — every <strong>15 minutes</strong>. The query is written to only return products where stock has changed in the last 15 minutes, to keep API usage low.</p>
+<p>Rixxo provides a default export definition that you can customise to filter by product type, stock location, or other criteria.</p>
+<h3 id="what-if-my-shopify-skus-dont-match-my-orderwise-variant-codes-exactly">What if my Shopify SKUs don&#x27;t match my OrderWise variant codes exactly?</h3>
+<p>The sync is SKU-to-SKU. If you use OrderWise&#x27;s <strong>alternate codes</strong> feature (additional codes that resolve back to a master variant), those aren&#x27;t included by default, but the export definition can be modified to include them. Raise this early in setup so it can be scoped.</p>
+<h3 id="can-i-filter-which-products-get-included-in-the-stock-sync">Can I filter which products get included in the stock sync?</h3>
+<p>Yes. The export definition is editable SQL. You can filter by stock location, product category, analysis fields, or any other OrderWise data. Rixxo can assist if you need help writing the SQL.</p>
+<h2 id="product-sync">Product Sync</h2>
+<h3 id="does-product-sync-only-update-existing-products-or-does-it-create-new-ones-too">Does product sync only update existing products, or does it create new ones too?</h3>
+<p>Both — by default. If a matching SKU exists in Shopify, it updates it. If no SKU is found, it creates a new product in a <strong>disabled</strong> state. If you don&#x27;t want new products created automatically, this behaviour can be suppressed.</p>
+<h3 id="can-i-use-product-sync-just-to-update-prices-without-syncing-everything-else">Can I use product sync just to update prices, without syncing everything else?</h3>
+<p>Yes. The only required field in the export definition is <strong>SKU</strong>. If you only include SKU and price, the sync will just update prices on existing products. No other fields are mandatory.</p>
+<h3 id="we-manage-products-in-shopify-and-dont-want-orderwise-pushing-changes-can-we-turn-this-off">We manage products in Shopify and don&#x27;t want OrderWise pushing changes. Can we turn this off?</h3>
+<p>Yes. Product sync won&#x27;t run unless you&#x27;ve added an export definition ID to the configuration. If you leave that field blank, it simply doesn&#x27;t run.</p>
+<h3 id="we-have-duplicate-skus-in-shopify-eg-vat-and-non-vat-variants-of-the-same-product-how-does-the-stock-sync-handle-this">We have duplicate SKUs in Shopify (e.g. VAT and non-VAT variants of the same product). How does the stock sync handle this?</h3>
+<p>This is an edge case the app hasn&#x27;t been specifically designed for. One viable workaround is to use OrderWise&#x27;s alternate code feature — assign a different SKU to the zero-VAT variant, and include alternate codes in the export definition query so both variants get updated. This needs to be tested and scoped.</p>
+<h2 id="order-status--dispatch">Order Status &amp; Dispatch</h2>
+<h3 id="how-does-the-app-update-order-status-in-shopify-when-an-order-is-dispatched-in-orderwise">How does the app update order status in Shopify when an order is dispatched in OrderWise?</h3>
+<p>It uses a second API export definition — a SQL query that returns orders where the status has changed in the last hour. You map OrderWise status names (e.g. &quot;Invoice Waiting to be Printed&quot;, &quot;Dispatched&quot;) to Shopify statuses (Fulfilled, Cancelled, etc.). The app polls this every <strong>15 minutes</strong>.</p>
+<h3 id="will-tracking-numbers-be-passed-back-to-shopify">Will tracking numbers be passed back to Shopify?</h3>
+<p>This is in development. The field is included in the order status export definition already, but the feature to surface it in Shopify wasn&#x27;t live as of the calls reviewed.</p>
+<h2 id="credit--b2b">Credit &amp; B2B</h2>
+<h3 id="can-the-app-sync-orderwise-credit-account-balances-to-shopify-so-customers-cant-over-order-on-credit">Can the app sync OrderWise credit account balances to Shopify so customers can&#x27;t over-order on credit?</h3>
+<p>Yes. The app syncs available credit and credit used from OrderWise to Shopify customer metafields. A compatible Shopify B2B app (e.g. Sparkler) then reads those fields at checkout — if available credit is zero or negative, the credit payment method is hidden. The credit data stays in sync automatically.</p>
+<h3 id="can-customers-view-and-pay-invoices-online-rather-than-receiving-them-by-email">Can customers view and pay invoices online rather than receiving them by email?</h3>
+<p>This is a frequently requested feature. The recommended approach is to find a suitable Shopify portal solution, then integrate it with OrderWise through the app to surface invoice data. Treat it as a separate scoping project once your core integration is stable.</p>
+<h2 id="multiple-stores--marketplace-channels">Multiple Stores &amp; Marketplace Channels</h2>
+<h3 id="can-one-orderwise-instance-connect-to-multiple-shopify-stores">Can one OrderWise instance connect to multiple Shopify stores?</h3>
+<p>Yes. Each store is configured independently with its own session and credentials.</p>
+<h3 id="can-shopwise-connect-to-ebay-or-amazon-directly-or-only-shopify">Can Shopwise connect to eBay or Amazon directly, or only Shopify?</h3>
+<p>The app connects OrderWise to Shopify. If you&#x27;re currently using Shopify as middleware to push to eBay (e.g. via Trunk), that setup continues to work alongside the app. Direct OrderWise-to-eBay/Amazon connections are possible but would be a separate integration discussion.</p>
 <hr>
-<p><strong>Stock sync working?</strong> Proceed to <a href="../payment-mapping/">Payment Mapping</a> to configure payment method mapping.</p>
+<p><strong>Still stuck?</strong> Check the <a href="../troubleshooting/">Troubleshooting Guide</a> or <a href="https://shopwise-orderwise-integration.myshopify.com/pages/contact">get in touch with the Shopwise team</a>.</p>
 
                 
                 <!-- Required only on API pages -->
@@ -328,20 +288,20 @@ WHERE
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../shipping-mapping/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Shipping Mapping</span>
+                                <span class="block mt-1">Shopwise App Documentation</span>
                             </span>
                         </a>
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../troubleshooting/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../getting-started/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">Troubleshooting</span>
+                                <span class="block mt-1">Getting Started</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>
@@ -385,6 +345,6 @@ WHERE
 
     <div id="retype-overlay-target"></div>
 
-        <script data-cfasync="false">window.__DOCS__ = { "title": "Stock Updates (Inventory Sync)", level: 1, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/stock-updates.md" }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "FAQ", level: 1, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/faq.md" }</script>
 </body>
 </html>
