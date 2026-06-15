@@ -53,6 +53,10 @@ Once you have access to the app settings, you're ready to:
 2. **[Configure the integration](orderwise-integration.md)** - Set up all mapping and sync settings
 3. **[Test the connection](troubleshooting.md)** - Verify everything is working correctly
 
+## Need Help Getting Started?
+
+Get in touch with the [Shopwise team](https://shopwise-orderwise-integration.myshopify.com/pages/contact).
+
 ## Support
 
 If you encounter any issues during setup:

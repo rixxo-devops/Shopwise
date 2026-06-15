@@ -42,6 +42,10 @@ Configure payment methods and shipping options to ensure orders process correctl
 - Review the **[Log Manager](troubleshooting.md#log-manager)** section for debugging
 - Ensure all prerequisites are met before starting setup
 
+## Need Help Getting Started?
+
+Get in touch with the [Shopwise team](https://shopwise-orderwise-integration.myshopify.com/pages/contact).
+
 ---
 
 **Ready to get started?** Begin with the [Getting Started Guide](getting-started.md) to set up your integration.
