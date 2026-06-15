@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shopwise-docs.example.com/</loc>
-    <lastmod>2026-06-15T13:00:35Z</lastmod>
+    <lastmod>2026-06-15T13:30:27Z</lastmod>
   </url>
   <url>
     <loc>https://shopwise-docs.example.com/orderwise-integration/</loc>
@@ -26,6 +26,7 @@
   </url>
   <url>
     <loc>https://shopwise-docs.example.com/faq/</loc>
+    <lastmod>2026-06-15T13:30:27Z</lastmod>
   </url>
   <url>
     <loc>https://shopwise-docs.example.com/payment-mapping/</loc>

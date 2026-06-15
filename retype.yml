@@ -28,10 +28,10 @@ links:
   link: session-setup.md
 - text: Orderwise Integration
   link: orderwise-integration.md
-- text: Troubleshooting
-  link: troubleshooting.md
 - text: FAQ
   link: faq.md
+- text: Troubleshooting
+  link: troubleshooting.md
 
 footer:
   copyright: "&copy; Copyright {{ year }} Shopwise App. All rights reserved."

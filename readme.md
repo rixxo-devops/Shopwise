@@ -17,8 +17,8 @@ Shopwise is a powerful integration app that connects your Shopify store with Ord
 1. **[Getting Started](getting-started.md)** - Initial setup and configuration
 2. **[Session Setup](session-setup.md)** - Configure Orderwise e-commerce session
 3. **[Orderwise Integration](orderwise-integration.md)** - Complete integration setup
-4. **[Troubleshooting](troubleshooting.md)** - Common issues and solutions
-5. **[FAQ](faq.md)** - Answers to common setup and sync questions
+4. **[FAQ](faq.md)** - Answers to common setup and sync questions
+5. **[Troubleshooting](troubleshooting.md)** - Common issues and solutions
 
 ## Key Features
 
