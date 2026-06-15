@@ -18,6 +18,7 @@ start:
 branding:
   title: Shopwise App
   label: Documentation
+  logo: images/01_header_rixxo_logo.png
 
 links:
 - text: Getting Started

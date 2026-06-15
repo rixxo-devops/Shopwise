@@ -1,3 +1,0 @@
-# Placeholder Image
-This is a placeholder for the actual image that should be here.
-Replace this file with the actual image from your PDF.

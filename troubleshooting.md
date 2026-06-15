@@ -37,6 +37,10 @@ The Log Manager is your primary tool for monitoring and debugging the Shopwise i
 3. **Test Credential Hash** is properly base64 encoded
 4. **Confirm Session ID** exists and is active
 
+![Connection error](images/basic-settings-token-error.png)
+
+![Connection success](images/basic-settings-saved-success.png)
+
 ### Connection Test Steps
 
 1. Go to **Log Manager** in ShopWise
@@ -58,6 +62,8 @@ The Log Manager is your primary tool for monitoring and debugging the Shopwise i
 2. **ShopWise Processing**: App processes order data
 3. **OrderWise Transmission**: Order sent to OrderWise via API
 4. **Confirmation**: Order appears in OrderWise system
+
+![Shopify order sync tags](images/shopify-orders-sync-tags.png)
 
 ### Troubleshooting Order Sync
 
@@ -86,6 +92,8 @@ The Log Manager is your primary tool for monitoring and debugging the Shopwise i
 
 SMTP settings control email notifications for integration issues.
 
+![SMTP Settings](images/smtp-settings.png)
+
 **Common SMTP Issues:**
 - Incorrect server settings
 - Authentication problems
@@ -102,6 +110,8 @@ SMTP settings control email notifications for integration issues.
 ## Sending Payments
 
 ### Payment Processing Issues
+
+![Exclude payment details setting](images/additional-settings-exclude-payment.png)
 
 **Payment Methods Not Mapping:**
 1. Verify **Gateway ID** matches exactly
