@@ -86,7 +86,7 @@ Once you've configured all basic settings, your integration should include:
 - ✅ Credential Hash (base64 encoded)
 - ✅ Session ID from your e-commerce session
 - ✅ Stock Location ID (if applicable)
-- ✅ Customer ID for orders
+- ✅ Customer ID for orders (or Integer customer metafield for one-to-one mode)
 - ✅ Notification email address
 
 ## Next Steps
