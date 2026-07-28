@@ -57,7 +57,9 @@ If no match is found, it creates a new customer in OrderWise. You can pre-import
 
 **Single-customer mode** sends all orders through one named OrderWise customer account — typical for B2C businesses that don't need per-customer records.
 
-**One-to-one mode** creates or matches an individual OrderWise customer per order, storing the OrderWise ID in a Shopify metafield. Most B2B clients use one-to-one.
+**One-to-one mode** creates or matches an individual OrderWise customer per order, storing the OrderWise ID in a Shopify customer metafield. Most B2B clients use one-to-one.
+
+For one-to-one matching to work, you must create a customer metafield in Shopify (for example `custom.customer_account_number`) and select it in the ShopWise customer ID settings field. This metafield **must** be of type **Integer** — using Single line text (or any other type) will cause customer sync to fail, which in turn can cause order sync to fail or retry incorrectly.
 
 ### How do I map payment methods?
 

@@ -56,7 +56,9 @@ This setting allows you to specify a default stock location for all orders from 
 
 ### OrderWise Customer ID
 
-This is the customer ID that all orders will be placed against in OrderWise.
+Customer handling depends on which mapping mode you use:
+
+**Single-customer mode** — all orders are placed against one named OrderWise customer account. Enter that customer's OrderWise Customer ID in this field.
 
 **To find a Customer ID:**
 1. Go to your customers in OrderWise
@@ -65,6 +67,10 @@ This is the customer ID that all orders will be placed against in OrderWise.
 4. Note the ID of the customer you want to use
 
 ![Customer ID](images/customer-id.png)
+
+**One-to-one mode** — each Shopify customer is matched to (or created as) an individual OrderWise customer, with the OrderWise ID stored in a Shopify customer metafield. Most B2B clients use this mode.
+
+For one-to-one matching to work, you must create a customer metafield in Shopify (for example `custom.customer_account_number`) and select it in the ShopWise customer ID settings field. This metafield **must** be of type **Integer** — using Single line text (or any other type) will cause customer sync to fail, which in turn can cause order sync to fail or retry incorrectly.
 
 ### Email Notification Address
 
@@ -80,7 +86,7 @@ Once you've configured all basic settings, your integration should include:
 - ✅ Credential Hash (base64 encoded)
 - ✅ Session ID from your e-commerce session
 - ✅ Stock Location ID (if applicable)
-- ✅ Customer ID for orders
+- ✅ Customer ID for orders (or Integer customer metafield for one-to-one mode)
 - ✅ Notification email address
 
 ## Next Steps
