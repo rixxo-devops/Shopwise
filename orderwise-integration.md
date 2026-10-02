@@ -54,6 +54,8 @@ This setting allows you to specify a default stock location for all orders from 
 - Optional setting - leave blank if not needed
 - Ensures consistent stock location assignment
 
+If you need per-location stock sync and fulfilment instead of a single default, enable **multi stock location** in Stock Settings and map Shopify locations to OrderWise stock locations. See [Multi Stock Locations](stock-updates.md#multi-stock-locations).
+
 ### OrderWise Customer ID
 
 Customer handling depends on which mapping mode you use:

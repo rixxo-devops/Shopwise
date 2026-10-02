@@ -111,6 +111,10 @@ The sync is SKU-to-SKU. If you use OrderWise's **alternate codes** feature (addi
 
 Yes. The export definition is editable SQL. You can filter by stock location, product category, analysis fields, or any other OrderWise data. Rixxo can assist if you need help writing the SQL.
 
+### Can stock sync update multiple Shopify locations?
+
+Yes. Enable **multi stock location** in Stock Settings, map each Shopify location to an OrderWise stock location ID (**System → Global → Stock Locations**), and use the multi-location export SQL (which returns `sku`, `freeStock`, and `StocklocationId`). There is a separate SQL variant for manufactured/kit stock. See [Stock Updates](stock-updates.md#multi-stock-locations) for the queries and fulfilment behaviour — if a line needs stock from more than one location, ShopWise splits it into multiple line items, one per location.
+
 ## Product Sync
 
 ### Does product sync only update existing products, or does it create new ones too?
